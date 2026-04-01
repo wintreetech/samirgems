@@ -1,0 +1,324 @@
+@import "tailwindcss";
+
+/* TIMES NOW */
+
+@font-face {
+	font-family: "Times Now";
+	src: url("./assets/fonts/times-now-light.otf") format("opentype");
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Times Now";
+	src: url("./assets/fonts/times-now-bold.otf") format("opentype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* CONDOR */
+
+@font-face {
+	font-family: "Condor";
+	src: url("./assets/fonts/fonnts.com-Condor_Light.otf") format("opentype");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Condor";
+	src: url("./assets/fonts/fonnts.com-Condor_Regular.otf") format("opentype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Condor";
+	src: url("./assets/fonts/fonnts.com-Condor_Medium.otf") format("opentype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Condor";
+	src: url("./assets/fonts/fonnts.com-Condor_Bold.otf") format("opentype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Condor";
+	src: url("./assets/fonts/fonnts.com-Condor_Black.otf") format("opentype");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@layer base {
+	:root {
+		color: #f6f2eb;
+		background: #050505;
+		font-family: "Condor", serif;
+		font-synthesis: none;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	html::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+		display: none;
+	}
+
+	body {
+		margin: 0;
+		min-width: 320px;
+		background: #050505;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	body::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+		display: none;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	button,
+	input,
+	select,
+	textarea {
+		font: inherit;
+	}
+
+	#root {
+		min-height: 100vh;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	#root::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+		display: none;
+	}
+
+	*::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+		display: none;
+	}
+}
+
+@layer components {
+	.section-frame {
+		@apply relative overflow-hidden border-b border-white/8;
+	}
+
+	.section-frame::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background:
+			linear-gradient(
+				90deg,
+				transparent 0%,
+				rgba(255, 255, 255, 0.02) 50%,
+				transparent 100%
+			),
+			radial-gradient(
+				circle at center,
+				rgba(255, 255, 255, 0.025),
+				transparent 60%
+			);
+	}
+
+	.reveal-section {
+		@apply opacity-100 transition duration-700 ease-out;
+	}
+
+	.reveal-section.is-active {
+		@apply shadow-[0_26px_120px_rgba(255,255,255,0.04)];
+	}
+
+	.hero-grid > * {
+		@apply opacity-0 translate-y-8 transition duration-700 ease-out;
+	}
+
+	.is-visible .hero-grid > * {
+		@apply opacity-100 translate-y-0;
+	}
+
+	.is-visible .hero-grid > *:nth-child(2) {
+		transition-delay: 120ms;
+	}
+
+	.home-track {
+		@apply h-full will-change-transform;
+	}
+
+	.home-panel {
+		@apply h-full;
+	}
+
+	.home-slide {
+		@apply h-full w-full;
+	}
+
+	.home-slide__container {
+		@apply h-full w-full px-6 pt-8 pb-12 md:px-10 lg:px-14 xl:px-20 2xl:px-24;
+	}
+
+	.section-nav {
+		@apply fixed right-8 top-1/2 z-30 hidden -translate-y-1/2 xl:flex xl:flex-col xl:items-center xl:gap-[22px];
+	}
+
+	.section-nav::before {
+		content: "";
+		position: absolute;
+		top: 8px;
+		bottom: 8px;
+		left: 50%;
+		width: 1px;
+		transform: translateX(-50%);
+		background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.08) 0%,
+			rgba(255, 255, 255, 0.22) 50%,
+			rgba(255, 255, 255, 0.08) 100%
+		);
+	}
+
+	.section-nav__button {
+		@apply relative z-10 flex h-9 w-9 items-center justify-center rounded-full transition duration-500;
+	}
+
+	.section-nav__dot {
+		@apply relative grid h-9 w-9 place-items-center rounded-full transition-all duration-500;
+	}
+
+	.section-nav__index {
+		position: absolute;
+		font-family: "Condor", serif;
+		font-size: 15px;
+		font-weight: 300;
+		color: rgb(255 255 255);
+		opacity: 0;
+		transition: all 300ms;
+	}
+
+	.section-nav__ring {
+		@apply absolute inset-0 h-full w-full -rotate-90 opacity-0 transition-opacity duration-500;
+	}
+
+	.section-nav__ring-track,
+	.section-nav__ring-progress {
+		fill: none;
+		stroke-width: 1.2;
+	}
+
+	.section-nav__ring-track {
+		stroke: rgba(255, 255, 255, 0.16);
+	}
+
+	.section-nav__ring-progress {
+		stroke: rgba(255, 255, 255, 0.92);
+		stroke-linecap: round;
+		stroke-dasharray: 82;
+		stroke-dashoffset: 82;
+	}
+
+	.section-nav__core {
+		@apply h-[7px] w-[7px] rounded-full border border-white/35 bg-white/60 transition-all duration-500;
+	}
+
+	.section-nav__button.is-current {
+		@apply scale-100;
+	}
+
+	.section-nav__button.is-current .section-nav__index {
+		@apply opacity-100;
+	}
+
+	.section-nav__button.is-current .section-nav__core {
+		@apply h-[4px] w-[4px] bg-transparent border-transparent shadow-none;
+	}
+
+	.section-nav__button.is-current .section-nav__ring {
+		@apply opacity-100;
+	}
+
+	.section-nav__dot.is-playing .section-nav__ring-progress {
+		animation: nav-ring-progress var(--progress-duration, 4200ms) linear
+			forwards;
+	}
+
+	.home-track,
+	.home-panel,
+	.home-slide {
+		scrollbar-width: none;
+	}
+}
+
+@keyframes nav-ring-progress {
+	from {
+		stroke-dashoffset: 82;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+@layer utilities {
+	.font-display {
+		font-family: "Times Now", serif;
+		font-weight: 300;
+		letter-spacing: 0.01em;
+	}
+
+	.font-copy {
+		font-family: "Condor", serif;
+		font-weight: 300;
+		letter-spacing: 0.01em;
+	}
+
+	.font-sans {
+		font-family: "Condor", serif;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	@layer components {
+		.reveal-section,
+		.hero-grid > * {
+			@apply opacity-100 translate-y-0 transition-none;
+		}
+	}
+
+	html {
+		scroll-behavior: auto;
+	}
+}
