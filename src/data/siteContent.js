@@ -6,18 +6,34 @@ import roughDiamonds from "../assets/pdf-images/page1-img18.png";
 import namdiaLogo from "../assets/pdf-images/NAMDIA.svg";
 import sodiamLogo from "../assets/pdf-images/SODIAM.svg";
 import handsImage from "../assets/pdf-images/page1-img21.png";
-import diamondOnStone from "../assets/pdf-images/page1-img2.png";
+import diamondOnStone from "../assets/images/HOME_HERO.png";
 import skyline from "../assets/pdf-images/page1-img25.png";
 import worldMap from "../assets/pdf-images/MAP.svg";
-import HomeLegacy from "../assets/pdf-images/legacy-1.png";
+import HomeLegacy from "../assets/images/HOME_LEGACY.png";
 import Arrow from "../assets/Arrow.svg";
 import OurExpertise from "../assets/pdf-images/our-expertise-bg.png";
-import ContactHero from "../assets/pdf-images/CONTACT_HERO.png";
-import LegacyHero from "../assets/pdf-images/LEGACY_HERO.png";
+import ContactHero from "../assets/images/Contact Page banner.png";
+import LegacyHero from "../assets/images/Legacy Banner.png";
 import LegacyTwo from "../assets/pdf-images/LEGACY_2.png";
 import LegacyThree from "../assets/pdf-images/LEGACY_3.png";
 import DiamondHero from "../assets/pdf-images/DIAMONDS_HERO.png";
 import ServiceHero from "../assets/pdf-images/SERVICES_HERO.png";
+import OurOrigin1 from "../assets/images/Our Origins 1.png";
+import OurOrigin2 from "../assets/images/Our Origins 2.png";
+import OurOrigin3 from "../assets/images/Our Origins 3.png";
+import whatwedo1 from "../assets/images/What we do 1.png";
+import whatwedo2 from "../assets/images/What we do 2.png";
+import whatwedo3 from "../assets/images/What we do 3.png";
+import whatwedo4 from "../assets/images/What we do 4.png";
+import HowWeDeliver from "../assets/images/How We Deliver Value.png";
+import value1 from "../assets/images/value-1.svg";
+import value2 from "../assets/images/value-2.svg";
+import value3 from "../assets/images/value-3.svg";
+import value4 from "../assets/images/value-4.svg";
+import Hero_Diamonds_1 from "../assets/images/Rose Of Kao.png";
+import Hero_Diamonds_2 from "../assets/images/The Lesotho Legend.png";
+import Hero_Diamonds_3 from "../assets/images/The Letseng Icon.png";
+import Hero_Diamonds_4 from "../assets/images/The Pink Palesa.png";
 
 export const sharedImages = {
 	braceletImage,
@@ -40,6 +56,22 @@ export const sharedImages = {
 	LegacyThree,
 	DiamondHero,
 	ServiceHero,
+	OurOrigin1,
+	OurOrigin2,
+	OurOrigin3,
+	whatwedo1,
+	whatwedo2,
+	whatwedo3,
+	whatwedo4,
+	HowWeDeliver,
+	value1,
+	value2,
+	value3,
+	value4,
+	Hero_Diamonds_1,
+	Hero_Diamonds_2,
+	Hero_Diamonds_3,
+	Hero_Diamonds_4,
 };
 
 export const homeStats = [

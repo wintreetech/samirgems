@@ -110,7 +110,7 @@ function HomePage() {
 							className="h-full w-full object-cover"
 						/>
 
-						<div className="absolute inset-0 bg-black/55" />
+						<div className="absolute inset-0 bg-black/20" />
 					</div>
 
 					<div className="home-slide__container relative z-10 flex h-full items-center justify-center">

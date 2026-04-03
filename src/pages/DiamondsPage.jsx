@@ -20,11 +20,8 @@ function DiamondsPage() {
 				accentHref="#content"
 			/>
 
-			<section
-				id="content"
-				className="bg-[#111111] px-6 py-16 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
-			>
-				<div className="mb-12 w-full">
+			<section id="content" className="bg-[#111111] ">
+				<div className=" w-full py-25 md:px-10 lg:px-14 xl:px-20 2xl:px-24">
 					<SectionHeading title="Our Landmark Gems" align="center" />
 				</div>
 				<div className="w-full">

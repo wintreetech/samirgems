@@ -79,7 +79,7 @@ function LegacyPage() {
 					</div>
 					<div className="overflow-hidden">
 						<img
-							src={sharedImages.handsImage}
+							src={sharedImages.OurOrigin1}
 							alt=""
 							className="h-full w-full object-cover object-center"
 						/>
@@ -91,9 +91,9 @@ function LegacyPage() {
 				<div className="grid w-full items-stretch gap-8 lg:grid-cols-[60%_40%]">
 					<div className="overflow-hidden">
 						<img
-							src={sharedImages.LegacyTwo}
+							src={sharedImages.OurOrigin2}
 							alt=""
-							className="h-full w-full object-cover object-center"
+							className="h-[600px] w-full object-cover object-center"
 						/>
 					</div>
 					<div className="flex flex-col justify-start pl-8 lg:pr-14">
@@ -146,9 +146,9 @@ function LegacyPage() {
 					</div>
 					<div className="overflow-hidden">
 						<img
-							src={sharedImages.LegacyThree}
+							src={sharedImages.OurOrigin3}
 							alt=""
-							className="h-full w-full object-cover object-center"
+							className="h-[600px] w-full object-cover object-center"
 						/>
 					</div>
 				</div>

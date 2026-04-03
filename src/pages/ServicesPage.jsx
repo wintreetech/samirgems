@@ -7,27 +7,47 @@ function ServicesPage() {
 	const cards = [
 		{
 			id: 1,
-			title: "The Letseng Icon",
-			subtitle: "391 Ct.",
-			image: "/Image17.png",
+			title: "Rough Diamond Supply",
+
+			image: sharedImages.whatwedo1,
+			details: [
+				"Consistent supply from global mines",
+				"Kimberley-certified production",
+				"Strong relationships ensuring reliability",
+			],
 		},
 		{
 			id: 2,
-			title: "Rose Of Kao",
-			subtitle: "391 Ct.",
-			image: "/Image18.png",
+			title: "Diamond Manufacturing",
+
+			image: sharedImages.whatwedo2,
+			details: [
+				"Consistent supply from global mines",
+				"Kimberley-certified production",
+				"Strong relationships ensuring reliability",
+			],
 		},
 		{
 			id: 3,
-			title: "The Pink Palesa",
-			subtitle: "391 Ct.",
-			image: "/Image19.png",
+			title: "Calibrated & Custom Supply",
+
+			image: sharedImages.whatwedo3,
+			details: [
+				"Consistent supply from global mines",
+				"Kimberley-certified production",
+				"Strong relationships ensuring reliability",
+			],
 		},
 		{
 			id: 4,
-			title: "Mountain Star",
-			subtitle: "412 Ct.",
-			image: "/Image20.png",
+			title: "Mine-to-Market Transparency",
+
+			image: sharedImages.whatwedo4,
+			details: [
+				"Consistent supply from global mines",
+				"Kimberley-certified production",
+				"Strong relationships ensuring reliability",
+			],
 		},
 	];
 	return (
@@ -48,14 +68,14 @@ function ServicesPage() {
 
 			<section
 				id="content"
-				className="bg-[#111111] px-6 py-16 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
+				className="bg-[#111111]  px-6 py-25 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
 			>
 				<div className="text-center">
 					<h1 className="font-display text-[3rem] uppercase leading-[0.93] text-white md:text-[4rem]">
 						What we do
 					</h1>
 				</div>
-				<div className="mt-10 flex h-[220px] w-full gap-4 overflow-hidden">
+				<div className="mt-25 flex h-112.5 w-full gap-4 overflow-hidden">
 					{cards.map((card, index) => (
 						<button
 							key={card.id}
@@ -72,18 +92,33 @@ function ServicesPage() {
 							/>
 							<div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 							<div
-								className={`absolute bottom-0 left-0 w-full p-4 text-left transition-all duration-500 ${
+								className={`absolute bottom-0 left-0 w-full p-8 text-left transition-all duration-500 ${
 									active === index
 										? "translate-y-0 opacity-100"
 										: "translate-y-2 opacity-90"
 								}`}
 							>
-								<h3 className="font-copy text-[22px] leading-none tracking-[0.03em] text-white">
+								<h3 className="font-copy text-2xl leading-none tracking-[0.03em] text-white">
 									{card.title}
 								</h3>
-								<p className="mt-1 font-copy text-sm font-light tracking-[0.03em] text-white/80">
-									{card.subtitle}
-								</p>
+
+								<ul
+									className={`mt-4 space-y-2 overflow-hidden transition-all duration-500 ${
+										active === index
+											? "max-h-40 opacity-100"
+											: "max-h-0 opacity-0"
+									}`}
+								>
+									{card.details.map((item, i) => (
+										<li
+											key={i}
+											className="flex items-start gap-2 font-copy text-sm font-light tracking-[0.03em] text-white/85"
+										>
+											<span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-white/70" />
+											<span>{item}</span>
+										</li>
+									))}
+								</ul>
 							</div>
 						</button>
 					))}
@@ -94,7 +129,7 @@ function ServicesPage() {
 				<div className="grid gap-5 lg:grid-cols-[1.4fr_0.8fr_0.8fr]">
 					<div className="relative min-h-[520px] overflow-hidden bg-black/30">
 						<img
-							src="/Dsc092151.png"
+							src={sharedImages.HowWeDeliver}
 							alt="How We Deliver Value"
 							className="absolute inset-0 h-full w-full object-cover"
 						/>
@@ -108,47 +143,31 @@ function ServicesPage() {
 
 					<div className="flex flex-col gap-5">
 						<div className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8">
+							<img src={sharedImages.value1} alt="" className="h-9 w-9 " />
 							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
 								Vertically integrated mine-to-market operations
 							</p>
-							<img
-								src="/icon-operations.svg"
-								alt=""
-								className="h-9 w-9 opacity-30"
-							/>
 						</div>
 						<div className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8">
+							<img src={sharedImages.value2} alt="" className="h-9 w-9 " />
 							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
 								Consistent quality backed by decades of expertise
 							</p>
-							<img
-								src="/icon-quality.svg"
-								alt=""
-								className="h-9 w-9 opacity-30"
-							/>
 						</div>
 					</div>
 
 					<div className="flex flex-col gap-5">
 						<div className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8">
+							<img src={sharedImages.value3} alt="" className="h-9 w-9" />
 							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
 								Ethical sourcing and transparent processes
 							</p>
-							<img
-								src="/icon-ethical.svg"
-								alt=""
-								className="h-9 w-9 opacity-30"
-							/>
 						</div>
 						<div className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8">
+							<img src={sharedImages.value4} alt="" className="h-9 w-9" />
 							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
 								Trusted by leading luxury and jewellery houses worldwide
 							</p>
-							<img
-								src="/icon-trusted.svg"
-								alt=""
-								className="h-9 w-9 opacity-30"
-							/>
 						</div>
 					</div>
 				</div>
