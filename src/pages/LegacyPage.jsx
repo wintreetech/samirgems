@@ -35,14 +35,14 @@ function LegacyPage() {
 					</div>
 					<div>
 						<p className="font-copy text-lg leading-relaxed text-stone-300">
-							Samir Gems DMCC is a global diamond enterprise operating within
-							the DMCC framework since 2008. Rooted in the six decade legacy of
+							Samir Gems FZCO is a global diamond enterprise operating within
+							the FZCO framework since 2008. Rooted in the six decade legacy of
 							Samir Gems, the brand has evolved into an independent entity,
 							shaped by long standing industry relationships, deep market
 							understanding, and a heritage built on trust and precision.
 						</p>
 						<p className="mt-6 font-copy text-lg leading-relaxed text-stone-300">
-							Today, Samir Gems DMCC sources Kimberley Process certified rough
+							Today, Samir Gems FZCO sources Kimberley Process certified rough
 							diamonds and delivers calibrated, high quality polished stones
 							with complete transparency. With a presence across key global
 							markets, the brand is trusted by leading jewellery houses for its
@@ -138,7 +138,7 @@ function LegacyPage() {
 							<li className="flex items-start gap-3">
 								<span className="mt-2 h-1.5 w-1.5 rounded-full bg-stone-300" />
 								<span>
-									The same principles continue to shape Samir Gems DMCC’s
+									The same principles continue to shape Samir Gems FZCO’s
 									identity
 								</span>
 							</li>

@@ -5,7 +5,7 @@ import BrandLogo from "./BrandLogo";
 const quickLinks = [
 	{ label: "Legacy", to: "/legacy" },
 	{ label: "Services", to: "/services" },
-	{ label: "Our Diamonds", to: "/our-diamonds" },
+	{ label: "Exceptional Projects", to: "/our-diamonds" },
 	{ label: "Contact", to: "/contact" },
 ];
 
@@ -172,7 +172,7 @@ export default function Footer() {
 			{/* Bottom bar */}
 			<div className="relative mt-14 border-t border-white/10 bg-[#0D0D0D] py-4">
 				<p className="text-center font-condor text-base font-light tracking-[0.03em] text-white">
-					© 2025 Sameer Gems DMCC. All rights reserved.
+					© 2025 Sameer Gems FZCO. All rights reserved.
 				</p>
 			</div>
 		</footer>

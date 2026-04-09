@@ -5,6 +5,8 @@ import polishingImage from "../assets/pdf-images/page1-img17.png";
 import roughDiamonds from "../assets/pdf-images/page1-img18.png";
 import namdiaLogo from "../assets/pdf-images/NAMDIA.svg";
 import sodiamLogo from "../assets/pdf-images/SODIAM.svg";
+import OkavangoLogo from "../assets/images/Okavango.png";
+import DeBeersLogo from "../assets/images/DeBeers.png";
 import handsImage from "../assets/pdf-images/page1-img21.png";
 import diamondOnStone from "../assets/images/HOME_HERO.png";
 import skyline from "../assets/pdf-images/page1-img25.png";
@@ -30,10 +32,13 @@ import value1 from "../assets/images/value-1.svg";
 import value2 from "../assets/images/value-2.svg";
 import value3 from "../assets/images/value-3.svg";
 import value4 from "../assets/images/value-4.svg";
-import Hero_Diamonds_1 from "../assets/images/Rose Of Kao.png";
-import Hero_Diamonds_2 from "../assets/images/The Lesotho Legend.png";
-import Hero_Diamonds_3 from "../assets/images/The Letseng Icon.png";
-import Hero_Diamonds_4 from "../assets/images/The Pink Palesa.png";
+import Hero_Diamonds_1 from "../assets/images/The Letseng Icon.png";
+import Hero_Diamonds_2 from "../assets/images/Rose Of Kao.png";
+import Hero_Diamonds_3 from "../assets/images/The Pink Palesa.png";
+import Hero_Diamonds_4 from "../assets/images/Eumbo Star.png";
+import logoStrip from "../assets/images/logo-strip.svg";
+import OurExpertiseThumb from "../assets/pdf-images/our-expertise-bg-thum.png";
+import contactBg from "../assets/images/contact-bg.svg";
 
 export const sharedImages = {
 	braceletImage,
@@ -72,14 +77,18 @@ export const sharedImages = {
 	Hero_Diamonds_2,
 	Hero_Diamonds_3,
 	Hero_Diamonds_4,
+	OkavangoLogo,
+	DeBeersLogo,
+	OurExpertiseThumb,
+	logoStrip,
+	contactBg,
 };
 
 export const homeStats = [
-	{ value: "60+", label: "Years of Diamond Legacy" },
+	{ value: "60", suffix: "+", label: "Years of Diamond Legacy" },
 	{
 		value: "100",
-		suffix: "%",
-		label: "Ethical Sourcing from Responsible Mines",
+		label: "% Ethical Sourcing from Responsible Mines",
 	},
 	{ value: "12", label: "Regions of ethical sourcing" },
 ];
@@ -100,7 +109,7 @@ export const expertiseCards = [
 	{
 		title: "Polished Diamonds",
 		description: "Fine selections for retail, wholesale, and luxury houses.",
-		image: braceletImage,
+		image: OurExpertiseThumb,
 	},
 	{
 		title: "Mine-to-Market Transparency",
@@ -118,7 +127,7 @@ export const legacyPrinciples = [
 export const legacyValues = [
 	"Relationships grounded in trust, built over decades.",
 	"Transparent sourcing aligned with responsible industry practices.",
-	"The same principles continue to shape Samir Gems DMCC today.",
+	"The same principles continue to shape Samir Gems FZCO today.",
 ];
 
 export const serviceCards = [
@@ -194,6 +203,6 @@ export const gemItems = [
 export const GlobalLegacy = [
 	"1966 – Founded in India",
 	"1982 – Established in Antwerp",
-	"2008 – Operations Established within the DMCC Trade District",
-	"2025 – A New Chapter Begins: Samir Gems DMCC",
+	"2008 – Operations Established within the FZCO Trade District",
+	"2025 – A New Chapter Begins: Samir Gems FZCO",
 ];

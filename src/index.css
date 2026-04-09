@@ -106,6 +106,10 @@
 		text-decoration: none;
 	}
 
+	[id] {
+		scroll-margin-top: 100px;
+	}
+
 	button,
 	input,
 	select,
@@ -281,6 +285,126 @@
 	.home-slide {
 		scrollbar-width: none;
 	}
+
+	.gem-stage {
+		position: absolute;
+		inset: 0;
+	}
+
+	.gem-showcase__details {
+		animation: gem-showcase-copy-in 700ms ease-out both;
+	}
+
+	.gem-strip--next {
+		animation: gem-strip-slide-next 520ms cubic-bezier(0.22, 1, 0.36, 1)
+			both;
+	}
+
+	.gem-strip--prev {
+		animation: gem-strip-slide-prev 560ms cubic-bezier(0.55, 0.055, 0.675, 0.19)
+			both;
+	}
+
+	.gem-stage__item {
+		position: absolute;
+		top: 50%;
+		height: 205px;
+		width: 300px;
+		overflow: hidden;
+		transform: translate3d(0, -50%, 0);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		border-radius: 0;
+		background: #080808;
+		box-shadow: 0 30px 50px rgba(0, 0, 0, 0.35);
+		transition:
+			transform 600ms ease,
+			opacity 600ms ease,
+			width 600ms ease,
+			height 600ms ease,
+			left 600ms ease,
+			top 600ms ease,
+			filter 600ms ease,
+			border-color 600ms ease,
+			border-radius 600ms ease;
+	}
+
+	.gem-stage__item--slot-0,
+	.gem-stage__item--slot-1 {
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		border-radius: 0;
+		transform: translate3d(0, 0, 0);
+	}
+
+	.gem-stage__item--slot-0 {
+		opacity: 1;
+		z-index: 1;
+	}
+
+	.gem-stage__item--slot-1 {
+		opacity: 1;
+		z-index: 2;
+	}
+
+	.gem-stage__item--slot-2 {
+		top: calc(100% - 102px);
+		left: 50%;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 4;
+	}
+
+	.gem-stage__item--slot-3 {
+		top: calc(100% - 102px);
+		left: calc(50% + 320px);
+		opacity: 0;
+		pointer-events: none;
+		z-index: 3;
+	}
+
+	.gem-stage__item--slot-4 {
+		top: calc(100% - 102px);
+		left: calc(50% + 640px);
+		width: 150px;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 2;
+	}
+
+	.gem-stage__item--slot-5 {
+		top: calc(100% - 102px);
+		left: calc(50% + 820px);
+		width: 150px;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 1;
+	}
+}
+
+@keyframes gem-strip-slide-next {
+	from {
+		opacity: 0.72;
+		transform: translate3d(42px, 0, 0);
+	}
+
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes gem-strip-slide-prev {
+	from {
+		opacity: 0.82;
+		transform: translate3d(28px, 0, 0) scale(1.05);
+	}
+
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0) scale(1);
+	}
 }
 
 @keyframes nav-ring-progress {
@@ -291,6 +415,21 @@
 		stroke-dashoffset: 0;
 	}
 }
+
+@keyframes gem-showcase-copy-in {
+	from {
+		opacity: 0;
+		transform: translateY(56px);
+		filter: blur(24px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+		filter: blur(0);
+	}
+}
+
 
 @layer utilities {
 	.font-display {

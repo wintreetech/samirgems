@@ -6,21 +6,25 @@ function ImageCard({
 	imageClassName = "",
 	overlay = true,
 	hoverReveal = false,
+	onMouseEnter,
+	onMouseLeave,
 }) {
 	return (
 		<article
+			onMouseEnter={onMouseEnter}
+			onMouseLeave={onMouseLeave}
 			className={`group relative overflow-hidden bg-black/40 transition duration-500 hover:-translate-y-1 ${className}`.trim()}
 		>
 			<img
 				src={image}
 				alt=""
-				className={`h-full w-full object-cover transition duration-700  ${imageClassName}`}
+				className="h-full w-full object-cover transition duration-700 ease-out group-hover:opacity-0"
 			/>
 			{overlay ? (
 				<div
 					className={`absolute inset-0 transition duration-500 ${
 						hoverReveal
-							? "bg-[linear-gradient(180deg,rgba(0,0,0,0.04)_0%,rgba(0,0,0,0.2)_100%)] group-hover:bg-black/82"
+							? "bg-[linear-gradient(180deg,rgba(0,0,0,0.04)_0%,rgba(0,0,0,0.2)_100%)] group-hover:bg-black"
 							: "bg-[linear-gradient(180deg,transparent_30%,rgba(0,0,0,0.88)_100%)]"
 					}`}
 				/>

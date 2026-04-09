@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import BrandLogo from "./BrandLogo";
@@ -6,54 +5,14 @@ import BrandLogo from "./BrandLogo";
 const navItems = [
 	{ label: "Legacy", to: "/legacy" },
 	{ label: "Services", to: "/services" },
-	{ label: "Our Diamonds", to: "/our-diamonds" },
+	{ label: "Exceptional Projects", to: "/our-diamonds" },
 	{ label: "Contact", to: "/contact" },
 ];
 
 function Header({ pathname }) {
-	const [isHidden, setIsHidden] = useState(false);
-	const lastScrollY = useRef(0);
-	const stopTimerRef = useRef(null);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			const currentScrollY = window.scrollY;
-			const isScrollingDown = currentScrollY > lastScrollY.current;
-
-			if (currentScrollY > 40 && isScrollingDown) {
-				setIsHidden(true);
-			} else {
-				setIsHidden(false);
-			}
-
-			if (stopTimerRef.current) {
-				window.clearTimeout(stopTimerRef.current);
-			}
-
-			stopTimerRef.current = window.setTimeout(() => {
-				setIsHidden(false);
-			}, 180);
-
-			lastScrollY.current = currentScrollY;
-		};
-
-		window.addEventListener("scroll", handleScroll, { passive: true });
-
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-			if (stopTimerRef.current) {
-				window.clearTimeout(stopTimerRef.current);
-			}
-		};
-	}, []);
-
 	return (
-		<header
-			className={`fixed inset-x-0 top-0 z-50 border-b border-white/30 bg-transparent shadow-none backdrop-blur-none transition-transform duration-500 ease-out ${
-				isHidden ? "-translate-y-full" : "translate-y-0"
-			}`}
-		>
-			<div className="h-[100px] w-full bg-transparent px-5 md:px-8 lg:px-10 xl:px-14 2xl:px-20">
+		<header className="fixed inset-x-0 z-50 ">
+			<div className="h-[100px] w-full border-b border-white/30 bg-[rgba(0,0,0,0.01)] px-5 backdrop-blur-[3.2px] md:px-8 lg:px-10 xl:px-14 2xl:px-20">
 				<div className="grid h-full grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
 					<nav
 						aria-label="Primary"

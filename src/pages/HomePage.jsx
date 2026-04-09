@@ -21,6 +21,9 @@ function HomePage() {
 	const [isAnimating, setIsAnimating] = useState(false);
 	const [isFooterOpen, setIsFooterOpen] = useState(false);
 	const [footerHeight, setFooterHeight] = useState(220);
+	const [hoveredCard, setHoveredCard] = useState(null);
+
+	const activeBackground = hoveredCard?.image || sharedImages.OurExpertise;
 
 	const homeRef = useRef(null);
 	const viewportRef = useRef(null);
@@ -123,7 +126,18 @@ function HomePage() {
 											Refined in Dubai
 										</>
 									}
-									description="Samir Gems DMCC marks the next chapter of a legacy shaped over six decades. Rooted in the heritage of Samir Gems, the DMCC entity has been operating independently in Dubai for over two decades. Refined in the city’s global trade ecosystem, we unite time-honoured craftsmanship with Dubai’s international trading excellence to shape diamonds of uncompromising precision and integrity"
+									description={
+										<>
+											Samir Gems FZCO marks the next chapter of a legacy shaped
+											over six decades. Rooted in the heritage of Samir Gems,
+											the FZCO entity has <br />
+											been operating independently in Dubai for over two
+											decades. Refined in the city’s global trade ecosystem, we
+											unite time-honoured <br /> craftsmanship with Dubai’s
+											international trading excellence to shape diamonds of
+											uncompromising precision and integrity
+										</>
+									}
 									align="center"
 									descriptionClassName="mt-20"
 								/>
@@ -144,9 +158,9 @@ function HomePage() {
 					{/* Background image */}
 					<div className="absolute inset-0 z-0">
 						<img
-							src={sharedImages.OurExpertise}
+							src={activeBackground}
 							alt=""
-							className="h-full w-full object-cover opacity-40"
+							className="h-full w-full object-cover opacity-40 transition-all duration-500 ease-in-out"
 						/>
 					</div>
 
@@ -158,7 +172,7 @@ function HomePage() {
 							</div>
 
 							<div
-								className=" grid gap-5 md:grid-cols-2 xl:grid-cols-4"
+								className="grid gap-5 md:grid-cols-2 xl:grid-cols-4"
 								data-animate
 							>
 								{expertiseCards.map((card) => (
@@ -169,6 +183,8 @@ function HomePage() {
 										description={card.description}
 										className="h-[200px] shadow-[0_4px_14px_rgba(0,0,0,0.22)]"
 										hoverReveal
+										onMouseEnter={() => setHoveredCard(card)}
+										onMouseLeave={() => setHoveredCard(null)}
 									/>
 								))}
 							</div>
@@ -230,6 +246,16 @@ function HomePage() {
 
 								<img
 									src={sharedImages.sodiamLogo}
+									alt="Sodiam"
+									className="h-[150px] w-[250px] object-contain"
+								/>
+								<img
+									src={sharedImages.OkavangoLogo}
+									alt="Sodiam"
+									className="h-[150px] w-[250px] object-contain"
+								/>
+								<img
+									src={sharedImages.DeBeersLogo}
 									alt="Sodiam"
 									className="h-[150px] w-[250px] object-contain"
 								/>
@@ -351,13 +377,13 @@ function HomePage() {
 		}
 
 		setIsAnimating(true);
+		setIsFooterOpen(true);
 
 		gsap.to(viewportRef.current, {
 			y: -footerHeight,
 			duration: TRANSITION_DURATION,
 			ease: "power3.inOut",
 			onComplete: () => {
-				setIsFooterOpen(true);
 				setIsAnimating(false);
 			},
 		});
@@ -522,43 +548,45 @@ function HomePage() {
 				<Footer />
 			</div>
 
-			<div className="section-nav" aria-label="Home section navigation">
-				{sections.map((section, index) => (
-					<button
-						key={section.id}
-						type="button"
-						onClick={() => goToSection(index)}
-						className={`section-nav__button ${activeIndex === index ? "is-current" : ""}`}
-						aria-label={section.id}
-					>
-						<span
-							className={`section-nav__dot ${activeIndex === index && !isPaused ? "is-playing" : ""}`}
-							style={{ "--progress-duration": `${AUTO_DURATION}ms` }}
+			{!isFooterOpen ? (
+				<div className="section-nav" aria-label="Home section navigation">
+					{sections.map((section, index) => (
+						<button
+							key={section.id}
+							type="button"
+							onClick={() => goToSection(index)}
+							className={`section-nav__button ${activeIndex === index ? "is-current" : ""}`}
+							aria-label={section.id}
 						>
-							<span className="section-nav__index">{index + 1}</span>
-							<svg
-								className="section-nav__ring"
-								viewBox="0 0 32 32"
-								aria-hidden="true"
+							<span
+								className={`section-nav__dot ${activeIndex === index && !isPaused ? "is-playing" : ""}`}
+								style={{ "--progress-duration": `${AUTO_DURATION}ms` }}
 							>
-								<circle
-									className="section-nav__ring-track"
-									cx="16"
-									cy="16"
-									r="13"
-								/>
-								<circle
-									className="section-nav__ring-progress"
-									cx="16"
-									cy="16"
-									r="13"
-								/>
-							</svg>
-							<span className="section-nav__core" />
-						</span>
-					</button>
-				))}
-			</div>
+								<span className="section-nav__index">{index + 1}</span>
+								<svg
+									className="section-nav__ring"
+									viewBox="0 0 32 32"
+									aria-hidden="true"
+								>
+									<circle
+										className="section-nav__ring-track"
+										cx="16"
+										cy="16"
+										r="13"
+									/>
+									<circle
+										className="section-nav__ring-progress"
+										cx="16"
+										cy="16"
+										r="13"
+									/>
+								</svg>
+								<span className="section-nav__core" />
+							</span>
+						</button>
+					))}
+				</div>
+			) : null}
 
 			<div ref={viewportRef} className="relative z-10 h-full">
 				<div ref={trackRef} className="home-track">

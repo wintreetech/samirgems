@@ -4,11 +4,17 @@ import { sharedImages } from "../data/siteContent";
 
 function ServicesPage() {
 	const [active, setActive] = useState(0);
+
 	const cards = [
 		{
 			id: 1,
 			title: "Rough Diamond Supply",
-
+			logos: [
+				sharedImages.namdiaLogo,
+				sharedImages.OkavangoLogo,
+				sharedImages.sodiamLogo,
+				sharedImages.DeBeersLogo,
+			],
 			image: sharedImages.whatwedo1,
 			details: [
 				"Consistent supply from global mines",
@@ -21,6 +27,12 @@ function ServicesPage() {
 			title: "Diamond Manufacturing",
 
 			image: sharedImages.whatwedo2,
+			logos: [
+				sharedImages.namdiaLogo,
+				sharedImages.OkavangoLogo,
+				sharedImages.sodiamLogo,
+				sharedImages.DeBeersLogo,
+			],
 			details: [
 				"Consistent supply from global mines",
 				"Kimberley-certified production",
@@ -30,7 +42,12 @@ function ServicesPage() {
 		{
 			id: 3,
 			title: "Calibrated & Custom Supply",
-
+			logos: [
+				sharedImages.namdiaLogo,
+				sharedImages.OkavangoLogo,
+				sharedImages.sodiamLogo,
+				sharedImages.DeBeersLogo,
+			],
 			image: sharedImages.whatwedo3,
 			details: [
 				"Consistent supply from global mines",
@@ -41,7 +58,12 @@ function ServicesPage() {
 		{
 			id: 4,
 			title: "Mine-to-Market Transparency",
-
+			logos: [
+				sharedImages.namdiaLogo,
+				sharedImages.OkavangoLogo,
+				sharedImages.sodiamLogo,
+				sharedImages.DeBeersLogo,
+			],
 			image: sharedImages.whatwedo4,
 			details: [
 				"Consistent supply from global mines",
@@ -90,7 +112,22 @@ function ServicesPage() {
 								alt={card.title}
 								className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
 							/>
+
+							{/* show logos only on active card */}
+							{active === index && (
+								<div className="absolute top-0 left-0 w-full bg-black/60 backdrop-blur-md px-6 flex items-center justify-center ">
+									<div className="flex items-center justify-center">
+										<img
+											src={sharedImages.logoStrip}
+											alt=""
+											className="w-auto h-auto object-contain"
+										/>
+									</div>
+								</div>
+							)}
+
 							<div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
 							<div
 								className={`absolute bottom-0 left-0 w-full p-8 text-left transition-all duration-500 ${
 									active === index
@@ -131,12 +168,12 @@ function ServicesPage() {
 						<img
 							src={sharedImages.HowWeDeliver}
 							alt="How We Deliver Value"
-							className="absolute inset-0 h-full w-full object-cover"
+							className="absolute inset-0 h-full w-full object-cover object-top"
 						/>
-						<div className="absolute inset-0 bg-black/45" />
+
 						<div className="relative flex h-full items-start justify-center p-10">
-							<h2 className="max-w-[420px] text-center font-display text-5xl leading-[1.05] text-white lg:text-6xl">
-								How We Deliver Value
+							<h2 className="text-center font-display text-5xl leading-[1.05] text-white lg:text-6xl">
+								HOW WE <br /> DELIVER VALUE
 							</h2>
 						</div>
 					</div>

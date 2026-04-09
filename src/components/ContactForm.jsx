@@ -1,3 +1,5 @@
+import { sharedImages } from "../data/siteContent";
+
 function FormField({ label, placeholder, className = "", as = "input" }) {
 	const sharedClassName =
 		"w-full border-b border-white/20 bg-transparent px-0 py-3 font-copy text-lg text-stone-200 outline-none transition placeholder:text-stone-500 focus:border-white/50";
@@ -47,19 +49,22 @@ function ContactForm() {
 				<FormField label="Code" placeholder="Code" as="select" />
 				<FormField label="Phone Number" placeholder="Enter your phone number" />
 			</div>
+
 			<FormField
-				label="Reason for Contacting"
-				placeholder="Select a reason"
-				as="select"
+				label="Your Message (Optional)"
+				placeholder="Enter your email address"
 			/>
-			<FormField label="Your Message" placeholder="" as="textarea" />
 
 			<button
 				type="submit"
 				className="mt-2 inline-flex w-fit items-center gap-3 border border-white/30 px-8 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-stone-100 transition hover:border-white/60 hover:bg-white/5"
 			>
 				Submit
-				<span aria-hidden="true">→</span>
+				<img
+					src={sharedImages.Arrow}
+					alt=""
+					className=" object-cover opacity-95"
+				/>
 			</button>
 		</form>
 	);

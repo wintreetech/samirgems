@@ -1,20 +1,21 @@
 function StatGrid({ stats }) {
 	return (
-		<div className="grid gap-5 md:grid-cols-3">
+		<div className="grid grid-cols-3 gap-5">
 			{stats.map((stat) => (
 				<article
 					key={stat.label}
-					className="border border-white/8 bg-black/35 px-6 py-6 backdrop-blur-sm transition duration-500 hover:border-white/18"
+					className="flex h-[117px] items-center justify-center border border-white/8 bg-[rgba(0,0,0,0.30)] px-[60px] py-[40px]"
 				>
-					<p className="font-display text-[3rem] leading-none text-stone-100 md:text-[3.8rem]">
-						{stat.value}
-						{stat.suffix ? (
-							<span className="text-[0.56em]">{stat.suffix}</span>
-						) : null}
-					</p>
-					<p className="mt-3 font-copy text-lg leading-snug text-stone-300">
-						{stat.label}
-					</p>
+					<div className="flex items-center gap-2.5">
+						<p className="shrink-0 font-condor text-6xl font-light tracking-[0.03em] text-white">
+							{stat.value}
+							{stat.suffix}
+						</p>
+
+						<p className="max-w-[183px] font-condor text-[17px] font-light leading-tight tracking-[0.03em] text-white">
+							{stat.label}
+						</p>
+					</div>
 				</article>
 			))}
 		</div>
