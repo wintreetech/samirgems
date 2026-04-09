@@ -4,6 +4,7 @@ function StatGrid({ stats }) {
 			{stats.map((stat) => (
 				<article
 					key={stat.label}
+					data-animate
 					className="flex h-[117px] items-center justify-center border border-white/8 bg-[rgba(0,0,0,0.30)] px-[60px] py-[40px]"
 				>
 					<div className="flex items-center gap-2.5">

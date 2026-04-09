@@ -1,3 +1,5 @@
+import RevealSection from "./RevealSection";
+
 function PageHero({
 	id = "",
 	dataSection = "",
@@ -13,9 +15,10 @@ function PageHero({
 	children,
 }) {
 	return (
-		<section
+		<RevealSection
 			id={id}
 			data-section={dataSection}
+			threshold={0.05}
 			className={`section-frame relative isolate grid ${minHeight} items-end overflow-hidden px-6 py-12 md:px-10 lg:px-14 ${className}`}
 		>
 			<div className="absolute inset-0">
@@ -30,7 +33,7 @@ function PageHero({
 			</div>
 
 			<div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-				<div data-animate>
+				<div data-animate="up" data-animate-delay="0.08">
 					<h1 className="font-display text-[2.7rem] uppercase leading-[0.95] text-stone-100 md:text-[4rem] lg:text-[4.7rem]">
 						{title}
 					</h1>
@@ -41,7 +44,8 @@ function PageHero({
 
 				<div
 					className="flex items-center justify-between gap-6 lg:flex-col lg:items-end"
-					data-animate
+					data-animate="right"
+					data-animate-delay="0.22"
 				>
 					<a
 						href={accentHref}
@@ -60,7 +64,7 @@ function PageHero({
 					{children}
 				</div>
 			</div>
-		</section>
+		</RevealSection>
 	);
 }
 

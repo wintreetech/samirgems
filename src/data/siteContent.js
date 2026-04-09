@@ -39,6 +39,7 @@ import Hero_Diamonds_4 from "../assets/images/Eumbo Star.png";
 import logoStrip from "../assets/images/logo-strip.svg";
 import OurExpertiseThumb from "../assets/pdf-images/our-expertise-bg-thum.png";
 import contactBg from "../assets/images/contact-bg.svg";
+import whatsappicon from "../assets/whatsapp.png";
 
 export const sharedImages = {
 	braceletImage,
@@ -82,6 +83,7 @@ export const sharedImages = {
 	OurExpertiseThumb,
 	logoStrip,
 	contactBg,
+	whatsappicon,
 };
 
 export const homeStats = [

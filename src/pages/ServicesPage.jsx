@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PageHero from "../components/PageHero";
+import RevealSection from "../components/RevealSection";
 import { sharedImages } from "../data/siteContent";
 
 function ServicesPage() {
@@ -9,12 +10,6 @@ function ServicesPage() {
 		{
 			id: 1,
 			title: "Rough Diamond Supply",
-			logos: [
-				sharedImages.namdiaLogo,
-				sharedImages.OkavangoLogo,
-				sharedImages.sodiamLogo,
-				sharedImages.DeBeersLogo,
-			],
 			image: sharedImages.whatwedo1,
 			details: [
 				"Consistent supply from global mines",
@@ -25,14 +20,7 @@ function ServicesPage() {
 		{
 			id: 2,
 			title: "Diamond Manufacturing",
-
 			image: sharedImages.whatwedo2,
-			logos: [
-				sharedImages.namdiaLogo,
-				sharedImages.OkavangoLogo,
-				sharedImages.sodiamLogo,
-				sharedImages.DeBeersLogo,
-			],
 			details: [
 				"Consistent supply from global mines",
 				"Kimberley-certified production",
@@ -42,12 +30,6 @@ function ServicesPage() {
 		{
 			id: 3,
 			title: "Calibrated & Custom Supply",
-			logos: [
-				sharedImages.namdiaLogo,
-				sharedImages.OkavangoLogo,
-				sharedImages.sodiamLogo,
-				sharedImages.DeBeersLogo,
-			],
 			image: sharedImages.whatwedo3,
 			details: [
 				"Consistent supply from global mines",
@@ -58,12 +40,6 @@ function ServicesPage() {
 		{
 			id: 4,
 			title: "Mine-to-Market Transparency",
-			logos: [
-				sharedImages.namdiaLogo,
-				sharedImages.OkavangoLogo,
-				sharedImages.sodiamLogo,
-				sharedImages.DeBeersLogo,
-			],
 			image: sharedImages.whatwedo4,
 			details: [
 				"Consistent supply from global mines",
@@ -72,6 +48,7 @@ function ServicesPage() {
 			],
 		},
 	];
+
 	return (
 		<>
 			<PageHero
@@ -88,12 +65,16 @@ function ServicesPage() {
 				accentHref="#content"
 			/>
 
-			<section
+			<RevealSection
 				id="content"
-				className="bg-[#111111]  px-6 py-25 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
+				threshold={0.15}
+				className="bg-[#111111] px-6 py-25 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
 			>
 				<div className="text-center">
-					<h1 className="font-display text-[3rem] uppercase leading-[0.93] text-white md:text-[4rem]">
+					<h1
+						data-animate="up"
+						className="font-display text-[3rem] uppercase leading-[0.93] text-white md:text-[4rem]"
+					>
 						What we do
 					</h1>
 				</div>
@@ -101,6 +82,8 @@ function ServicesPage() {
 					{cards.map((card, index) => (
 						<button
 							key={card.id}
+							data-animate="up"
+							data-animate-delay={0.16 + index * 0.12}
 							onMouseEnter={() => setActive(index)}
 							onClick={() => setActive(index)}
 							className={`group relative h-full overflow-hidden rounded-none border border-white/10 transition-all duration-500 ease-in-out ${
@@ -113,18 +96,17 @@ function ServicesPage() {
 								className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
 							/>
 
-							{/* show logos only on active card */}
-							{active === index && (
-								<div className="absolute top-0 left-0 w-full bg-black/60 backdrop-blur-md px-6 flex items-center justify-center ">
+							{active === index ? (
+								<div className="absolute top-0 left-0 flex w-full items-center justify-center bg-black/60 px-6 backdrop-blur-md">
 									<div className="flex items-center justify-center">
 										<img
 											src={sharedImages.logoStrip}
 											alt=""
-											className="w-auto h-auto object-contain"
+											className="h-auto w-auto object-contain"
 										/>
 									</div>
 								</div>
-							)}
+							) : null}
 
 							<div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
@@ -138,7 +120,6 @@ function ServicesPage() {
 								<h3 className="font-copy text-2xl leading-none tracking-[0.03em] text-white">
 									{card.title}
 								</h3>
-
 								<ul
 									className={`mt-4 space-y-2 overflow-hidden transition-all duration-500 ${
 										active === index
@@ -146,9 +127,9 @@ function ServicesPage() {
 											: "max-h-0 opacity-0"
 									}`}
 								>
-									{card.details.map((item, i) => (
+									{card.details.map((item, detailIndex) => (
 										<li
-											key={i}
+											key={detailIndex}
 											className="flex items-start gap-2 font-copy text-sm font-light tracking-[0.03em] text-white/85"
 										>
 											<span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-white/70" />
@@ -160,17 +141,22 @@ function ServicesPage() {
 						</button>
 					))}
 				</div>
-			</section>
+			</RevealSection>
 
-			<section className="bg-[#272727] px-6 py-16 md:px-10 lg:px-14 xl:px-20 2xl:px-24">
+			<RevealSection
+				threshold={0.15}
+				className="bg-[#272727] px-6 py-16 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
+			>
 				<div className="grid gap-5 lg:grid-cols-[1.4fr_0.8fr_0.8fr]">
-					<div className="relative min-h-[520px] overflow-hidden bg-black/30">
+					<div
+						className="relative min-h-[520px] overflow-hidden bg-black/30"
+						data-animate="left"
+					>
 						<img
 							src={sharedImages.HowWeDeliver}
 							alt="How We Deliver Value"
 							className="absolute inset-0 h-full w-full object-cover object-top"
 						/>
-
 						<div className="relative flex h-full items-start justify-center p-10">
 							<h2 className="text-center font-display text-5xl leading-[1.05] text-white lg:text-6xl">
 								HOW WE <br /> DELIVER VALUE
@@ -179,14 +165,21 @@ function ServicesPage() {
 					</div>
 
 					<div className="flex flex-col gap-5">
-						<div className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8">
-							<img src={sharedImages.value1} alt="" className="h-9 w-9 " />
+						<div
+							data-animate="up"
+							className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8"
+						>
+							<img src={sharedImages.value1} alt="" className="h-9 w-9" />
 							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
 								Vertically integrated mine-to-market operations
 							</p>
 						</div>
-						<div className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8">
-							<img src={sharedImages.value2} alt="" className="h-9 w-9 " />
+						<div
+							data-animate="up"
+							data-animate-delay="0.14"
+							className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8"
+						>
+							<img src={sharedImages.value2} alt="" className="h-9 w-9" />
 							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
 								Consistent quality backed by decades of expertise
 							</p>
@@ -194,13 +187,20 @@ function ServicesPage() {
 					</div>
 
 					<div className="flex flex-col gap-5">
-						<div className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8">
+						<div
+							data-animate="right"
+							className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8"
+						>
 							<img src={sharedImages.value3} alt="" className="h-9 w-9" />
 							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
 								Ethical sourcing and transparent processes
 							</p>
 						</div>
-						<div className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8">
+						<div
+							data-animate="right"
+							data-animate-delay="0.14"
+							className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8"
+						>
 							<img src={sharedImages.value4} alt="" className="h-9 w-9" />
 							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
 								Trusted by leading luxury and jewellery houses worldwide
@@ -208,7 +208,7 @@ function ServicesPage() {
 						</div>
 					</div>
 				</div>
-			</section>
+			</RevealSection>
 		</>
 	);
 }

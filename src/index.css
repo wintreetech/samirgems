@@ -295,14 +295,64 @@
 		animation: gem-showcase-copy-in 700ms ease-out both;
 	}
 
-	.gem-strip--next {
-		animation: gem-strip-slide-next 520ms cubic-bezier(0.22, 1, 0.36, 1)
-			both;
+	.gem-strip__item {
+		position: absolute;
+		top: 0;
+		height: 190px;
+		overflow: hidden;
+		background: rgba(0, 0, 0, 0.2);
+		text-align: left;
+		transform-origin: left center;
+		transition:
+			left 500ms ease,
+			width 500ms ease,
+			opacity 500ms ease,
+			filter 500ms ease,
+			transform 500ms ease,
+			border-color 500ms ease,
+			box-shadow 500ms ease;
 	}
 
-	.gem-strip--prev {
-		animation: gem-strip-slide-prev 560ms cubic-bezier(0.55, 0.055, 0.675, 0.19)
-			both;
+	.gem-strip__item--slot-0 {
+		left: -10px;
+		width: 300px;
+		opacity: 0;
+		filter: blur(10px);
+		transform: translate3d(-42px, 0, 0) scale(1.14);
+		pointer-events: none;
+	}
+
+	.gem-strip__item--slot-1 {
+		left: 0;
+		width: 300px;
+		opacity: 1;
+		filter: blur(0);
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+
+	.gem-strip__item--slot-2 {
+		left: 316px;
+		width: 300px;
+		opacity: 0.9;
+		filter: blur(0);
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+
+	.gem-strip__item--slot-3 {
+		left: 632px;
+		width: 150px;
+		opacity: 0.45;
+		filter: blur(0);
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+
+	.gem-strip__item--slot-4 {
+		left: 798px;
+		width: 150px;
+		opacity: 0;
+		filter: blur(8px);
+		transform: translate3d(34px, 0, 0) scale(0.92);
+		pointer-events: none;
 	}
 
 	.gem-stage__item {
@@ -380,30 +430,6 @@
 		opacity: 0;
 		pointer-events: none;
 		z-index: 1;
-	}
-}
-
-@keyframes gem-strip-slide-next {
-	from {
-		opacity: 0.72;
-		transform: translate3d(42px, 0, 0);
-	}
-
-	to {
-		opacity: 1;
-		transform: translate3d(0, 0, 0);
-	}
-}
-
-@keyframes gem-strip-slide-prev {
-	from {
-		opacity: 0.82;
-		transform: translate3d(28px, 0, 0) scale(1.05);
-	}
-
-	to {
-		opacity: 1;
-		transform: translate3d(0, 0, 0) scale(1);
 	}
 }
 

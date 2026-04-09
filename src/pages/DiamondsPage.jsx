@@ -1,6 +1,6 @@
 import GemShowcase from "../components/GemShowcase";
 import PageHero from "../components/PageHero";
-import SectionHeading from "../components/SectionHeading";
+import RevealSection from "../components/RevealSection";
 import { sharedImages } from "../data/siteContent";
 
 function DiamondsPage() {
@@ -21,12 +21,22 @@ function DiamondsPage() {
 			/>
 
 			<section id="content" className="bg-[#111111] ">
-				<div className=" w-full py-25 md:px-10 lg:px-14 xl:px-20 2xl:px-24">
-					<SectionHeading title="Our Landmark Gems" align="center" />
-				</div>
-				<div className="w-full">
+				<RevealSection
+					threshold={0.15}
+					className=" w-full py-25 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
+				>
+					<div className="text-center">
+						<h2
+							data-animate="up"
+							className="font-display text-[2.25rem] uppercase leading-[0.96] text-white md:text-[3rem] lg:text-[4rem]"
+						>
+							Our Landmark Gems
+						</h2>
+					</div>
+				</RevealSection>
+				<RevealSection threshold={0.1} className="w-full">
 					<GemShowcase />
-				</div>
+				</RevealSection>
 			</section>
 		</>
 	);

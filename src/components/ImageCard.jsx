@@ -11,6 +11,7 @@ function ImageCard({
 }) {
 	return (
 		<article
+			data-animate
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
 			className={`group relative overflow-hidden bg-black/40 transition duration-500 hover:-translate-y-1 ${className}`.trim()}

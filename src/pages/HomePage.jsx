@@ -4,13 +4,13 @@ import { gsap } from "gsap";
 import Footer from "../components/Footer";
 import ImageCard from "../components/ImageCard";
 import SectionHeading from "../components/SectionHeading";
-import StatGrid from "../components/StatGrid";
 import {
 	expertiseCards,
 	homeStats,
 	sharedImages,
 	GlobalLegacy,
 } from "../data/siteContent";
+import StatGrid from "../components/StatGrid";
 
 const AUTO_DURATION = 4200;
 const TRANSITION_DURATION = 1.15;
@@ -32,26 +32,58 @@ function HomePage() {
 	const sectionRefs = useRef([]);
 	const autoTimerRef = useRef(null);
 
+	const hideSectionContent = useCallback((section) => {
+		if (!section) {
+			return;
+		}
+
+		const animatedChildren = Array.from(
+			section.querySelectorAll("[data-animate]"),
+		).filter((element) => !element.querySelector("[data-animate]"));
+		gsap.killTweensOf(animatedChildren);
+		gsap.set(animatedChildren, {
+			autoAlpha: 0,
+			y: 40,
+			filter: "blur(10px)",
+		});
+	}, []);
+
 	const animateSectionContent = useCallback((index) => {
 		const section = sectionRefs.current[index];
 		if (!section) {
 			return;
 		}
 
-		const animatedChildren = section.querySelectorAll("[data-animate]");
+		const animatedChildren = Array.from(
+			section.querySelectorAll("[data-animate]"),
+		).filter((element) => !element.querySelector("[data-animate]"));
+		const getDelay = (element, itemIndex) => {
+			const rawDelay = Number(element.getAttribute("data-animate-delay"));
+			return Number.isFinite(rawDelay) ? rawDelay : 0.18 + itemIndex * 0.2;
+		};
 
 		gsap.killTweensOf(animatedChildren);
-		gsap.fromTo(
-			animatedChildren,
-			{ autoAlpha: 0, y: 36 },
-			{
-				autoAlpha: 1,
-				y: 0,
-				duration: 0.85,
-				ease: "power3.out",
-				stagger: 0.12,
-			},
-		);
+		gsap.set(animatedChildren, {
+			autoAlpha: 0,
+			y: 40,
+			filter: "blur(10px)",
+		});
+		animatedChildren.forEach((element, itemIndex) => {
+			gsap.fromTo(
+				element,
+				{ autoAlpha: 0, y: 40, filter: "blur(10px)", scale: 0.992 },
+				{
+					autoAlpha: 1,
+					y: 0,
+					filter: "blur(0px)",
+					scale: 1,
+					duration: 0.92,
+					ease: "power4.out",
+					delay: getDelay(element, itemIndex),
+					overwrite: "auto",
+				},
+			);
+		});
 	}, []);
 
 	const sections = [
@@ -68,8 +100,12 @@ function HomePage() {
 					</div>
 
 					<div className="home-slide__container relative z-10 grid h-full items-center lg:grid-cols-[minmax(0,1fr)_minmax(420px,620px)]">
-						<div data-animate className="max-w-[560px]">
-							<h1 className="font-display text-[3rem] uppercase leading-[0.93] text-white md:text-[4rem]">
+						<div className="max-w-[560px]">
+							<h1
+								data-animate
+								data-animate-delay="0.12"
+								className="font-display text-[3rem] uppercase leading-[0.93] text-white md:text-[4rem]"
+							>
 								Crafting
 								<br />
 								Brilliance.
@@ -78,13 +114,19 @@ function HomePage() {
 								<br />
 								Legacy.
 							</h1>
-							<p className="mt-10 font-copy text-xl leading-relaxed text-white">
+							<p
+								data-animate
+								data-animate-delay="0.34"
+								className="mt-10 font-copy text-xl leading-relaxed text-white"
+							>
 								A new chapter in precision diamond manufacturing and ethical
 								sourcing.
 							</p>
 							<button
 								type="button"
 								onClick={() => goToSection(1)}
+								data-animate
+								data-animate-delay="0.56"
 								className="group mt-10 inline-flex items-center gap-5 text-left"
 							>
 								<span className="font-copy text-base font-medium tracking-[0.03em] text-white transition group-hover:text-white/80">
@@ -93,7 +135,7 @@ function HomePage() {
 								<img
 									src={sharedImages.Arrow}
 									alt=""
-									className=" object-cover opacity-95"
+									className="object-cover opacity-95 transition-transform duration-500 ease-out group-hover:translate-x-2"
 								/>
 							</button>
 						</div>
@@ -118,33 +160,50 @@ function HomePage() {
 
 					<div className="home-slide__container relative z-10 flex h-full items-center justify-center">
 						<div className="flex w-full flex-col gap-22 items-center justify-center text-center">
-							<div data-animate className="">
-								<SectionHeading
-									title={
-										<>
-											A Legacy <br />
-											Refined in Dubai
-										</>
-									}
-									description={
-										<>
-											Samir Gems FZCO marks the next chapter of a legacy shaped
-											over six decades. Rooted in the heritage of Samir Gems,
-											the FZCO entity has <br />
-											been operating independently in Dubai for over two
-											decades. Refined in the city’s global trade ecosystem, we
-											unite time-honoured <br /> craftsmanship with Dubai’s
-											international trading excellence to shape diamonds of
-											uncompromising precision and integrity
-										</>
-									}
-									align="center"
-									descriptionClassName="mt-20"
-								/>
+							<div className="">
+								<h2
+									data-animate
+									data-animate-delay="0.16"
+									className="font-display text-[2.25rem] uppercase leading-[0.96] text-white md:text-[3rem] lg:text-[4rem]"
+								>
+									A Legacy <br />
+									Refined in Dubai
+								</h2>
+								<p
+									data-animate
+									data-animate-delay="0.38"
+									className="mt-20 font-copy text-lg leading-relaxed text-white"
+								>
+									Samir Gems FZCO marks the next chapter of a legacy shaped over
+									six decades. Rooted in the heritage of Samir Gems, the FZCO
+									entity has <br />
+									been operating independently in Dubai for over two decades.
+									Refined in the city's global trade ecosystem, we unite
+									time-honoured <br /> craftsmanship with Dubai's international
+									trading excellence to shape diamonds of uncompromising
+									precision and integrity
+								</p>
 							</div>
 
-							<div className=" w-full" data-animate>
-								<StatGrid stats={homeStats} />
+							<div className="grid w-full grid-cols-3 gap-5">
+								{homeStats.map((stat, statIndex) => (
+									<article
+										key={stat.label}
+										data-animate
+										data-animate-delay={0.62 + statIndex * 0.14}
+										className="flex h-[117px] items-center justify-center border border-white/8 bg-[rgba(0,0,0,0.30)] px-[60px] py-[40px]"
+									>
+										<div className="flex items-center gap-2.5">
+											<p className="shrink-0 font-copy text-6xl font-light tracking-[0.03em] text-white">
+												{stat.value}
+												{stat.suffix}
+											</p>
+											<p className="max-w-[183px] font-copy text-[17px] font-light leading-tight tracking-[0.03em] text-white">
+												{stat.label}
+											</p>
+										</div>
+									</article>
+								))}
 							</div>
 						</div>
 					</div>
@@ -167,13 +226,13 @@ function HomePage() {
 					{/* Content */}
 					<div className="home-slide__container relative z-10 flex h-full justify-between items-center">
 						<div className="w-full">
-							<div data-animate className="my-30">
+							<div className="my-30">
 								<SectionHeading title="Our Expertise" align="left" />
 							</div>
 
 							<div
 								className="grid gap-5 md:grid-cols-2 xl:grid-cols-4"
-								data-animate
+								data-animate-delay="0.4"
 							>
 								{expertiseCards.map((card) => (
 									<ImageCard
@@ -205,11 +264,19 @@ function HomePage() {
 					<div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.42)_45%,rgba(0,0,0,0.62)_100%)]" />
 					<div className="home-slide__container relative flex h-full items-center">
 						<div className="mx-auto grid w-full gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.52fr)] lg:items-center">
-							<div data-animate>
-								<h2 className="font-display text-[2.4rem] uppercase leading-[0.95] text-white md:text-[3rem] lg:text-[3.5rem]">
+							<div>
+								<h2
+									data-animate
+									data-animate-delay="0.12"
+									className="font-display text-[2.4rem] uppercase leading-[0.95] text-white md:text-[3rem] lg:text-[3.5rem]"
+								>
 									Responsibility <br /> Meets Perfection.
 								</h2>
-								<p className="mt-5  font-copy text-[1rem] leading-[1.45] text-stone-300 md:text-[1.05rem]">
+								<p
+									data-animate
+									data-animate-delay="0.34"
+									className="mt-5  font-copy text-[1rem] leading-[1.45] text-stone-300 md:text-[1.05rem]"
+								>
 									Responsibility and precision define every stone we craft. As
 									an RJC-certified <br /> company, our diamonds follow a fully
 									traceable mine-to-market journey,
@@ -222,6 +289,8 @@ function HomePage() {
 								<button
 									type="button"
 									onClick={() => goToSection(4)}
+									data-animate
+									data-animate-delay="0.58"
 									className="group mt-8 inline-flex items-center gap-5 text-left"
 								>
 									<span className="font-copy text-[0.92rem] font-medium tracking-[0.03em] text-white transition group-hover:text-white/80">
@@ -230,33 +299,38 @@ function HomePage() {
 									<img
 										src={sharedImages.Arrow}
 										alt=""
-										className=" object-cover opacity-95"
+										className="object-cover opacity-95 transition-transform duration-500 ease-out group-hover:translate-x-2"
 									/>
 								</button>
 							</div>
-							<div
-								className="grid grid-cols-2 gap-5 justify-self-end"
-								data-animate
-							>
+							<div className="grid grid-cols-2 gap-5 justify-self-end">
 								<img
 									src={sharedImages.namdiaLogo}
 									alt="Namdia"
+									data-animate
+									data-animate-delay="0.76"
 									className="h-[150px] w-[250px] object-contain"
 								/>
 
 								<img
 									src={sharedImages.sodiamLogo}
 									alt="Sodiam"
+									data-animate
+									data-animate-delay="0.88"
 									className="h-[150px] w-[250px] object-contain"
 								/>
 								<img
 									src={sharedImages.OkavangoLogo}
 									alt="Sodiam"
+									data-animate
+									data-animate-delay="1"
 									className="h-[150px] w-[250px] object-contain"
 								/>
 								<img
 									src={sharedImages.DeBeersLogo}
 									alt="Sodiam"
+									data-animate
+									data-animate-delay="1.12"
 									className="h-[150px] w-[250px] object-contain"
 								/>
 							</div>
@@ -272,7 +346,7 @@ function HomePage() {
 					<div className="home-slide__container flex h-full items-center">
 						<div className="grid w-full items-center gap-10 lg:grid-cols-[45%_55%]">
 							{/* Left Content */}
-							<div data-animate>
+							<div>
 								<SectionHeading
 									title={
 										<>
@@ -284,7 +358,12 @@ function HomePage() {
 
 								<ul className="mt-10 space-y-9 font-copy text-base leading-none text-white">
 									{GlobalLegacy.map((item, index, arr) => (
-										<li key={item} className="relative flex items-center gap-3">
+										<li
+											key={item}
+											data-animate
+											data-animate-delay={0.34 + index * 0.14}
+											className="relative flex items-center gap-3"
+										>
 											<div className="relative flex w-4 justify-center">
 												{/* vertical line */}
 												{index !== arr.length - 1 && (
@@ -304,7 +383,11 @@ function HomePage() {
 							</div>
 
 							{/* Right Map */}
-							<div data-animate className="relative flex justify-end">
+							<div
+								data-animate
+								data-animate-delay="0.92"
+								className="relative flex justify-end"
+							>
 								<img
 									src={sharedImages.worldMap}
 									alt=""
@@ -350,6 +433,11 @@ function HomePage() {
 			}
 
 			setIsAnimating(true);
+			sectionRefs.current.forEach((section, sectionIndex) => {
+				if (sectionIndex !== index) {
+					hideSectionContent(section);
+				}
+			});
 
 			gsap.to(trackRef.current, {
 				yPercent: -(index * 100),
@@ -365,6 +453,7 @@ function HomePage() {
 		[
 			activeIndex,
 			animateSectionContent,
+			hideSectionContent,
 			isAnimating,
 			isFooterOpen,
 			totalSections,
@@ -416,9 +505,14 @@ function HomePage() {
 		if (viewportRef.current) {
 			gsap.set(viewportRef.current, { y: 0 });
 		}
+		sectionRefs.current.forEach((section, index) => {
+			if (index !== 0) {
+				hideSectionContent(section);
+			}
+		});
 		animateSectionContent(0);
 		return undefined;
-	}, [animateSectionContent]);
+	}, [animateSectionContent, hideSectionContent]);
 
 	useEffect(() => {
 		const updateFooterHeight = () => {

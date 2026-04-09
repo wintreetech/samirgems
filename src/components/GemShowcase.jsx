@@ -55,20 +55,14 @@ const initialOrder = [
 
 function GemShowcase() {
 	const [orderedDiamonds, setOrderedDiamonds] = React.useState(initialOrder);
-	const [motionDirection, setMotionDirection] = React.useState("next");
-	const [motionKey, setMotionKey] = React.useState(0);
 
 	const activeDiamond = orderedDiamonds[1] ?? orderedDiamonds[0];
 
 	const next = () => {
-		setMotionDirection("next");
-		setMotionKey((prev) => prev + 1);
 		setOrderedDiamonds((prev) => [...prev.slice(1), prev[0]]);
 	};
 
 	const prev = () => {
-		setMotionDirection("prev");
-		setMotionKey((prev) => prev + 1);
 		setOrderedDiamonds((prev) => [prev[prev.length - 1], ...prev.slice(0, -1)]);
 	};
 
@@ -118,12 +112,15 @@ function GemShowcase() {
 
 					<div className="relative flex flex-col px-8 py-10 lg:px-14 lg:py-12 xl:px-16">
 						<div key={activeDiamond.id} className="gem-showcase__details">
-							<h2 className="font-copy text-[42px] font-light leading-none tracking-[0.03em] lg:text-6xl">
+							<h2
+								data-animate="right"
+								className="font-copy text-[42px] font-light leading-none tracking-[0.03em] lg:text-6xl"
+							>
 								{activeDiamond.title}
 							</h2>
 
 							<div className="mt-14 grid grid-cols-2 gap-x-16 gap-y-12">
-								<div>
+								<div data-animate="right" data-animate-delay="0.12">
 									<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
 										Carat
 									</p>
@@ -131,7 +128,7 @@ function GemShowcase() {
 										{activeDiamond.mainCarat}
 									</p>
 								</div>
-								<div>
+								<div data-animate="right" data-animate-delay="0.2">
 									<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
 										Colour
 									</p>
@@ -140,7 +137,7 @@ function GemShowcase() {
 									</p>
 								</div>
 
-								<div>
+								<div data-animate="right" data-animate-delay="0.28">
 									<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
 										Clarity
 									</p>
@@ -149,7 +146,7 @@ function GemShowcase() {
 									</p>
 								</div>
 
-								<div>
+								<div data-animate="right" data-animate-delay="0.36">
 									<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
 										Cut
 									</p>
@@ -161,7 +158,11 @@ function GemShowcase() {
 						</div>
 
 						<div className="mt-12">
-							<div className="mb-5 flex items-center justify-end gap-3 pr-1">
+							<div
+								data-animate="right"
+								data-animate-delay="0.48"
+								className="mb-5 flex items-center justify-end gap-3 pr-1"
+							>
 								<button
 									onClick={prev}
 									type="button"
@@ -196,24 +197,19 @@ function GemShowcase() {
 							</div>
 
 							<div
-								key={`${motionDirection}-${motionKey}`}
-								className={`relative z-20 flex items-stretch gap-4 overflow-hidden pr-6 ${
-									motionDirection === "prev"
-										? "gem-strip gem-strip--prev"
-										: "gem-strip gem-strip--next"
-								}`}
+								data-animate="up"
+								data-animate-delay="0.58"
+								className="gem-strip relative z-20 h-[190px] overflow-hidden pr-6"
 							>
-								{orderedDiamonds.slice(1, 4).map((diamond, index) => (
+								{orderedDiamonds.map((diamond, index) => (
 									<button
 										key={diamond.id}
 										type="button"
 										onClick={() => moveToActive(diamond.id)}
-										className={`group relative h-[190px] shrink-0 overflow-hidden border border-white/10 bg-black/20 text-left transition-all duration-500 ${
-											index === 2 ? "w-[150px] opacity-45" : "w-[300px]"
-										} ${
-											index === 0
+										className={`gem-strip__item gem-strip__item--slot-${Math.min(index, 4)} group ${
+											index === 1
 												? "border-white/70 shadow-[0_20px_40px_rgba(0,0,0,0.28)]"
-												: "opacity-90 hover:opacity-100 hover:border-white/30"
+												: "border-white/10"
 										}`}
 									>
 										<img
@@ -227,7 +223,7 @@ function GemShowcase() {
 											<p className="font-copy text-[24px] font-light leading-[0.95] tracking-[0.03em] text-white">
 												{diamond.title}
 											</p>
-											{index === 0 ? (
+											{index === 1 ? (
 												<p className="mt-2 font-copy text-[16px] font-light tracking-[0.03em] text-white/75">
 													{diamond.carat}
 												</p>
