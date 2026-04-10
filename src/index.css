@@ -60,6 +60,15 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: "Condor";
+	src: url("./assets/fonts/fonnts.com-Condor_Medium_Italic.otf")
+		format("opentype");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
 @layer base {
 	:root {
 		color: #f6f2eb;
@@ -456,7 +465,6 @@
 	}
 }
 
-
 @layer utilities {
 	.font-display {
 		font-family: "Times Now", serif;
@@ -485,5 +493,12 @@
 
 	html {
 		scroll-behavior: auto;
+	}
+}
+
+@layer utilities {
+	.font-condor-italic {
+		font-family: "Condor", sans-serif;
+		font-style: italic;
 	}
 }

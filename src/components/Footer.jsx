@@ -136,7 +136,7 @@ export default function Footer() {
 					</div>
 
 					{/* Quick links */}
-					<div className="flex flex-col items-center text-center lg:items-end lg:text-right">
+					<div className="flex flex-col items-center text-center lg:items-center lg:text-center">
 						<h3 className="font-condor text-[17px] font-medium tracking-[0.03em] text-white">
 							Quick Links
 						</h3>

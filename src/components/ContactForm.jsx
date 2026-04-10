@@ -89,23 +89,27 @@ function ContactForm() {
 			</div>
 
 			<FormField
-				label="Your Message (Optional)"
-				placeholder="Enter your email address"
+				label={
+					<>
+						Your Message <span className="font-condor-italic">(Optional)</span>
+					</>
+				}
+				placeholder="Enter your Message"
 				animateDirection="right"
 				animateDelay="0.58"
 			/>
 
 			<button
-				data-animate="right"
-				data-animate-delay="0.7"
+				data-animate
+				data-animate-delay="0.56"
 				type="submit"
-				className="mt-2 inline-flex w-fit items-center gap-3 border border-white/30 px-8 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-stone-100 transition hover:border-white/60 hover:bg-white/5"
+				className="group mt-2 inline-flex w-fit items-center gap-3 border border-white/30 px-8 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-stone-100 transition hover:border-white/60 hover:bg-white/5"
 			>
 				Submit
 				<img
 					src={sharedImages.Arrow}
 					alt=""
-					className=" object-cover opacity-95"
+					className="object-cover opacity-95 transition-transform duration-500 ease-out group-hover:translate-x-2"
 				/>
 			</button>
 		</form>

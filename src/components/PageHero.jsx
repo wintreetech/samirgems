@@ -28,7 +28,7 @@ function PageHero({
 					className={`h-full w-full object-cover ${imageClassName}`}
 				/>
 				<div
-					className={`absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.38)_46%,rgba(0,0,0,0.72)_100%)] ${overlayClassName}`}
+					className={`absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.25)_46%,rgba(0,0,0,0.5)_100%)] ${overlayClassName}`}
 				/>
 			</div>
 
@@ -52,9 +52,6 @@ function PageHero({
 						className="group inline-flex flex-col items-center gap-3 lg:items-end"
 						aria-label={accent}
 					>
-						<span className="font-copy text-[11px] uppercase tracking-[0.2em] text-stone-200 transition group-hover:text-white">
-							{accent}
-						</span>
 						<span className="grid h-11 w-11 place-items-center rounded-full border border-white/30 bg-black/20 transition duration-300 group-hover:border-white/60 group-hover:bg-white/10">
 							<span className="font-copy text-lg leading-none text-white">
 								↓

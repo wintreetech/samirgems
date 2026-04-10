@@ -85,6 +85,7 @@ function ServicesPage() {
 							data-animate="up"
 							data-animate-delay={0.16 + index * 0.12}
 							onMouseEnter={() => setActive(index)}
+							onMouseLeave={() => setActive(0)}
 							onClick={() => setActive(index)}
 							className={`group relative h-full overflow-hidden rounded-none border border-white/10 transition-all duration-500 ease-in-out ${
 								active === index ? "w-[46%]" : "w-[18%]"
@@ -96,8 +97,12 @@ function ServicesPage() {
 								className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
 							/>
 
-							{active === index ? (
-								<div className="absolute top-0 left-0 flex w-full items-center justify-center bg-black/60 px-6 backdrop-blur-md">
+							{index === 0 && (
+								<div
+									className={`absolute top-0 left-0 flex w-full items-center justify-center bg-black/60 px-6 backdrop-blur-md transition-opacity duration-300 ${
+										active === 0 ? "opacity-100" : "opacity-0"
+									}`}
+								>
 									<div className="flex items-center justify-center">
 										<img
 											src={sharedImages.logoStrip}
@@ -106,7 +111,7 @@ function ServicesPage() {
 										/>
 									</div>
 								</div>
-							) : null}
+							)}
 
 							<div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
@@ -155,7 +160,7 @@ function ServicesPage() {
 						<img
 							src={sharedImages.HowWeDeliver}
 							alt="How We Deliver Value"
-							className="absolute inset-0 h-full w-full object-cover object-top"
+							className="absolute inset-0 h-full w-full transition-transform duration-700 ease-out hover:scale-[1.03]"
 						/>
 						<div className="relative flex h-full items-start justify-center p-10">
 							<h2 className="text-center font-display text-5xl leading-[1.05] text-white lg:text-6xl">
@@ -167,20 +172,40 @@ function ServicesPage() {
 					<div className="flex flex-col gap-5">
 						<div
 							data-animate="up"
-							className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8"
+							className="group relative flex min-h-[250px] flex-col justify-between overflow-hidden border border-white/8 bg-black/30 p-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)]"
 						>
-							<img src={sharedImages.value1} alt="" className="h-9 w-9" />
-							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
+							{/* Light sweep effect */}
+							<div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+								<div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_40%,rgba(255,255,255,0.08)_50%,transparent_60%)] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
+							</div>
+
+							<img
+								src={sharedImages.value1}
+								alt=""
+								className="h-9 w-9 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
+							/>
+
+							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white">
 								Vertically integrated mine-to-market operations
 							</p>
 						</div>
+
 						<div
 							data-animate="up"
 							data-animate-delay="0.14"
-							className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8"
+							className="group relative flex min-h-[250px] flex-col justify-between overflow-hidden border border-white/8 bg-black/30 p-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)]"
 						>
-							<img src={sharedImages.value2} alt="" className="h-9 w-9" />
-							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
+							<div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+								<div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_40%,rgba(255,255,255,0.08)_50%,transparent_60%)] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
+							</div>
+
+							<img
+								src={sharedImages.value2}
+								alt=""
+								className="h-9 w-9 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
+							/>
+
+							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white">
 								Consistent quality backed by decades of expertise
 							</p>
 						</div>
@@ -189,20 +214,39 @@ function ServicesPage() {
 					<div className="flex flex-col gap-5">
 						<div
 							data-animate="right"
-							className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8"
+							className="group relative flex min-h-[250px] flex-col justify-between overflow-hidden border border-white/8 bg-black/30 p-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)]"
 						>
-							<img src={sharedImages.value3} alt="" className="h-9 w-9" />
-							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
+							<div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+								<div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_40%,rgba(255,255,255,0.08)_50%,transparent_60%)] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
+							</div>
+
+							<img
+								src={sharedImages.value3}
+								alt=""
+								className="h-9 w-9 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
+							/>
+
+							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white">
 								Ethical sourcing and transparent processes
 							</p>
 						</div>
+
 						<div
 							data-animate="right"
 							data-animate-delay="0.14"
-							className="flex min-h-[250px] flex-col justify-between bg-black/30 p-8"
+							className="group relative flex min-h-[250px] flex-col justify-between overflow-hidden border border-white/8 bg-black/30 p-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)]"
 						>
-							<img src={sharedImages.value4} alt="" className="h-9 w-9" />
-							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white">
+							<div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+								<div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_40%,rgba(255,255,255,0.08)_50%,transparent_60%)] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
+							</div>
+
+							<img
+								src={sharedImages.value4}
+								alt=""
+								className="h-9 w-9 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
+							/>
+
+							<p className="max-w-[240px] font-copy text-[17px] font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white">
 								Trusted by leading luxury and jewellery houses worldwide
 							</p>
 						</div>
