@@ -12,7 +12,7 @@ import {
 } from "../data/siteContent";
 import StatGrid from "../components/StatGrid";
 
-const AUTO_DURATION = 4200;
+const AUTO_DURATION = 10000;
 const TRANSITION_DURATION = 1.15;
 
 function HomePage() {

@@ -59,7 +59,7 @@ function ContactPage() {
 										href="mailto:dubai@samirgems.com"
 										className="block hover:text-white"
 									>
-										dubai@samirgems.com
+										dubai@samirgemsfzco.com
 									</a>
 								</div>
 							</div>

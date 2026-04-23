@@ -40,6 +40,8 @@ import logoStrip from "../assets/images/logo-strip.svg";
 import OurExpertiseThumb from "../assets/pdf-images/our-expertise-bg-thum.png";
 import contactBg from "../assets/images/contact-bg.svg";
 import whatsappicon from "../assets/whatsapp.png";
+import strip_1 from "../assets/images/logo-strip 1.svg";
+import strip_2 from "../assets/images/logo-strip 2.svg";
 
 export const sharedImages = {
 	braceletImage,
@@ -84,6 +86,8 @@ export const sharedImages = {
 	logoStrip,
 	contactBg,
 	whatsappicon,
+	strip_1,
+	strip_2,
 };
 
 export const homeStats = [

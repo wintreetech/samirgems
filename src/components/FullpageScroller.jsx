@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 
 import Footer from "./Footer";
 
-const AUTO_DURATION = 4200;
+const AUTO_DURATION = 8000;
 const TRANSITION_DURATION = 1.15;
 
 function FullpageScroller({

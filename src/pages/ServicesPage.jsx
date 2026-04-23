@@ -99,15 +99,18 @@ function ServicesPage() {
 
 							{index === 0 && (
 								<div
-									className={`absolute top-0 left-0 flex w-full items-center justify-center bg-black/60 px-6 backdrop-blur-md transition-opacity duration-300 ${
+									className={`absolute bottom-0 right-0 z-20 transition-opacity duration-300 ${
 										active === 0 ? "opacity-100" : "opacity-0"
 									}`}
 								>
-									<div className="flex items-center justify-center">
+									<div className="flex flex-col items-end gap-3 bg-black/30 backdrop-blur-sm rounded-sm">
 										<img
-											src={sharedImages.logoStrip}
-											alt=""
-											className="h-auto w-auto object-contain"
+											src={sharedImages.strip_1}
+											className="h-18 w-auto object-contain"
+										/>
+										<img
+											src={sharedImages.strip_2}
+											className="h-18 w-auto object-contain"
 										/>
 									</div>
 								</div>
