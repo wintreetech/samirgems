@@ -207,8 +207,8 @@ export const gemItems = [
 ];
 
 export const GlobalLegacy = [
-	"1966 – Founded in India",
-	"1982 – Established in Antwerp",
-	"2008 – Operations Established within the FZCO Trade District",
-	"2025 – A New Chapter Begins: Samir Gems FZCO",
+	"1966 - Founded in India",
+	"1982 - Established in Antwerp",
+	"2008 - Operations Established within the FZCO Trade District",
+	"2025 - A New Chapter Begins: Samir Gems FZCO",
 ];

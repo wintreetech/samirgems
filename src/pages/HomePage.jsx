@@ -4,16 +4,48 @@ import { gsap } from "gsap";
 import Footer from "../components/Footer";
 import ImageCard from "../components/ImageCard";
 import SectionHeading from "../components/SectionHeading";
+import StatGrid from "../components/StatGrid";
 import {
 	expertiseCards,
 	homeStats,
 	sharedImages,
 	GlobalLegacy,
 } from "../data/siteContent";
-import StatGrid from "../components/StatGrid";
 
 const AUTO_DURATION = 10000;
 const TRANSITION_DURATION = 1.15;
+const DESKTOP_BREAKPOINT = 1024;
+
+const partnerLogos = [
+	{ src: sharedImages.namdiaLogo, alt: "Namdia", delay: "0.76" },
+	{ src: sharedImages.sodiamLogo, alt: "Sodiam", delay: "0.88" },
+	{ src: sharedImages.OkavangoLogo, alt: "Okavango", delay: "1" },
+	{ src: sharedImages.DeBeersLogo, alt: "De Beers", delay: "1.12" },
+];
+
+const mapMarkers = [
+	{
+		label: "Surat",
+		desktopClassName:
+			"absolute bottom-[34%] left-[63%] rounded bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur-sm",
+		mobileClassName:
+			"rounded-full border border-white/10 bg-white/8 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white/80",
+	},
+	{
+		label: "Dubai",
+		desktopClassName:
+			"absolute bottom-[30%] left-[58%] rounded bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur-sm",
+		mobileClassName:
+			"rounded-full border border-white/10 bg-white/8 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white/80",
+	},
+	{
+		label: "Mumbai",
+		desktopClassName:
+			"absolute bottom-[28%] left-[69%] rounded bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur-sm",
+		mobileClassName:
+			"rounded-full border border-white/10 bg-white/8 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white/80",
+	},
+];
 
 function HomePage() {
 	const [activeIndex, setActiveIndex] = useState(0);
@@ -22,6 +54,11 @@ function HomePage() {
 	const [isFooterOpen, setIsFooterOpen] = useState(false);
 	const [footerHeight, setFooterHeight] = useState(220);
 	const [hoveredCard, setHoveredCard] = useState(null);
+	const [isDesktop, setIsDesktop] = useState(() =>
+		typeof window === "undefined"
+			? true
+			: window.innerWidth >= DESKTOP_BREAKPOINT,
+	);
 
 	const activeBackground = hoveredCard?.image || sharedImages.OurExpertise;
 
@@ -40,6 +77,7 @@ function HomePage() {
 		const animatedChildren = Array.from(
 			section.querySelectorAll("[data-animate]"),
 		).filter((element) => !element.querySelector("[data-animate]"));
+
 		gsap.killTweensOf(animatedChildren);
 		gsap.set(animatedChildren, {
 			autoAlpha: 0,
@@ -57,6 +95,7 @@ function HomePage() {
 		const animatedChildren = Array.from(
 			section.querySelectorAll("[data-animate]"),
 		).filter((element) => !element.querySelector("[data-animate]"));
+
 		const getDelay = (element, itemIndex) => {
 			const rawDelay = Number(element.getAttribute("data-animate-delay"));
 			return Number.isFinite(rawDelay) ? rawDelay : 0.18 + itemIndex * 0.2;
@@ -68,6 +107,7 @@ function HomePage() {
 			y: 40,
 			filter: "blur(10px)",
 		});
+
 		animatedChildren.forEach((element, itemIndex) => {
 			gsap.fromTo(
 				element,
@@ -86,6 +126,17 @@ function HomePage() {
 		});
 	}, []);
 
+	const scrollToMobileSection = useCallback((id) => {
+		if (typeof window === "undefined") {
+			return;
+		}
+
+		document.getElementById(id)?.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
+	}, []);
+
 	const sections = [
 		{
 			id: "home-hero",
@@ -99,45 +150,47 @@ function HomePage() {
 						/>
 					</div>
 
-					<div className="home-slide__container relative z-10 grid h-full items-center lg:grid-cols-[minmax(0,1fr)_minmax(420px,620px)]">
-						<div className="max-w-[560px]">
-							<h1
-								data-animate
-								data-animate-delay="0.12"
-								className="font-display text-[3rem] uppercase leading-[0.93] text-white md:text-[4rem]"
-							>
-								Crafting
-								<br />
-								Brilliance.
-								<br />
-								Defining
-								<br />
-								Legacy.
-							</h1>
-							<p
-								data-animate
-								data-animate-delay="0.34"
-								className="mt-10 font-copy text-xl leading-relaxed text-white"
-							>
-								A new chapter in precision diamond manufacturing and ethical
-								sourcing.
-							</p>
-							<button
-								type="button"
-								onClick={() => goToSection(1)}
-								data-animate
-								data-animate-delay="0.56"
-								className="group mt-10 inline-flex items-center gap-5 text-left"
-							>
-								<span className="font-copy text-base font-medium tracking-[0.03em] text-white transition group-hover:text-white/80">
-									Discover Our Legacy
-								</span>
-								<img
-									src={sharedImages.Arrow}
-									alt=""
-									className="object-cover opacity-95 transition-transform duration-500 ease-out group-hover:translate-x-2"
-								/>
-							</button>
+					<div className="home-slide__container relative z-10 grid h-full items-center">
+						<div className="mx-auto w-full max-w-[1440px]">
+							<div className="max-w-[560px]">
+								<h1
+									data-animate
+									data-animate-delay="0.12"
+									className="font-display text-[3rem] uppercase leading-[0.93] text-white md:text-[4rem]"
+								>
+									Crafting
+									<br />
+									Brilliance.
+									<br />
+									Defining
+									<br />
+									Legacy.
+								</h1>
+								<p
+									data-animate
+									data-animate-delay="0.34"
+									className="mt-10 max-w-[30rem] font-copy text-xl leading-relaxed text-white"
+								>
+									A new chapter in precision diamond manufacturing and ethical
+									sourcing.
+								</p>
+								<button
+									type="button"
+									onClick={() => goToSection(1)}
+									data-animate
+									data-animate-delay="0.56"
+									className="group mt-10 inline-flex items-center gap-5 text-left"
+								>
+									<span className="font-copy text-base font-medium tracking-[0.03em] text-white transition group-hover:text-white/80">
+										Discover Our Legacy
+									</span>
+									<img
+										src={sharedImages.Arrow}
+										alt=""
+										className="object-cover opacity-95 transition-transform duration-500 ease-out group-hover:translate-x-2"
+									/>
+								</button>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -147,20 +200,18 @@ function HomePage() {
 			id: "home-legacy",
 			render: () => (
 				<section className="home-slide relative overflow-hidden">
-					{/* Background image */}
 					<div className="absolute inset-0">
 						<img
 							src={sharedImages.HomeLegacy}
 							alt=""
 							className="h-full w-full object-cover"
 						/>
-
 						<div className="absolute inset-0 bg-black/20" />
 					</div>
 
 					<div className="home-slide__container relative z-10 flex h-full items-center justify-center">
-						<div className="flex w-full flex-col gap-22 items-center justify-center text-center">
-							<div className="">
+						<div className="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center gap-12 text-center lg:gap-18">
+							<div>
 								<h2
 									data-animate
 									data-animate-delay="0.16"
@@ -172,38 +223,20 @@ function HomePage() {
 								<p
 									data-animate
 									data-animate-delay="0.38"
-									className="mt-20 font-copy text-lg leading-relaxed text-white"
+									className="mx-auto mt-10 max-w-[62rem] font-copy text-lg leading-relaxed text-white lg:mt-14"
 								>
 									Samir Gems FZCO marks the next chapter of a legacy shaped over
 									six decades. Rooted in the heritage of Samir Gems, the FZCO
-									entity has <br />
-									been operating independently in Dubai for over two decades.
-									Refined in the city's global trade ecosystem, we unite
-									time-honoured <br /> craftsmanship with Dubai's international
-									trading excellence to shape diamonds of uncompromising
-									precision and integrity
+									entity has been operating independently in Dubai for over two
+									decades. Refined in the city&apos;s global trade ecosystem, we
+									unite time-honoured craftsmanship with Dubai&apos;s
+									international trading excellence to shape diamonds of
+									uncompromising precision and integrity.
 								</p>
 							</div>
 
-							<div className="grid w-full grid-cols-3 gap-5">
-								{homeStats.map((stat, statIndex) => (
-									<article
-										key={stat.label}
-										data-animate
-										data-animate-delay={0.62 + statIndex * 0.14}
-										className="flex h-[117px] items-center justify-center border border-white/8 bg-[rgba(0,0,0,0.30)] px-[60px] py-[40px]"
-									>
-										<div className="flex items-center gap-2.5">
-											<p className="shrink-0 font-copy text-6xl font-light tracking-[0.03em] text-white">
-												{stat.value}
-												{stat.suffix}
-											</p>
-											<p className="max-w-[183px] font-copy text-[17px] font-light leading-tight tracking-[0.03em] text-white">
-												{stat.label}
-											</p>
-										</div>
-									</article>
-								))}
+							<div className="w-full">
+								<StatGrid stats={homeStats} />
 							</div>
 						</div>
 					</div>
@@ -214,7 +247,6 @@ function HomePage() {
 			id: "home-expertise",
 			render: () => (
 				<section className="home-slide relative overflow-hidden bg-black">
-					{/* Background image */}
 					<div className="absolute inset-0 z-0">
 						<img
 							src={activeBackground}
@@ -223,10 +255,9 @@ function HomePage() {
 						/>
 					</div>
 
-					{/* Content */}
-					<div className="home-slide__container relative z-10 flex h-full justify-between items-center">
-						<div className="w-full">
-							<div className="my-30">
+					<div className="home-slide__container relative z-10 flex h-full items-center">
+						<div className="mx-auto w-full max-w-[1440px]">
+							<div className="my-24 lg:my-30">
 								<SectionHeading title="Our Expertise" align="left" />
 							</div>
 
@@ -240,7 +271,7 @@ function HomePage() {
 										image={card.image}
 										title={card.title}
 										description={card.description}
-										className="h-[200px] shadow-[0_4px_14px_rgba(0,0,0,0.22)]"
+										className="h-[220px] shadow-[0_4px_14px_rgba(0,0,0,0.22)]"
 										hoverReveal
 										onMouseEnter={() => setHoveredCard(card)}
 										onMouseLeave={() => setHoveredCard(null)}
@@ -263,7 +294,7 @@ function HomePage() {
 					/>
 					<div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.42)_45%,rgba(0,0,0,0.62)_100%)]" />
 					<div className="home-slide__container relative flex h-full items-center">
-						<div className="mx-auto grid w-full gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.52fr)] lg:items-center">
+						<div className="mx-auto grid w-full max-w-[1440px] gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.52fr)] lg:items-center">
 							<div>
 								<h2
 									data-animate
@@ -275,16 +306,14 @@ function HomePage() {
 								<p
 									data-animate
 									data-animate-delay="0.34"
-									className="mt-5  font-copy text-[1rem] leading-[1.45] text-stone-300 md:text-[1.05rem]"
+									className="mt-5 max-w-[42rem] font-copy text-[1rem] leading-[1.55] text-stone-300 md:text-[1.05rem]"
 								>
 									Responsibility and precision define every stone we craft. As
-									an RJC-certified <br /> company, our diamonds follow a fully
-									traceable mine-to-market journey,
-									<br /> supported by stringent ethical standards. Advanced
-									polishing technology works
-									<br /> in harmony with generations of artisanship, ensuring
-									every diamond reflects
-									<br /> both integrity and uncompromising accuracy.
+									an RJC-certified company, our diamonds follow a fully
+									traceable mine-to-market journey, supported by stringent
+									ethical standards. Advanced polishing technology works in
+									harmony with generations of artisanship, ensuring every
+									diamond reflects both integrity and uncompromising accuracy.
 								</p>
 								<button
 									type="button"
@@ -303,36 +332,18 @@ function HomePage() {
 									/>
 								</button>
 							</div>
-							<div className="grid grid-cols-2 gap-5 justify-self-end">
-								<img
-									src={sharedImages.namdiaLogo}
-									alt="Namdia"
-									data-animate
-									data-animate-delay="0.76"
-									className="h-[150px] w-[250px] object-contain"
-								/>
 
-								<img
-									src={sharedImages.sodiamLogo}
-									alt="Sodiam"
-									data-animate
-									data-animate-delay="0.88"
-									className="h-[150px] w-[250px] object-contain"
-								/>
-								<img
-									src={sharedImages.OkavangoLogo}
-									alt="Sodiam"
-									data-animate
-									data-animate-delay="1"
-									className="h-[150px] w-[250px] object-contain"
-								/>
-								<img
-									src={sharedImages.DeBeersLogo}
-									alt="Sodiam"
-									data-animate
-									data-animate-delay="1.12"
-									className="h-[150px] w-[250px] object-contain"
-								/>
+							<div className="grid grid-cols-2 gap-5 justify-self-end">
+								{partnerLogos.map((logo) => (
+									<img
+										key={logo.alt}
+										src={logo.src}
+										alt={logo.alt}
+										data-animate
+										data-animate-delay={logo.delay}
+										className="h-[150px] w-[250px] object-contain"
+									/>
+								))}
 							</div>
 						</div>
 					</div>
@@ -344,8 +355,7 @@ function HomePage() {
 			render: () => (
 				<section className="home-slide bg-[linear-gradient(180deg,#0c0c0c,#111111)]">
 					<div className="home-slide__container flex h-full items-center">
-						<div className="grid w-full items-center gap-10 lg:grid-cols-[45%_55%]">
-							{/* Left Content */}
+						<div className="mx-auto grid w-full max-w-[1440px] items-center gap-10 lg:grid-cols-[45%_55%]">
 							<div>
 								<SectionHeading
 									title={
@@ -365,12 +375,10 @@ function HomePage() {
 											className="relative flex items-center gap-3"
 										>
 											<div className="relative flex w-4 justify-center">
-												{/* vertical line */}
-												{index !== arr.length - 1 && (
+												{index !== arr.length - 1 ? (
 													<span className="absolute top-4 h-[36px] w-px bg-white/30" />
-												)}
+												) : null}
 
-												{/* circle */}
 												<span className="flex h-4 w-4 items-center justify-center rounded-full border border-white/50 bg-black">
 													<span className="h-1.5 w-1.5 rounded-full bg-white" />
 												</span>
@@ -382,7 +390,6 @@ function HomePage() {
 								</ul>
 							</div>
 
-							{/* Right Map */}
 							<div
 								data-animate
 								data-animate-delay="0.92"
@@ -394,18 +401,11 @@ function HomePage() {
 									className="w-full max-w-[760px] object-contain opacity-95"
 								/>
 
-								{/* City labels */}
-								<div className="absolute bottom-[34%] left-[63%] rounded bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur-sm">
-									Surat
-								</div>
-
-								<div className="absolute bottom-[30%] left-[58%] rounded bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur-sm">
-									Dubai
-								</div>
-
-								<div className="absolute bottom-[28%] left-[69%] rounded bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur-sm">
-									Mumbai
-								</div>
+								{mapMarkers.map((marker) => (
+									<div key={marker.label} className={marker.desktopClassName}>
+										{marker.label}
+									</div>
+								))}
 							</div>
 						</div>
 					</div>
@@ -419,6 +419,7 @@ function HomePage() {
 	const goToSection = useCallback(
 		(index) => {
 			if (
+				!isDesktop ||
 				isAnimating ||
 				index === activeIndex ||
 				index < 0 ||
@@ -455,13 +456,14 @@ function HomePage() {
 			animateSectionContent,
 			hideSectionContent,
 			isAnimating,
+			isDesktop,
 			isFooterOpen,
 			totalSections,
 		],
 	);
 
 	const showFooter = useCallback(() => {
-		if (isAnimating || isFooterOpen || !viewportRef.current) {
+		if (!isDesktop || isAnimating || isFooterOpen || !viewportRef.current) {
 			return;
 		}
 
@@ -476,10 +478,10 @@ function HomePage() {
 				setIsAnimating(false);
 			},
 		});
-	}, [footerHeight, isAnimating, isFooterOpen]);
+	}, [footerHeight, isAnimating, isDesktop, isFooterOpen]);
 
 	const hideFooter = useCallback(() => {
-		if (isAnimating || !isFooterOpen || !viewportRef.current) {
+		if (!isDesktop || isAnimating || !isFooterOpen || !viewportRef.current) {
 			return;
 		}
 
@@ -494,10 +496,37 @@ function HomePage() {
 				setIsAnimating(false);
 			},
 		});
-	}, [isAnimating, isFooterOpen]);
+	}, [isAnimating, isDesktop, isFooterOpen]);
 
 	useEffect(() => {
-		if (!trackRef.current) {
+		if (typeof window === "undefined") {
+			return undefined;
+		}
+
+		const handleResize = () => {
+			const desktop = window.innerWidth >= DESKTOP_BREAKPOINT;
+			setIsDesktop(desktop);
+
+			if (!desktop) {
+				setIsFooterOpen(false);
+				setIsAnimating(false);
+				if (viewportRef.current) {
+					gsap.set(viewportRef.current, { y: 0 });
+				}
+				if (trackRef.current) {
+					gsap.set(trackRef.current, { yPercent: 0 });
+				}
+			}
+		};
+
+		handleResize();
+		window.addEventListener("resize", handleResize);
+
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	useEffect(() => {
+		if (!isDesktop || !trackRef.current) {
 			return undefined;
 		}
 
@@ -505,14 +534,16 @@ function HomePage() {
 		if (viewportRef.current) {
 			gsap.set(viewportRef.current, { y: 0 });
 		}
+
 		sectionRefs.current.forEach((section, index) => {
 			if (index !== 0) {
 				hideSectionContent(section);
 			}
 		});
+
 		animateSectionContent(0);
 		return undefined;
-	}, [animateSectionContent, hideSectionContent]);
+	}, [animateSectionContent, hideSectionContent, isDesktop]);
 
 	useEffect(() => {
 		const updateFooterHeight = () => {
@@ -528,17 +559,16 @@ function HomePage() {
 	}, []);
 
 	useEffect(() => {
-		const node = homeRef.current;
+		if (!isDesktop) {
+			return undefined;
+		}
 
+		const node = homeRef.current;
 		if (!node) {
 			return undefined;
 		}
 
 		const onWheel = (event) => {
-			if (window.innerWidth < 1024) {
-				return;
-			}
-
 			event.preventDefault();
 
 			if (isAnimating) {
@@ -561,7 +591,7 @@ function HomePage() {
 		};
 
 		const onKeyDown = (event) => {
-			if (window.innerWidth < 1024 || isAnimating) {
+			if (isAnimating) {
 				return;
 			}
 
@@ -596,18 +626,14 @@ function HomePage() {
 		goToSection,
 		hideFooter,
 		isAnimating,
+		isDesktop,
 		isFooterOpen,
 		sections.length,
 		showFooter,
 	]);
 
 	useEffect(() => {
-		if (
-			typeof window === "undefined" ||
-			window.innerWidth < 1024 ||
-			isPaused ||
-			isAnimating
-		) {
+		if (!isDesktop || typeof window === "undefined" || isPaused || isAnimating) {
 			return undefined;
 		}
 
@@ -623,11 +649,205 @@ function HomePage() {
 	}, [
 		activeIndex,
 		goToSection,
-		isPaused,
 		isAnimating,
+		isDesktop,
+		isPaused,
 		sections.length,
 		showFooter,
 	]);
+
+	if (!isDesktop) {
+		return (
+			<div className="bg-black">
+				<section className="section-frame relative isolate min-h-[calc(100svh-82px)] overflow-hidden bg-black">
+					<div className="absolute inset-0">
+						<img
+							src={sharedImages.diamondOnStone}
+							alt=""
+							className="h-full w-full object-cover"
+						/>
+						<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.55)_56%,rgba(0,0,0,0.92)_100%)]" />
+					</div>
+
+					<div className="relative z-10 flex min-h-[calc(100svh-82px)] items-end px-5 py-10 sm:px-6">
+						<div className="mx-auto w-full max-w-[1400px]">
+							<div className="max-w-[21rem]">
+								<p className="font-sans text-[11px] uppercase tracking-[0.24em] text-white/72">
+									Samir Gems FZCO
+								</p>
+								<h1 className="mt-4 font-display text-[2.9rem] uppercase leading-[0.9] text-white sm:text-[3.3rem]">
+									Crafting
+									<br />
+									Brilliance.
+									<br />
+									Defining
+									<br />
+									Legacy.
+								</h1>
+								<p className="mt-6 max-w-[18rem] font-copy text-base leading-relaxed text-white/88">
+									A new chapter in precision diamond manufacturing and ethical
+									sourcing.
+								</p>
+
+								<div className="mt-8 flex flex-wrap gap-3">
+									<button
+										type="button"
+										onClick={() => scrollToMobileSection("home-mobile-legacy")}
+										className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/8 px-5 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-white transition hover:border-white/50 hover:bg-white/14"
+									>
+										Discover Our Legacy
+									</button>
+									<button
+										type="button"
+										onClick={() => scrollToMobileSection("home-mobile-expertise")}
+										className="inline-flex items-center justify-center rounded-full border border-white/10 px-5 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-white/88 transition hover:border-white/35 hover:text-white"
+									>
+										View Expertise
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section
+					id="home-mobile-legacy"
+					className="section-frame relative overflow-hidden px-5 py-16 sm:px-6"
+				>
+					<div className="absolute inset-0">
+						<img
+							src={sharedImages.HomeLegacy}
+							alt=""
+							className="h-full w-full object-cover"
+						/>
+						<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.64)_100%)]" />
+					</div>
+
+					<div className="relative z-10 mx-auto max-w-[1400px]">
+						<SectionHeading
+							eyebrow="Legacy"
+							title="A Legacy Refined in Dubai"
+							description="Samir Gems FZCO marks the next chapter of a diamond legacy shaped over six decades, uniting long-standing craftsmanship with Dubai's global trading excellence."
+						/>
+
+						<div className="mt-10">
+							<StatGrid stats={homeStats} />
+						</div>
+					</div>
+				</section>
+
+				<section
+					id="home-mobile-expertise"
+					className="section-frame relative overflow-hidden bg-black px-5 py-16 sm:px-6"
+				>
+					<div className="absolute inset-0">
+						<img
+							src={sharedImages.OurExpertise}
+							alt=""
+							className="h-full w-full object-cover opacity-18"
+						/>
+					</div>
+
+					<div className="relative z-10 mx-auto max-w-[1400px]">
+						<SectionHeading
+							eyebrow="Expertise"
+							title="From Rough to Refined Precision."
+							description="Each stage of our process is built around accuracy, transparency, and consistency for global partners."
+						/>
+
+						<div className="mt-8 grid gap-4">
+							{expertiseCards.map((card) => (
+								<ImageCard
+									key={card.title}
+									image={card.image}
+									title={card.title}
+									description={card.description}
+									className="min-h-[260px]"
+									hoverReveal
+								/>
+							))}
+						</div>
+					</div>
+				</section>
+
+				<section className="section-frame relative overflow-hidden bg-black px-5 py-16 sm:px-6">
+					<img
+						src={sharedImages.handsImage}
+						alt=""
+						className="absolute inset-0 h-full w-full object-cover opacity-60"
+					/>
+					<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.62)_42%,rgba(0,0,0,0.9)_100%)]" />
+
+					<div className="relative z-10 mx-auto max-w-[1400px]">
+						<SectionHeading
+							eyebrow="Responsibility"
+							title="Responsibility Meets Perfection."
+							description="Our diamonds follow a fully traceable mine-to-market journey supported by ethical sourcing standards and advanced manufacturing."
+						/>
+
+						<div className="mt-10 grid grid-cols-2 gap-4">
+							{partnerLogos.map((logo) => (
+								<div
+									key={logo.alt}
+									className="flex min-h-[116px] items-center justify-center border border-white/10 bg-black/35 p-4"
+								>
+									<img
+										src={logo.src}
+										alt={logo.alt}
+										className="max-h-[80px] w-full object-contain"
+									/>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
+
+				<section className="section-frame bg-[linear-gradient(180deg,#0c0c0c,#111111)] px-5 py-16 sm:px-6">
+					<div className="mx-auto max-w-[1400px]">
+						<SectionHeading
+							eyebrow="Global Footprint"
+							title="A Global Legacy Shaped Across Continents."
+							description="Our story has expanded across key trade regions while remaining anchored in precision, trust, and responsible sourcing."
+						/>
+
+						<ul className="mt-8 space-y-6 font-copy text-base text-white">
+							{GlobalLegacy.map((item, index, arr) => (
+								<li key={item} className="relative flex gap-4">
+									<div className="relative flex w-4 justify-center">
+										{index !== arr.length - 1 ? (
+											<span className="absolute top-4 h-[calc(100%+16px)] w-px bg-white/20" />
+										) : null}
+										<span className="mt-1 flex h-4 w-4 items-center justify-center rounded-full border border-white/50 bg-black">
+											<span className="h-1.5 w-1.5 rounded-full bg-white" />
+										</span>
+									</div>
+									<span className="leading-relaxed text-white/85">{item}</span>
+								</li>
+							))}
+						</ul>
+
+						<div className="mt-10 overflow-hidden border border-white/10 bg-white/[0.02] p-4">
+							<img
+								src={sharedImages.worldMap}
+								alt=""
+								className="w-full object-contain opacity-95"
+							/>
+
+							<div className="mt-5 flex flex-wrap gap-2">
+								{mapMarkers.map((marker) => (
+									<span key={marker.label} className={marker.mobileClassName}>
+										{marker.label}
+									</span>
+								))}
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<Footer />
+			</div>
+		);
+	}
 
 	return (
 		<div
@@ -638,7 +858,7 @@ function HomePage() {
 			onFocus={() => setIsPaused(true)}
 			onBlur={() => setIsPaused(false)}
 		>
-			<div ref={footerRef} className="absolute inset-x-0 bottom-0 z-0">
+			<div ref={footerRef} className="stable-paint absolute inset-x-0 bottom-0 z-0">
 				<Footer />
 			</div>
 

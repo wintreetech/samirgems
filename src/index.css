@@ -205,6 +205,19 @@
 		@apply h-full w-full px-6 pt-8 pb-12 md:px-10 lg:px-14 xl:px-20 2xl:px-24;
 	}
 
+	.fixed-ui-layer {
+		transform: translateZ(0);
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		will-change: transform, opacity;
+	}
+
+	.stable-paint {
+		transform: translateZ(0);
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+	}
+
 	.section-nav {
 		@apply fixed right-8 top-1/2 z-30 hidden -translate-y-1/2 xl:flex xl:flex-col xl:items-center xl:gap-[22px];
 	}

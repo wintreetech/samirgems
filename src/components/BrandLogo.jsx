@@ -3,6 +3,7 @@ function BrandLogo({
 }) {
 	return (
 		<svg
+			className={className}
 			width="118"
 			height="74"
 			viewBox="0 0 118 74"

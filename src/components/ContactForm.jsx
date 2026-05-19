@@ -9,7 +9,7 @@ function FormField({
 	animateDelay,
 }) {
 	const sharedClassName =
-		"w-full border-b border-white/20 bg-transparent px-0 py-3 font-copy text-lg text-stone-200 outline-none transition placeholder:text-stone-500 focus:border-white/50";
+		"w-full border-b border-white/20 bg-transparent px-0 py-3 font-copy text-base text-stone-200 outline-none transition placeholder:text-stone-500 focus:border-white/50 md:text-lg";
 
 	return (
 		<label
@@ -95,6 +95,7 @@ function ContactForm() {
 					</>
 				}
 				placeholder="Enter your Message"
+				as="textarea"
 				animateDirection="right"
 				animateDelay="0.58"
 			/>
@@ -103,7 +104,7 @@ function ContactForm() {
 				data-animate
 				data-animate-delay="0.56"
 				type="submit"
-				className="group mt-2 inline-flex w-fit items-center gap-3 border border-white/30 px-8 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-stone-100 transition hover:border-white/60 hover:bg-white/5"
+				className="group mt-2 inline-flex w-full items-center justify-center gap-3 border border-white/30 px-8 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-stone-100 transition hover:border-white/60 hover:bg-white/5 sm:w-fit"
 			>
 				Submit
 				<img

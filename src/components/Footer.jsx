@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 
+import { sharedImages } from "../data/siteContent";
 import BrandLogo from "./BrandLogo";
 
 const quickLinks = [
@@ -13,44 +14,42 @@ export default function Footer() {
 	return (
 		<footer
 			id="site-footer"
-			className="relative overflow-hidden bg-[#272727] text-white"
+			className="stable-paint relative overflow-hidden bg-[#222222] text-white"
 		>
-			{/* Background image */}
-			<img
-				src="/Image8.png"
-				alt=""
-				className="pointer-events-none absolute inset-x-0 top-[-70px] h-[540px] w-full object-cover opacity-40"
-			/>
+			<div className="pointer-events-none absolute inset-0 stable-paint">
+				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.03),transparent_45%)]" />
+				<img
+					src={sharedImages.contactBg}
+					alt=""
+					className="stable-paint absolute bottom-0 right-0 h-[360px] w-[360px] object-contain opacity-10 md:h-[460px] md:w-[460px]"
+				/>
+			</div>
 
-			<div className="relative mx-auto max-w-[1440px] px-6 pt-12 lg:px-16 lg:pt-14">
+			<div className="relative mx-auto max-w-[1440px] px-5 py-12 sm:px-6 lg:px-16 lg:py-14">
 				<div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
-					{/* Contact */}
-					<div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-						<h3 className="font-condor text-[17px] font-medium tracking-[0.03em] text-white">
+					<div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
+						<h3 className="font-copy text-[17px] font-medium tracking-[0.03em] text-white">
 							Contact
 						</h3>
-
 						<div className="mt-4 h-px w-[50px] bg-white" />
-
-						<div className="mt-8 space-y-6 font-condor text-[17px] font-light tracking-[0.03em] text-white/95">
+						<div className="mt-8 space-y-6 font-copy text-base font-light tracking-[0.03em] text-white/95 md:text-[17px]">
 							<div>
-								<p>+97144390374</p>
-								<p>dubai@samirgems.com</p>
+								<p>+971 4 439 0374</p>
+								<p>dubai@samirgemsfzco.com</p>
 							</div>
 
-							<div className="max-w-[210px] leading-[1.9]">
+							<div className="max-w-[240px] leading-[1.85]">
 								<p>14 A, Almas Tower, Level 14,</p>
-								<p>Jumeriah Lake Towers,</p>
+								<p>Jumeirah Lake Towers,</p>
 								<p>Dubai, UAE</p>
 							</div>
 						</div>
 					</div>
 
-					{/* Center logo + socials */}
-					<div className="flex flex-col items-center justify-center">
-						<BrandLogo className="h-[140px] w-[226px]" />
+					<div className="order-1 flex flex-col items-center justify-center lg:order-2">
+						<BrandLogo className="h-[96px] w-[156px] md:h-[120px] md:w-[194px]" />
 
-						<div className="mt-10 flex items-center gap-8 text-[#C5C6C8]">
+						<div className="mt-8 flex items-center gap-6 text-[#C5C6C8] md:gap-8">
 							<a
 								href="#"
 								className="transition hover:text-white"
@@ -135,15 +134,12 @@ export default function Footer() {
 						</div>
 					</div>
 
-					{/* Quick links */}
-					<div className="flex flex-col items-center text-center lg:items-center lg:text-center">
-						<h3 className="font-condor text-[17px] font-medium tracking-[0.03em] text-white">
+					<div className="order-3 flex flex-col items-center text-center lg:items-center">
+						<h3 className="font-copy text-[17px] font-medium tracking-[0.03em] text-white">
 							Quick Links
 						</h3>
-
 						<div className="mt-4 h-px w-[50px] bg-white" />
-
-						<div className="mt-8 grid grid-cols-2 gap-x-10 gap-y-3 font-condor text-[17px] font-light tracking-[0.03em] text-white/95 lg:text-right">
+						<div className="mt-8 grid w-full max-w-[420px] grid-cols-1 gap-3 font-copy text-base font-light tracking-[0.03em] text-white/95 sm:grid-cols-2 md:text-[17px]">
 							<div className="flex flex-col gap-3">
 								{quickLinks.map((item) => (
 									<NavLink
@@ -169,10 +165,9 @@ export default function Footer() {
 				</div>
 			</div>
 
-			{/* Bottom bar */}
-			<div className="relative mt-14 border-t border-white/10 bg-[#0D0D0D] py-4">
-				<p className="text-center font-condor text-base font-light tracking-[0.03em] text-white">
-					© 2025 Sameer Gems FZCO. All rights reserved.
+			<div className="relative border-t border-white/10 bg-[#0D0D0D] px-5 py-4">
+				<p className="text-center font-copy text-sm font-light tracking-[0.03em] text-white md:text-base">
+					&copy; 2025 Sameer Gems FZCO. All rights reserved.
 				</p>
 			</div>
 		</footer>

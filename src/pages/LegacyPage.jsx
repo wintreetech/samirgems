@@ -15,7 +15,7 @@ function LegacyPage() {
 				}
 				description={
 					<>
-						Shaping the future of diamonds with decades of trust and <br />
+						Shaping the future of diamonds with decades of trust and
 						craftsmanship.
 					</>
 				}
@@ -27,18 +27,18 @@ function LegacyPage() {
 			<RevealSection
 				id="content"
 				threshold={0.15}
-				className="bg-[#272727] px-6 py-16 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
+				className="bg-[#272727] px-5 py-14 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
 			>
-				<div className="grid gap-6 lg:grid-cols-[40%_60%]">
+				<div className="mx-auto grid max-w-[1400px] gap-6 lg:grid-cols-[40%_60%] lg:gap-10">
 					<div data-animate="left">
-						<h2 className="font-display text-[4rem] uppercase text-stone-100">
+						<h2 className="font-display text-[2.4rem] uppercase leading-[0.95] text-stone-100 sm:text-[3rem] lg:text-[4rem]">
 							The Brand
 						</h2>
 					</div>
 					<div>
 						<p
 							data-animate="right"
-							className="font-copy text-lg leading-relaxed text-stone-300"
+							className="font-copy text-base leading-relaxed text-stone-300 md:text-lg"
 						>
 							Samir Gems FZCO is a global diamond enterprise operating within
 							the FZCO framework since 2008. Rooted in the six decade legacy of
@@ -49,7 +49,7 @@ function LegacyPage() {
 						<p
 							data-animate="right"
 							data-animate-delay="0.16"
-							className="mt-6 font-copy text-lg leading-relaxed text-stone-300"
+							className="mt-6 font-copy text-base leading-relaxed text-stone-300 md:text-lg"
 						>
 							Today, Samir Gems FZCO sources Kimberley Process certified rough
 							diamonds and delivers calibrated, high quality polished stones
@@ -64,20 +64,20 @@ function LegacyPage() {
 
 			<RevealSection
 				threshold={0.15}
-				className="bg-black px-6 py-16 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
+				className="bg-black px-5 py-14 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
 			>
-				<div className="grid w-full items-stretch gap-8 lg:grid-cols-[40%_60%]">
-					<div className="flex flex-col justify-start pr-8 lg:pr-14">
+				<div className="mx-auto grid w-full max-w-[1400px] items-stretch gap-8 lg:grid-cols-[40%_60%]">
+					<div className="flex flex-col justify-start lg:pr-14">
 						<h2
 							data-animate="left"
-							className="mb-16 font-display text-[4rem] uppercase text-white"
+							className="mb-10 font-display text-[2.4rem] uppercase leading-[0.95] text-white sm:text-[3rem] lg:mb-16 lg:text-[4rem]"
 						>
 							Our Origins
 						</h2>
 						<h3
 							data-animate="left"
 							data-animate-delay="0.14"
-							className="mb-12 font-copy text-4xl leading-tight text-stone-100"
+							className="mb-8 font-copy text-[2rem] leading-tight text-stone-100 md:text-4xl lg:mb-12"
 						>
 							A Heritage Built on Principles
 						</h3>
@@ -108,7 +108,7 @@ function LegacyPage() {
 						<img
 							src={sharedImages.OurOrigin1}
 							alt=""
-							className="h-full w-full object-cover object-center"
+							className="h-[360px] w-full object-cover object-center md:h-[460px] lg:h-full"
 						/>
 					</div>
 				</div>
@@ -116,20 +116,20 @@ function LegacyPage() {
 
 			<RevealSection
 				threshold={0.15}
-				className="bg-black px-6 py-16 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
+				className="bg-black px-5 py-14 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
 			>
-				<div className="grid w-full items-stretch gap-8 lg:grid-cols-[60%_40%]">
-					<div className="overflow-hidden" data-animate="left">
+				<div className="mx-auto grid w-full max-w-[1400px] items-stretch gap-8 lg:grid-cols-[60%_40%]">
+					<div className="overflow-hidden lg:order-1" data-animate="left">
 						<img
 							src={sharedImages.OurOrigin2}
 							alt=""
-							className="h-[600px] w-full object-cover object-center"
+							className="h-[360px] w-full object-cover object-center md:h-[460px] lg:h-[600px]"
 						/>
 					</div>
-					<div className="flex flex-col justify-start pl-8 lg:pr-14">
+					<div className="flex flex-col justify-start lg:order-2 lg:pl-8 lg:pr-14">
 						<h3
 							data-animate="right"
-							className="my-12 font-copy text-4xl leading-tight text-stone-100"
+							className="my-4 font-copy text-[2rem] leading-tight text-stone-100 md:my-8 md:text-4xl lg:my-12"
 						>
 							Craft Passed Through Generations
 						</h3>
@@ -161,13 +161,13 @@ function LegacyPage() {
 
 			<RevealSection
 				threshold={0.15}
-				className="bg-black px-6 py-16 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
+				className="bg-black px-5 py-14 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
 			>
-				<div className="grid w-full items-stretch gap-8 lg:grid-cols-[40%_60%]">
-					<div className="flex flex-col justify-start pr-8 lg:pr-14">
+				<div className="mx-auto grid w-full max-w-[1400px] items-stretch gap-8 lg:grid-cols-[40%_60%]">
+					<div className="flex flex-col justify-start lg:pr-14">
 						<h3
 							data-animate="left"
-							className="my-12 font-copy text-4xl leading-tight text-stone-100"
+							className="my-4 font-copy text-[2rem] leading-tight text-stone-100 md:my-8 md:text-4xl lg:my-12"
 						>
 							Values That Guide Us Today
 						</h3>
@@ -207,7 +207,7 @@ function LegacyPage() {
 						<img
 							src={sharedImages.OurOrigin3}
 							alt=""
-							className="h-[600px] w-full object-cover object-center"
+							className="h-[360px] w-full object-cover object-center md:h-[460px] lg:h-[600px]"
 						/>
 					</div>
 				</div>
