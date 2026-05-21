@@ -336,15 +336,6 @@
 	}
 
 	.gem-strip__item--slot-0 {
-		left: -10px;
-		width: 300px;
-		opacity: 0;
-		filter: blur(10px);
-		transform: translate3d(-42px, 0, 0) scale(1.14);
-		pointer-events: none;
-	}
-
-	.gem-strip__item--slot-1 {
 		left: 0;
 		width: 300px;
 		opacity: 1;
@@ -352,7 +343,7 @@
 		transform: translate3d(0, 0, 0) scale(1);
 	}
 
-	.gem-strip__item--slot-2 {
+	.gem-strip__item--slot-1 {
 		left: 316px;
 		width: 300px;
 		opacity: 0.9;
@@ -360,12 +351,21 @@
 		transform: translate3d(0, 0, 0) scale(1);
 	}
 
-	.gem-strip__item--slot-3 {
+	.gem-strip__item--slot-2 {
 		left: 632px;
 		width: 150px;
 		opacity: 0.45;
 		filter: blur(0);
 		transform: translate3d(0, 0, 0) scale(1);
+	}
+
+	.gem-strip__item--slot-3 {
+		left: 798px;
+		width: 150px;
+		opacity: 0;
+		filter: blur(8px);
+		transform: translate3d(34px, 0, 0) scale(0.92);
+		pointer-events: none;
 	}
 
 	.gem-strip__item--slot-4 {

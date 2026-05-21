@@ -63,6 +63,7 @@ function ServicesPage() {
 				image={sharedImages.ServiceHero}
 				accent="Scroll Down"
 				accentHref="#content"
+				overlayClassName="bg-[linear-gradient(180deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.46)_48%,rgba(0,0,0,0.82)_100%)] lg:bg-[linear-gradient(90deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.25)_46%,rgba(0,0,0,0.5)_100%)]"
 			/>
 
 			<RevealSection
@@ -79,7 +80,45 @@ function ServicesPage() {
 							What we do
 						</h1>
 					</div>
-					<div className="mt-12 flex w-full flex-col gap-4 overflow-hidden lg:mt-25 lg:h-112.5 lg:flex-row">
+					<div className="mt-10 -mx-5 overflow-x-auto px-5 pb-2 lg:hidden">
+						<div className="flex min-w-max snap-x snap-mandatory gap-4">
+							{cards.map((card, index) => (
+								<button
+									key={card.id}
+									type="button"
+									data-animate="up"
+									data-animate-delay={0.16 + index * 0.12}
+									onClick={() => setActive(index)}
+									className="relative min-h-[340px] w-[78vw] shrink-0 snap-start overflow-hidden border border-white/10 sm:w-[62vw]"
+								>
+									<img
+										src={card.image}
+										alt={card.title}
+										className="h-full w-full object-cover"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+									<div className="absolute inset-x-0 bottom-0 p-5 text-left">
+										<h3 className="font-copy text-xl leading-none tracking-[0.03em] text-white">
+											{card.title}
+										</h3>
+										<ul className="mt-4 space-y-2">
+											{card.details.map((item, detailIndex) => (
+												<li
+													key={detailIndex}
+													className="flex items-start gap-2 font-copy text-sm font-light tracking-[0.03em] text-white/85"
+												>
+													<span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-white/70" />
+													<span>{item}</span>
+												</li>
+											))}
+										</ul>
+									</div>
+								</button>
+							))}
+						</div>
+					</div>
+
+					<div className="mt-12 hidden w-full gap-4 overflow-hidden lg:mt-25 lg:flex lg:h-112.5 lg:flex-row">
 						{cards.map((card, index) => (
 							<button
 								key={card.id}

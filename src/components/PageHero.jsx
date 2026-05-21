@@ -27,8 +27,9 @@ function PageHero({
 					alt=""
 					className={`h-full w-full object-cover ${imageClassName}`}
 				/>
+
 				<div
-					className={`absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.25)_46%,rgba(0,0,0,0.5)_100%)] ${overlayClassName}`}
+					className={`absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.15)_0%,rgba(0,0,0,0.45)_45%,rgba(0,0,0,0.88)_100%)] md:bg-[linear-gradient(90deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.25)_46%,rgba(0,0,0,0.5)_100%)] ${overlayClassName}`}
 				/>
 			</div>
 
@@ -37,7 +38,7 @@ function PageHero({
 					<h1 className="font-display text-[2.3rem] uppercase leading-[0.95] text-stone-100 sm:text-[2.8rem] md:text-[4rem] lg:text-[4.7rem]">
 						{title}
 					</h1>
-					<p className="mt-6 max-w-[42rem] font-copy text-base leading-relaxed text-stone-300 sm:text-lg md:mt-12">
+					<p className="mt-6 max-w-[30rem] font-copy text-base leading-relaxed text-stone-300 sm:text-lg md:mt-12">
 						{description}
 					</p>
 				</div>
@@ -56,9 +57,6 @@ function PageHero({
 							<span className="font-copy text-lg leading-none text-white">
 								&darr;
 							</span>
-						</span>
-						<span className="font-sans text-[11px] uppercase tracking-[0.2em] text-stone-200">
-							{accent}
 						</span>
 					</a>
 					{children}

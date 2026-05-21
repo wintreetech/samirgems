@@ -633,7 +633,12 @@ function HomePage() {
 	]);
 
 	useEffect(() => {
-		if (!isDesktop || typeof window === "undefined" || isPaused || isAnimating) {
+		if (
+			!isDesktop ||
+			typeof window === "undefined" ||
+			isPaused ||
+			isAnimating
+		) {
 			return undefined;
 		}
 
@@ -659,192 +664,215 @@ function HomePage() {
 	if (!isDesktop) {
 		return (
 			<div className="bg-black">
-				<section className="section-frame relative isolate min-h-[calc(100svh-82px)] overflow-hidden bg-black">
-					<div className="absolute inset-0">
-						<img
-							src={sharedImages.diamondOnStone}
-							alt=""
-							className="h-full w-full object-cover"
-						/>
-						<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.55)_56%,rgba(0,0,0,0.92)_100%)]" />
-					</div>
-
-					<div className="relative z-10 flex min-h-[calc(100svh-82px)] items-end px-5 py-10 sm:px-6">
-						<div className="mx-auto w-full max-w-[1400px]">
-							<div className="max-w-[21rem]">
-								<p className="font-sans text-[11px] uppercase tracking-[0.24em] text-white/72">
-									Samir Gems FZCO
-								</p>
-								<h1 className="mt-4 font-display text-[2.9rem] uppercase leading-[0.9] text-white sm:text-[3.3rem]">
-									Crafting
-									<br />
-									Brilliance.
-									<br />
-									Defining
-									<br />
-									Legacy.
-								</h1>
-								<p className="mt-6 max-w-[18rem] font-copy text-base leading-relaxed text-white/88">
-									A new chapter in precision diamond manufacturing and ethical
-									sourcing.
-								</p>
-
-								<div className="mt-8 flex flex-wrap gap-3">
-									<button
-										type="button"
-										onClick={() => scrollToMobileSection("home-mobile-legacy")}
-										className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/8 px-5 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-white transition hover:border-white/50 hover:bg-white/14"
-									>
-										Discover Our Legacy
-									</button>
-									<button
-										type="button"
-										onClick={() => scrollToMobileSection("home-mobile-expertise")}
-										className="inline-flex items-center justify-center rounded-full border border-white/10 px-5 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-white/88 transition hover:border-white/35 hover:text-white"
-									>
-										View Expertise
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section
-					id="home-mobile-legacy"
-					className="section-frame relative overflow-hidden px-5 py-16 sm:px-6"
-				>
-					<div className="absolute inset-0">
-						<img
-							src={sharedImages.HomeLegacy}
-							alt=""
-							className="h-full w-full object-cover"
-						/>
-						<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.64)_100%)]" />
-					</div>
-
-					<div className="relative z-10 mx-auto max-w-[1400px]">
-						<SectionHeading
-							eyebrow="Legacy"
-							title="A Legacy Refined in Dubai"
-							description="Samir Gems FZCO marks the next chapter of a diamond legacy shaped over six decades, uniting long-standing craftsmanship with Dubai's global trading excellence."
-						/>
-
-						<div className="mt-10">
-							<StatGrid stats={homeStats} />
-						</div>
-					</div>
-				</section>
-
-				<section
-					id="home-mobile-expertise"
-					className="section-frame relative overflow-hidden bg-black px-5 py-16 sm:px-6"
-				>
-					<div className="absolute inset-0">
-						<img
-							src={sharedImages.OurExpertise}
-							alt=""
-							className="h-full w-full object-cover opacity-18"
-						/>
-					</div>
-
-					<div className="relative z-10 mx-auto max-w-[1400px]">
-						<SectionHeading
-							eyebrow="Expertise"
-							title="From Rough to Refined Precision."
-							description="Each stage of our process is built around accuracy, transparency, and consistency for global partners."
-						/>
-
-						<div className="mt-8 grid gap-4">
-							{expertiseCards.map((card) => (
-								<ImageCard
-									key={card.title}
-									image={card.image}
-									title={card.title}
-									description={card.description}
-									className="min-h-[260px]"
-									hoverReveal
-								/>
-							))}
-						</div>
-					</div>
-				</section>
-
-				<section className="section-frame relative overflow-hidden bg-black px-5 py-16 sm:px-6">
-					<img
-						src={sharedImages.handsImage}
-						alt=""
-						className="absolute inset-0 h-full w-full object-cover opacity-60"
-					/>
-					<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.62)_42%,rgba(0,0,0,0.9)_100%)]" />
-
-					<div className="relative z-10 mx-auto max-w-[1400px]">
-						<SectionHeading
-							eyebrow="Responsibility"
-							title="Responsibility Meets Perfection."
-							description="Our diamonds follow a fully traceable mine-to-market journey supported by ethical sourcing standards and advanced manufacturing."
-						/>
-
-						<div className="mt-10 grid grid-cols-2 gap-4">
-							{partnerLogos.map((logo) => (
-								<div
-									key={logo.alt}
-									className="flex min-h-[116px] items-center justify-center border border-white/10 bg-black/35 p-4"
-								>
-									<img
-										src={logo.src}
-										alt={logo.alt}
-										className="max-h-[80px] w-full object-contain"
-									/>
-								</div>
-							))}
-						</div>
-					</div>
-				</section>
-
-				<section className="section-frame bg-[linear-gradient(180deg,#0c0c0c,#111111)] px-5 py-16 sm:px-6">
-					<div className="mx-auto max-w-[1400px]">
-						<SectionHeading
-							eyebrow="Global Footprint"
-							title="A Global Legacy Shaped Across Continents."
-							description="Our story has expanded across key trade regions while remaining anchored in precision, trust, and responsible sourcing."
-						/>
-
-						<ul className="mt-8 space-y-6 font-copy text-base text-white">
-							{GlobalLegacy.map((item, index, arr) => (
-								<li key={item} className="relative flex gap-4">
-									<div className="relative flex w-4 justify-center">
-										{index !== arr.length - 1 ? (
-											<span className="absolute top-4 h-[calc(100%+16px)] w-px bg-white/20" />
-										) : null}
-										<span className="mt-1 flex h-4 w-4 items-center justify-center rounded-full border border-white/50 bg-black">
-											<span className="h-1.5 w-1.5 rounded-full bg-white" />
-										</span>
-									</div>
-									<span className="leading-relaxed text-white/85">{item}</span>
-								</li>
-							))}
-						</ul>
-
-						<div className="mt-10 overflow-hidden border border-white/10 bg-white/[0.02] p-4">
+				<div className="h-[calc(100svh-82px)] overflow-y-auto snap-y snap-mandatory">
+					<section className="section-frame relative isolate min-h-[calc(100svh-82px)] snap-start overflow-hidden bg-black">
+						<div className="absolute inset-0">
 							<img
-								src={sharedImages.worldMap}
+								src={sharedImages.diamondOnStone}
 								alt=""
-								className="w-full object-contain opacity-95"
+								className="h-full w-full object-cover"
 							/>
+							<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.55)_56%,rgba(0,0,0,0.92)_100%)]" />
+						</div>
 
-							<div className="mt-5 flex flex-wrap gap-2">
-								{mapMarkers.map((marker) => (
-									<span key={marker.label} className={marker.mobileClassName}>
-										{marker.label}
-									</span>
-								))}
+						<div className="relative z-10 flex min-h-[calc(100svh-82px)] items-end px-5 py-10 sm:px-6">
+							<div className="mx-auto w-full max-w-[1400px]">
+								<div className="max-w-[21rem]">
+									<p className="font-sans text-[11px] uppercase tracking-[0.24em] text-white/72">
+										Samir Gems FZCO
+									</p>
+									<h1 className="mt-4 font-display text-[2.9rem] uppercase leading-[0.9] text-white sm:text-[3.3rem]">
+										Crafting
+										<br />
+										Brilliance.
+										<br />
+										Defining
+										<br />
+										Legacy.
+									</h1>
+									<p className="mt-6 max-w-[18rem] font-copy text-base leading-relaxed text-white/88">
+										A new chapter in precision diamond manufacturing and ethical
+										sourcing.
+									</p>
+
+									<div className="mt-8 flex flex-wrap gap-3">
+										<button
+											type="button"
+											onClick={() =>
+												scrollToMobileSection("home-mobile-legacy")
+											}
+											className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/8 px-5 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-white transition hover:border-white/50 hover:bg-white/14"
+										>
+											Discover Our Legacy
+										</button>
+										<button
+											type="button"
+											onClick={() =>
+												scrollToMobileSection("home-mobile-expertise")
+											}
+											className="inline-flex items-center justify-center rounded-full border border-white/10 px-5 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-white/88 transition hover:border-white/35 hover:text-white"
+										>
+											View Expertise
+										</button>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</section>
+					</section>
 
-				<Footer />
+					<section
+						id="home-mobile-legacy"
+						className="section-frame relative min-h-[calc(100svh-82px)] snap-start overflow-hidden px-5 py-12 sm:px-6 sm:py-14"
+					>
+						<div className="absolute inset-0">
+							<img
+								src={sharedImages.HomeLegacy}
+								alt=""
+								className="h-full w-full object-cover"
+							/>
+							<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.64)_100%)]" />
+						</div>
+
+						<div className="relative z-10 mx-auto flex min-h-[calc(100svh-82px-6rem)] max-w-[1400px] items-center">
+							<div className="w-full">
+								<SectionHeading
+									eyebrow="Legacy"
+									title="A Legacy Refined in Dubai"
+									description="Samir Gems FZCO marks the next chapter of a diamond legacy shaped over six decades, uniting long-standing craftsmanship with Dubai's global trading excellence."
+								/>
+
+								<div className="mt-10">
+									<StatGrid stats={homeStats} />
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section
+						id="home-mobile-expertise"
+						className="section-frame relative min-h-[calc(100svh-82px)] snap-start overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
+					>
+						<div className="absolute inset-0">
+							<img
+								src={sharedImages.OurExpertise}
+								alt=""
+								className="h-full w-full object-cover opacity-18"
+							/>
+						</div>
+
+						<div className="relative z-10 mx-auto flex min-h-[calc(100svh-82px-6rem)] max-w-[1400px] items-center">
+							<div className="w-full">
+								<SectionHeading
+									eyebrow="Expertise"
+									title="From Rough to Refined Precision."
+									description="Each stage of our process is built around accuracy, transparency, and consistency for global partners."
+								/>
+
+								<div className="mt-8 -mx-5 overflow-x-auto px-5 pb-2">
+									<div className="flex min-w-max snap-x snap-mandatory gap-4">
+										{expertiseCards.map((card) => (
+											<ImageCard
+												key={card.title}
+												image={card.image}
+												title={card.title}
+												description={card.description}
+												className="min-h-[280px] w-[78vw] shrink-0 snap-start sm:w-[62vw]"
+												hoverReveal
+											/>
+										))}
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section className="section-frame relative min-h-[calc(100svh-82px)] snap-start overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14">
+						<img
+							src={sharedImages.handsImage}
+							alt=""
+							className="absolute inset-0 h-full w-full object-cover opacity-60"
+						/>
+						<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.62)_42%,rgba(0,0,0,0.9)_100%)]" />
+
+						<div className="relative z-10 mx-auto flex min-h-[calc(100svh-82px-6rem)] max-w-[1400px] items-center">
+							<div className="w-full">
+								<SectionHeading
+									eyebrow="Responsibility"
+									title="Responsibility Meets Perfection."
+									description="Our diamonds follow a fully traceable mine-to-market journey supported by ethical sourcing standards and advanced manufacturing."
+								/>
+
+								<div className="mt-10 grid grid-cols-2 gap-4">
+									{partnerLogos.map((logo) => (
+										<div
+											key={logo.alt}
+											className="flex min-h-[116px] items-center justify-center border border-white/10 bg-black/35 p-4"
+										>
+											<img
+												src={logo.src}
+												alt={logo.alt}
+												className="max-h-[80px] w-full object-contain"
+											/>
+										</div>
+									))}
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section className="section-frame min-h-[calc(100svh-82px)] snap-start bg-[linear-gradient(180deg,#0c0c0c,#111111)] px-5 py-12 sm:px-6 sm:py-14">
+						<div className="mx-auto flex min-h-[calc(100svh-82px-6rem)] max-w-[1400px] items-center">
+							<div className="w-full">
+								<SectionHeading
+									eyebrow="Global Footprint"
+									title="A Global Legacy Shaped Across Continents."
+									description="Our story has expanded across key trade regions while remaining anchored in precision, trust, and responsible sourcing."
+								/>
+
+								<ul className="mt-8 space-y-6 font-copy text-base text-white">
+									{GlobalLegacy.map((item, index, arr) => (
+										<li key={item} className="relative flex gap-4">
+											<div className="relative flex w-4 justify-center">
+												{index !== arr.length - 1 ? (
+													<span className="absolute top-4 h-[calc(100%+16px)] w-px bg-white/20" />
+												) : null}
+												<span className="mt-1 flex h-4 w-4 items-center justify-center rounded-full border border-white/50 bg-black">
+													<span className="h-1.5 w-1.5 rounded-full bg-white" />
+												</span>
+											</div>
+											<span className="leading-relaxed text-white/85">
+												{item}
+											</span>
+										</li>
+									))}
+								</ul>
+
+								<div className="mt-10 overflow-hidden border border-white/10 bg-white/[0.02] p-4">
+									<img
+										src={sharedImages.worldMap}
+										alt=""
+										className="w-full object-contain opacity-95"
+									/>
+
+									<div className="mt-5 flex flex-wrap gap-2">
+										{mapMarkers.map((marker) => (
+											<span
+												key={marker.label}
+												className={marker.mobileClassName}
+											>
+												{marker.label}
+											</span>
+										))}
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<div className="snap-start">
+						<Footer />
+					</div>
+				</div>
 			</div>
 		);
 	}
@@ -858,7 +886,10 @@ function HomePage() {
 			onFocus={() => setIsPaused(true)}
 			onBlur={() => setIsPaused(false)}
 		>
-			<div ref={footerRef} className="stable-paint absolute inset-x-0 bottom-0 z-0">
+			<div
+				ref={footerRef}
+				className="stable-paint absolute inset-x-0 bottom-0 z-0"
+			>
 				<Footer />
 			</div>
 

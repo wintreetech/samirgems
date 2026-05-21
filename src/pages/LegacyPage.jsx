@@ -22,6 +22,7 @@ function LegacyPage() {
 				image={sharedImages.LegacyHero}
 				accent="Scroll Down"
 				accentHref="#content"
+				overlayClassName="bg-[linear-gradient(180deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.72)_22%,rgba(0,0,0,0.52)_52%,rgba(0,0,0,0.84)_100%)] lg:bg-[linear-gradient(90deg,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.42)_46%,rgba(0,0,0,0.6)_100%)]"
 			/>
 
 			<RevealSection
@@ -119,14 +120,17 @@ function LegacyPage() {
 				className="bg-black px-5 py-14 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24"
 			>
 				<div className="mx-auto grid w-full max-w-[1400px] items-stretch gap-8 lg:grid-cols-[60%_40%]">
-					<div className="overflow-hidden lg:order-1" data-animate="left">
+					<div
+						className="order-2 overflow-hidden lg:order-1"
+						data-animate="left"
+					>
 						<img
 							src={sharedImages.OurOrigin2}
 							alt=""
 							className="h-[360px] w-full object-cover object-center md:h-[460px] lg:h-[600px]"
 						/>
 					</div>
-					<div className="flex flex-col justify-start lg:order-2 lg:pl-8 lg:pr-14">
+					<div className="order-1 flex flex-col justify-start lg:order-2 lg:pl-8 lg:pr-14">
 						<h3
 							data-animate="right"
 							className="my-4 font-copy text-[2rem] leading-tight text-stone-100 md:my-8 md:text-4xl lg:my-12"

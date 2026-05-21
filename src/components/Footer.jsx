@@ -16,19 +16,10 @@ export default function Footer() {
 			id="site-footer"
 			className="stable-paint relative overflow-hidden bg-[#222222] text-white"
 		>
-			<div className="pointer-events-none absolute inset-0 stable-paint">
-				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.03),transparent_45%)]" />
-				<img
-					src={sharedImages.contactBg}
-					alt=""
-					className="stable-paint absolute bottom-0 right-0 h-[360px] w-[360px] object-contain opacity-10 md:h-[460px] md:w-[460px]"
-				/>
-			</div>
-
 			<div className="relative mx-auto max-w-[1440px] px-5 py-12 sm:px-6 lg:px-16 lg:py-14">
 				<div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
 					<div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
-						<h3 className="font-copy text-[17px] font-medium tracking-[0.03em] text-white">
+						<h3 className="font-condor text-[17px] font-medium tracking-[0.03em] text-white">
 							Contact
 						</h3>
 						<div className="mt-4 h-px w-[50px] bg-white" />
@@ -47,7 +38,7 @@ export default function Footer() {
 					</div>
 
 					<div className="order-1 flex flex-col items-center justify-center lg:order-2">
-						<BrandLogo className="h-[96px] w-[156px] md:h-[120px] md:w-[194px]" />
+						<BrandLogo className="h-[96px] w-[156px]" />
 
 						<div className="mt-8 flex items-center gap-6 text-[#C5C6C8] md:gap-8">
 							<a
@@ -135,7 +126,7 @@ export default function Footer() {
 					</div>
 
 					<div className="order-3 flex flex-col items-center text-center lg:items-center">
-						<h3 className="font-copy text-[17px] font-medium tracking-[0.03em] text-white">
+						<h3 className="font-condor text-[17px] font-medium tracking-[0.03em] text-white">
 							Quick Links
 						</h3>
 						<div className="mt-4 h-px w-[50px] bg-white" />
@@ -167,7 +158,7 @@ export default function Footer() {
 
 			<div className="relative border-t border-white/10 bg-[#0D0D0D] px-5 py-4">
 				<p className="text-center font-copy text-sm font-light tracking-[0.03em] text-white md:text-base">
-					&copy; 2025 Sameer Gems FZCO. All rights reserved.
+					&copy; 2026 Sameer Gems FZCO. All rights reserved.
 				</p>
 			</div>
 		</footer>

@@ -58,6 +58,16 @@ function GemShowcase() {
 	const [orderedDiamonds, setOrderedDiamonds] = React.useState(initialOrder);
 	const activeDiamond = orderedDiamonds[1] ?? orderedDiamonds[0];
 
+	const desktopCarouselDiamonds = [
+		...orderedDiamonds.slice(2),
+		orderedDiamonds[0],
+	].filter(Boolean);
+
+	const mobileCarouselDiamonds = [
+		orderedDiamonds[0],
+		...orderedDiamonds.slice(2),
+	].filter(Boolean);
+
 	const next = () => {
 		setOrderedDiamonds((prev) => [...prev.slice(1), prev[0]]);
 	};
@@ -90,7 +100,7 @@ function GemShowcase() {
 					<img
 						src={activeDiamond.heroImage}
 						alt={activeDiamond.title}
-						className="absolute inset-0 h-full w-full object-cover"
+						className="absolute inset-0 h-full w-full object-cover object-left"
 					/>
 					<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.1)_0%,rgba(0,0,0,0.78)_80%,#161616_100%)]" />
 					<div className="relative z-10 flex min-h-[420px] items-end px-5 py-8">
@@ -163,35 +173,51 @@ function GemShowcase() {
 								</svg>
 							</button>
 						</div>
-						<p className="font-copy text-sm tracking-[0.16em] text-white/55">
-							Swipe Through
-						</p>
 					</div>
 
-					<div className="-mx-5 mt-6 overflow-x-auto px-5 pb-2">
-						<div className="flex min-w-max snap-x snap-mandatory gap-3">
-							{orderedDiamonds.map((diamond) => {
-								const isActive = diamond.id === activeDiamond.id;
+					<div className="-mx-5 mt-8 overflow-hidden">
+						<div className="relative h-[220px] overflow-hidden">
+							{mobileCarouselDiamonds.map((diamond, index) => {
+								const isCenter = index === 1;
+								const isLeft = index === 0;
+								const isRight = index === 2;
+
+								const transform = isCenter
+									? "translate3d(-50%, 0, 0)"
+									: isLeft
+										? "translate3d(-44%, 0, 0)"
+										: isRight
+											? "translate3d(44%, 0, 0)"
+											: "translate3d(-50%, 0, 0)";
 
 								return (
 									<button
 										key={diamond.id}
 										type="button"
 										onClick={() => moveToActive(diamond.id)}
-										className={`relative h-[180px] w-[150px] shrink-0 snap-start overflow-hidden border transition ${
-											isActive
-												? "border-white/70"
-												: "border-white/10"
+										className={`absolute top-0 h-[220px] w-[70vw]  overflow-hidden border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+											isCenter
+												? "left-1/2 z-20 border-white/70 opacity-100 shadow-[0_22px_60px_rgba(0,0,0,0.45)]"
+												: isLeft
+													? "left-0 z-10 border-white/10 opacity-70"
+													: isRight
+														? "right-0 z-10 border-white/10 opacity-70"
+														: "pointer-events-none left-1/2 z-0 border-white/0 opacity-0"
 										}`}
+										style={{
+											transform,
+										}}
 									>
 										<img
 											src={diamond.thumb}
 											alt={diamond.title}
-											className="absolute inset-0 h-full w-full object-cover"
+											className="absolute inset-0 h-full w-full object-cover object-left"
 										/>
+
 										<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/5" />
-										<div className="absolute inset-x-0 bottom-0 p-3 text-left">
-											<p className="font-copy text-xl leading-[0.95]">
+
+										<div className="absolute inset-x-0 bottom-0 p-4 text-left">
+											<p className="font-copy text-[1.25rem] leading-[0.95] text-white">
 												{diamond.title}
 											</p>
 											<p className="mt-2 font-copy text-sm text-white/75">
@@ -323,13 +349,13 @@ function GemShowcase() {
 									data-animate-delay="0.58"
 									className="gem-strip relative z-20 h-[190px] overflow-hidden pr-6"
 								>
-									{orderedDiamonds.map((diamond, index) => (
+									{desktopCarouselDiamonds.map((diamond, index) => (
 										<button
 											key={diamond.id}
 											type="button"
 											onClick={() => moveToActive(diamond.id)}
 											className={`gem-strip__item gem-strip__item--slot-${Math.min(index, 4)} group ${
-												index === 1
+												index === 0
 													? "border-white/70 shadow-[0_20px_40px_rgba(0,0,0,0.28)]"
 													: "border-white/10"
 											}`}
@@ -345,7 +371,7 @@ function GemShowcase() {
 												<p className="font-copy text-[24px] font-light leading-[0.95] tracking-[0.03em] text-white">
 													{diamond.title}
 												</p>
-												{index === 1 ? (
+												{index === 0 ? (
 													<p className="mt-2 font-copy text-[16px] font-light tracking-[0.03em] text-white/75">
 														{diamond.carat}
 													</p>
