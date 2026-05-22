@@ -176,7 +176,7 @@ function GemShowcase() {
 					</div>
 
 					<div className="-mx-5 mt-8 overflow-hidden">
-						<div className="relative h-[220px] overflow-hidden">
+						<div className="relative h-[210px] overflow-hidden">
 							{mobileCarouselDiamonds.map((diamond, index) => {
 								const isCenter = index === 1;
 								const isLeft = index === 0;
@@ -185,28 +185,25 @@ function GemShowcase() {
 								const transform = isCenter
 									? "translate3d(-50%, 0, 0)"
 									: isLeft
-										? "translate3d(-44%, 0, 0)"
+										? "translate3d(-62%, 10px, 0)"
 										: isRight
-											? "translate3d(44%, 0, 0)"
-											: "translate3d(-50%, 0, 0)";
-
+											? "translate3d(62%, 10px, 0)"
+											: "translate3d(-50%, 10px, 0)";
 								return (
 									<button
 										key={diamond.id}
 										type="button"
 										onClick={() => moveToActive(diamond.id)}
-										className={`absolute top-0 h-[220px] w-[70vw]  overflow-hidden border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+										className={`absolute top-0 overflow-hidden border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
 											isCenter
-												? "left-1/2 z-20 border-white/70 opacity-100 shadow-[0_22px_60px_rgba(0,0,0,0.45)]"
+												? "left-1/2 z-20 h-[210px] w-[58vw] max-w-[220px] border-white/70 opacity-100 shadow-[0_18px_46px_rgba(0,0,0,0.42)]"
 												: isLeft
-													? "left-0 z-10 border-white/10 opacity-70"
+													? "left-0 z-10 h-[190px] w-[52vw] max-w-[190px] border-white/10 opacity-65"
 													: isRight
-														? "right-0 z-10 border-white/10 opacity-70"
-														: "pointer-events-none left-1/2 z-0 border-white/0 opacity-0"
+														? "right-0 z-10 h-[190px] w-[52vw] max-w-[190px] border-white/10 opacity-65"
+														: "pointer-events-none left-1/2 z-0 h-[190px] w-[52vw] max-w-[190px] border-white/0 opacity-0"
 										}`}
-										style={{
-											transform,
-										}}
+										style={{ transform }}
 									>
 										<img
 											src={diamond.thumb}
@@ -217,7 +214,7 @@ function GemShowcase() {
 										<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/5" />
 
 										<div className="absolute inset-x-0 bottom-0 p-4 text-left">
-											<p className="font-copy text-[1.25rem] leading-[0.95] text-white">
+											<p className="font-copy text-[1.15rem] leading-[0.95] text-white">
 												{diamond.title}
 											</p>
 											<p className="mt-2 font-copy text-sm text-white/75">

@@ -63,7 +63,7 @@ function ServicesPage() {
 				image={sharedImages.ServiceHero}
 				accent="Scroll Down"
 				accentHref="#content"
-				overlayClassName="bg-[linear-gradient(180deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.46)_48%,rgba(0,0,0,0.82)_100%)] lg:bg-[linear-gradient(90deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.25)_46%,rgba(0,0,0,0.5)_100%)]"
+				//overlayClassName="bg-[linear-gradient(180deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.46)_48%,rgba(0,0,0,0.82)_100%)] lg:bg-[linear-gradient(90deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.25)_46%,rgba(0,0,0,0.5)_100%)]"
 			/>
 
 			<RevealSection

@@ -22,7 +22,7 @@ function LegacyPage() {
 				image={sharedImages.LegacyHero}
 				accent="Scroll Down"
 				accentHref="#content"
-				overlayClassName="bg-[linear-gradient(180deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.72)_22%,rgba(0,0,0,0.52)_52%,rgba(0,0,0,0.84)_100%)] lg:bg-[linear-gradient(90deg,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.42)_46%,rgba(0,0,0,0.6)_100%)]"
+				//overlayClassName="bg-[linear-gradient(180deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.72)_22%,rgba(0,0,0,0.52)_52%,rgba(0,0,0,0.84)_100%)] lg:bg-[linear-gradient(90deg,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.42)_46%,rgba(0,0,0,0.6)_100%)]"
 			/>
 
 			<RevealSection

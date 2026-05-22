@@ -42,6 +42,8 @@ import contactBg from "../assets/images/contact-bg.svg";
 import whatsappicon from "../assets/whatsapp.png";
 import strip_1 from "../assets/images/logo-strip 1.svg";
 import strip_2 from "../assets/images/logo-strip 2.svg";
+import samirgemsmap from "../assets/images/map-samirgems.svg";
+import bgimageforhomelast from "../assets/images/global-legacy-bg.png";
 
 export const sharedImages = {
 	braceletImage,
@@ -88,6 +90,8 @@ export const sharedImages = {
 	whatsappicon,
 	strip_1,
 	strip_2,
+	samirgemsmap,
+	bgimageforhomelast,
 };
 
 export const homeStats = [
@@ -207,8 +211,12 @@ export const gemItems = [
 ];
 
 export const GlobalLegacy = [
-	"1966 - Founded in India",
-	"1982 - Established in Antwerp",
-	"2008 - Operations Established within the FZCO Trade District",
-	"2025 - A New Chapter Begins: Samir Gems FZCO",
+	"1966 – Founded in India",
+	"1982 – Established in Antwerp",
+	"1990 – Established in New York",
+	"2008 – Operations Established within the FZCO Trade District",
+	"2010 – Established in Hong Kong",
+	"2015 – Factory Established in Surat",
+	"2025 – A New Chapter Begins: Samir Gems FZCO",
+	"2026 – Expanding into Namibia",
 ];

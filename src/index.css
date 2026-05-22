@@ -515,3 +515,12 @@
 		font-style: italic;
 	}
 }
+.mobile-home-slider {
+	overflow: hidden;
+	touch-action: pan-y;
+	overscroll-behavior: contain;
+}
+
+.mobile-home-slider * {
+	-webkit-tap-highlight-color: transparent;
+}

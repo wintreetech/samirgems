@@ -15,36 +15,14 @@ import {
 const AUTO_DURATION = 10000;
 const TRANSITION_DURATION = 1.15;
 const DESKTOP_BREAKPOINT = 1024;
+const SECTION_COUNT = 5;
+const MOBILE_SLIDE_COUNT = 6;
 
 const partnerLogos = [
 	{ src: sharedImages.namdiaLogo, alt: "Namdia", delay: "0.76" },
 	{ src: sharedImages.sodiamLogo, alt: "Sodiam", delay: "0.88" },
 	{ src: sharedImages.OkavangoLogo, alt: "Okavango", delay: "1" },
 	{ src: sharedImages.DeBeersLogo, alt: "De Beers", delay: "1.12" },
-];
-
-const mapMarkers = [
-	{
-		label: "Surat",
-		desktopClassName:
-			"absolute bottom-[34%] left-[63%] rounded bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur-sm",
-		mobileClassName:
-			"rounded-full border border-white/10 bg-white/8 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white/80",
-	},
-	{
-		label: "Dubai",
-		desktopClassName:
-			"absolute bottom-[30%] left-[58%] rounded bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur-sm",
-		mobileClassName:
-			"rounded-full border border-white/10 bg-white/8 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white/80",
-	},
-	{
-		label: "Mumbai",
-		desktopClassName:
-			"absolute bottom-[28%] left-[69%] rounded bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white backdrop-blur-sm",
-		mobileClassName:
-			"rounded-full border border-white/10 bg-white/8 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white/80",
-	},
 ];
 
 function HomePage() {
@@ -68,6 +46,9 @@ function HomePage() {
 	const footerRef = useRef(null);
 	const sectionRefs = useRef([]);
 	const autoTimerRef = useRef(null);
+	const [mobileIndex, setMobileIndex] = useState(0);
+	const mobileSliderRef = useRef(null);
+	const touchStartYRef = useRef(0);
 
 	const hideSectionContent = useCallback((section) => {
 		if (!section) {
@@ -126,16 +107,87 @@ function HomePage() {
 		});
 	}, []);
 
-	const scrollToMobileSection = useCallback((id) => {
-		if (typeof window === "undefined") {
-			return;
-		}
+	const goToMobileSlide = useCallback((index) => {
+		const maxIndex = MOBILE_SLIDE_COUNT - 1; // hero, legacy, expertise, responsibility, global, footer
 
-		document.getElementById(id)?.scrollIntoView({
-			behavior: "smooth",
-			block: "start",
-		});
+		setMobileIndex(Math.max(0, Math.min(index, maxIndex)));
 	}, []);
+
+	const scrollToMobileSection = useCallback(
+		(id) => {
+			if (id === "home-mobile-legacy") {
+				goToMobileSlide(1);
+			}
+
+			if (id === "home-mobile-expertise") {
+				goToMobileSlide(2);
+			}
+		},
+		[goToMobileSlide],
+	);
+
+	// const pauseAutoProgress = useCallback(() => {
+	// 	setIsPaused(true);
+
+	// 	if (autoTimerRef.current) {
+	// 		window.clearTimeout(autoTimerRef.current);
+	// 		autoTimerRef.current = null;
+	// 	}
+	// }, []);
+
+	// const handleManualSectionChange = useCallback(
+	// 	(index) => {
+	// 		pauseAutoProgress();
+	// 		goToSection(index);
+	// 	},
+	// 	[goToSection, pauseAutoProgress],
+	// );
+
+	const goToSection = useCallback(
+		(index) => {
+			if (
+				!isDesktop ||
+				isAnimating ||
+				index === activeIndex ||
+				index < 0 ||
+				index >= SECTION_COUNT
+			) {
+				return;
+			}
+
+			if (isFooterOpen && viewportRef.current) {
+				gsap.set(viewportRef.current, { y: 0 });
+				setIsFooterOpen(false);
+			}
+
+			setIsAnimating(true);
+
+			sectionRefs.current.forEach((section, sectionIndex) => {
+				if (sectionIndex !== index) {
+					hideSectionContent(section);
+				}
+			});
+
+			gsap.to(trackRef.current, {
+				yPercent: -(index * 100),
+				duration: TRANSITION_DURATION,
+				ease: "power3.inOut",
+				onComplete: () => {
+					animateSectionContent(index);
+					setActiveIndex(index);
+					setIsAnimating(false);
+				},
+			});
+		},
+		[
+			activeIndex,
+			animateSectionContent,
+			hideSectionContent,
+			isAnimating,
+			isDesktop,
+			isFooterOpen,
+		],
+	);
 
 	const sections = [
 		{
@@ -353,8 +405,16 @@ function HomePage() {
 		{
 			id: "home-global",
 			render: () => (
-				<section className="home-slide bg-[linear-gradient(180deg,#0c0c0c,#111111)]">
-					<div className="home-slide__container flex h-full items-center">
+				<section className="home-slide relative overflow-hidden bg-black">
+					<div className="absolute inset-0">
+						<img
+							src={sharedImages.bgimageforhomelast}
+							alt=""
+							className="h-full w-full"
+						/>
+					</div>
+
+					<div className="home-slide__container relative z-10 flex h-full items-center">
 						<div className="mx-auto grid w-full max-w-[1440px] items-center gap-10 lg:grid-cols-[45%_55%]">
 							<div>
 								<SectionHeading
@@ -366,7 +426,7 @@ function HomePage() {
 									}
 								/>
 
-								<ul className="mt-10 space-y-9 font-copy text-base leading-none text-white">
+								<ul className="mt-8 space-y-6 font-copy text-base leading-none text-white">
 									{GlobalLegacy.map((item, index, arr) => (
 										<li
 											key={item}
@@ -396,16 +456,10 @@ function HomePage() {
 								className="relative flex justify-end"
 							>
 								<img
-									src={sharedImages.worldMap}
+									src={sharedImages.samirgemsmap}
 									alt=""
-									className="w-full max-w-[760px] object-contain opacity-95"
+									className="h-full w-full object-contain"
 								/>
-
-								{mapMarkers.map((marker) => (
-									<div key={marker.label} className={marker.desktopClassName}>
-										{marker.label}
-									</div>
-								))}
 							</div>
 						</div>
 					</div>
@@ -413,54 +467,6 @@ function HomePage() {
 			),
 		},
 	];
-
-	const totalSections = sections.length;
-
-	const goToSection = useCallback(
-		(index) => {
-			if (
-				!isDesktop ||
-				isAnimating ||
-				index === activeIndex ||
-				index < 0 ||
-				index >= totalSections
-			) {
-				return;
-			}
-
-			if (isFooterOpen && viewportRef.current) {
-				gsap.set(viewportRef.current, { y: 0 });
-				setIsFooterOpen(false);
-			}
-
-			setIsAnimating(true);
-			sectionRefs.current.forEach((section, sectionIndex) => {
-				if (sectionIndex !== index) {
-					hideSectionContent(section);
-				}
-			});
-
-			gsap.to(trackRef.current, {
-				yPercent: -(index * 100),
-				duration: TRANSITION_DURATION,
-				ease: "power3.inOut",
-				onComplete: () => {
-					animateSectionContent(index);
-					setActiveIndex(index);
-					setIsAnimating(false);
-				},
-			});
-		},
-		[
-			activeIndex,
-			animateSectionContent,
-			hideSectionContent,
-			isAnimating,
-			isDesktop,
-			isFooterOpen,
-			totalSections,
-		],
-	);
 
 	const showFooter = useCallback(() => {
 		if (!isDesktop || isAnimating || isFooterOpen || !viewportRef.current) {
@@ -497,6 +503,117 @@ function HomePage() {
 			},
 		});
 	}, [isAnimating, isDesktop, isFooterOpen]);
+
+	useEffect(() => {
+		if (isDesktop) {
+			return undefined;
+		}
+
+		const node = mobileSliderRef.current;
+
+		if (!node) {
+			return undefined;
+		}
+
+		let isLocked = false;
+
+		const unlock = () => {
+			window.setTimeout(() => {
+				isLocked = false;
+			}, 850);
+		};
+
+		const goNext = () => {
+			setMobileIndex((current) =>
+				Math.min(current + 1, MOBILE_SLIDE_COUNT - 1),
+			);
+		};
+
+		const goPrev = () => {
+			setMobileIndex((current) => Math.max(current - 1, 0));
+		};
+
+		const canScrollableMove = (scrollable, direction) => {
+			if (!scrollable) return false;
+
+			const scrollTop = scrollable.scrollTop;
+			const maxScrollTop = scrollable.scrollHeight - scrollable.clientHeight;
+			const buffer = 4;
+
+			if (direction > 0) {
+				return scrollTop < maxScrollTop - buffer;
+			}
+
+			return scrollTop > buffer;
+		};
+
+		const onWheel = (event) => {
+			const delta = event.deltaY;
+
+			if (Math.abs(delta) < 35) return;
+
+			const scrollable = event.target.closest("[data-mobile-scrollable]");
+
+			if (scrollable && canScrollableMove(scrollable, delta)) {
+				return;
+			}
+
+			event.preventDefault();
+
+			if (isLocked) return;
+
+			isLocked = true;
+
+			if (delta > 0) {
+				goNext();
+			} else {
+				goPrev();
+			}
+
+			unlock();
+		};
+
+		const onTouchStart = (event) => {
+			touchStartYRef.current = event.touches[0].clientY;
+		};
+
+		const onTouchEnd = (event) => {
+			if (touchStartYRef.current === null) return;
+
+			const touchEndY = event.changedTouches[0].clientY;
+			const diffY = touchStartYRef.current - touchEndY;
+
+			if (Math.abs(diffY) < 60) return;
+
+			const scrollable = event.target.closest("[data-mobile-scrollable]");
+
+			if (scrollable && canScrollableMove(scrollable, diffY)) {
+				return;
+			}
+
+			if (isLocked) return;
+
+			isLocked = true;
+
+			if (diffY > 0) {
+				goNext();
+			} else {
+				goPrev();
+			}
+
+			unlock();
+		};
+
+		node.addEventListener("wheel", onWheel, { passive: false });
+		node.addEventListener("touchstart", onTouchStart, { passive: true });
+		node.addEventListener("touchend", onTouchEnd, { passive: false });
+
+		return () => {
+			node.removeEventListener("wheel", onWheel);
+			node.removeEventListener("touchstart", onTouchStart);
+			node.removeEventListener("touchend", onTouchEnd);
+		};
+	}, [isDesktop]);
 
 	useEffect(() => {
 		if (typeof window === "undefined") {
@@ -576,7 +693,7 @@ function HomePage() {
 			}
 
 			if (event.deltaY > 0) {
-				if (activeIndex === sections.length - 1) {
+				if (activeIndex === SECTION_COUNT - 1) {
 					showFooter();
 					return;
 				}
@@ -597,7 +714,7 @@ function HomePage() {
 
 			if (event.key === "ArrowDown" || event.key === "PageDown") {
 				event.preventDefault();
-				if (activeIndex === sections.length - 1) {
+				if (activeIndex === SECTION_COUNT - 1) {
 					showFooter();
 					return;
 				}
@@ -628,7 +745,6 @@ function HomePage() {
 		isAnimating,
 		isDesktop,
 		isFooterOpen,
-		sections.length,
 		showFooter,
 	]);
 
@@ -643,7 +759,7 @@ function HomePage() {
 		}
 
 		autoTimerRef.current = window.setTimeout(() => {
-			if (activeIndex === sections.length - 1) {
+			if (activeIndex === SECTION_COUNT - 1) {
 				showFooter();
 				return;
 			}
@@ -651,226 +767,288 @@ function HomePage() {
 		}, AUTO_DURATION);
 
 		return () => window.clearTimeout(autoTimerRef.current);
-	}, [
-		activeIndex,
-		goToSection,
-		isAnimating,
-		isDesktop,
-		isPaused,
-		sections.length,
-		showFooter,
-	]);
+	}, [activeIndex, goToSection, isAnimating, isDesktop, isPaused, showFooter]);
+
+	// useEffect(() => {
+	// 	if (isDesktop) {
+	// 		return undefined;
+	// 	}
+
+	// 	const node = mobileSliderRef.current;
+
+	// 	if (!node) {
+	// 		return undefined;
+	// 	}
+
+	// 	let isLocked = false;
+
+	// 	const unlock = () => {
+	// 		window.setTimeout(() => {
+	// 			isLocked = false;
+	// 		}, 850);
+	// 	};
+
+	// 	const onWheel = (event) => {
+	// 		event.preventDefault();
+
+	// 		if (isLocked) return;
+
+	// 		isLocked = true;
+
+	// 		if (event.deltaY > 0) {
+	// 			goToMobileSlide(mobileIndex + 1);
+	// 		} else if (event.deltaY < 0) {
+	// 			goToMobileSlide(mobileIndex - 1);
+	// 		}
+
+	// 		unlock();
+	// 	};
+
+	// 	const onTouchStart = (event) => {
+	// 		touchStartYRef.current = event.touches[0].clientY;
+	// 	};
+
+	// 	const onTouchEnd = (event) => {
+	// 		if (isLocked) return;
+
+	// 		const touchEndY = event.changedTouches[0].clientY;
+	// 		const diffY = touchStartYRef.current - touchEndY;
+
+	// 		if (Math.abs(diffY) < 45) return;
+
+	// 		isLocked = true;
+
+	// 		if (diffY > 0) {
+	// 			goToMobileSlide(mobileIndex + 1);
+	// 		} else {
+	// 			goToMobileSlide(mobileIndex - 1);
+	// 		}
+
+	// 		unlock();
+	// 	};
+
+	// 	node.addEventListener("wheel", onWheel, { passive: false });
+	// 	node.addEventListener("touchstart", onTouchStart, { passive: true });
+	// 	node.addEventListener("touchend", onTouchEnd, { passive: true });
+
+	// 	return () => {
+	// 		node.removeEventListener("wheel", onWheel);
+	// 		node.removeEventListener("touchstart", onTouchStart);
+	// 		node.removeEventListener("touchend", onTouchEnd);
+	// 	};
+	// }, [isDesktop, mobileIndex, goToMobileSlide]);
 
 	if (!isDesktop) {
 		return (
 			<div className="bg-black">
-				<div className="h-[calc(100svh-82px)] overflow-y-auto snap-y snap-mandatory">
-					<section className="section-frame relative isolate min-h-[calc(100svh-82px)] snap-start overflow-hidden bg-black">
-						<div className="absolute inset-0">
-							<img
-								src={sharedImages.diamondOnStone}
-								alt=""
-								className="h-full w-full object-cover"
-							/>
-							<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.55)_56%,rgba(0,0,0,0.92)_100%)]" />
-						</div>
-
-						<div className="relative z-10 flex min-h-[calc(100svh-82px)] items-end px-5 py-10 sm:px-6">
-							<div className="mx-auto w-full max-w-[1400px]">
-								<div className="max-w-[21rem]">
-									<p className="font-sans text-[11px] uppercase tracking-[0.24em] text-white/72">
-										Samir Gems FZCO
-									</p>
-									<h1 className="mt-4 font-display text-[2.9rem] uppercase leading-[0.9] text-white sm:text-[3.3rem]">
-										Crafting
-										<br />
-										Brilliance.
-										<br />
-										Defining
-										<br />
-										Legacy.
-									</h1>
-									<p className="mt-6 max-w-[18rem] font-copy text-base leading-relaxed text-white/88">
-										A new chapter in precision diamond manufacturing and ethical
-										sourcing.
-									</p>
-
-									<div className="mt-8 flex flex-wrap gap-3">
-										<button
-											type="button"
-											onClick={() =>
-												scrollToMobileSection("home-mobile-legacy")
-											}
-											className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/8 px-5 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-white transition hover:border-white/50 hover:bg-white/14"
-										>
-											Discover Our Legacy
-										</button>
-										<button
-											type="button"
-											onClick={() =>
-												scrollToMobileSection("home-mobile-expertise")
-											}
-											className="inline-flex items-center justify-center rounded-full border border-white/10 px-5 py-3 font-sans text-[11px] uppercase tracking-[0.2em] text-white/88 transition hover:border-white/35 hover:text-white"
-										>
-											View Expertise
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-
-					<section
-						id="home-mobile-legacy"
-						className="section-frame relative min-h-[calc(100svh-82px)] snap-start overflow-hidden px-5 py-12 sm:px-6 sm:py-14"
+				<div
+					ref={mobileSliderRef}
+					className="mobile-home-slider relative h-[calc(100svh-100px)] overflow-hidden bg-black"
+				>
+					<div
+						className="transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+						style={{
+							height: "600%",
+							transform: `translate3d(0, -${mobileIndex * 16.6667}%, 0)`,
+						}}
 					>
-						<div className="absolute inset-0">
-							<img
-								src={sharedImages.HomeLegacy}
-								alt=""
-								className="h-full w-full object-cover"
-							/>
-							<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.64)_100%)]" />
-						</div>
-
-						<div className="relative z-10 mx-auto flex min-h-[calc(100svh-82px-6rem)] max-w-[1400px] items-center">
-							<div className="w-full">
-								<SectionHeading
-									eyebrow="Legacy"
-									title="A Legacy Refined in Dubai"
-									description="Samir Gems FZCO marks the next chapter of a diamond legacy shaped over six decades, uniting long-standing craftsmanship with Dubai's global trading excellence."
+						<section className="section-frame relative isolate h-[calc(100svh-100px)] w-full   overflow-hidden bg-black">
+							<div className="absolute inset-0">
+								<img
+									src={sharedImages.diamondOnStone}
+									alt=""
+									className="h-full w-full object-cover"
 								/>
-
-								<div className="mt-10">
-									<StatGrid stats={homeStats} />
-								</div>
+								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.55)_56%,rgba(0,0,0,0.92)_100%)]" />
 							</div>
-						</div>
-					</section>
 
-					<section
-						id="home-mobile-expertise"
-						className="section-frame relative min-h-[calc(100svh-82px)] snap-start overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
-					>
-						<div className="absolute inset-0">
-							<img
-								src={sharedImages.OurExpertise}
-								alt=""
-								className="h-full w-full object-cover opacity-18"
-							/>
-						</div>
+							<div className="relative z-10 flex h-full items-center px-5 py-10 sm:px-6">
+								<div className="mx-auto w-full max-w-[1400px]">
+									<div className="max-w-[21rem]">
+										<p className="font-sans text-[11px] uppercase tracking-[0.24em] text-white/72">
+											Samir Gems FZCO
+										</p>
+										<h1 className="mt-4 font-display text-[2.9rem] uppercase leading-[0.9] text-white sm:text-[3.3rem]">
+											Crafting
+											<br />
+											Brilliance.
+											<br />
+											Defining
+											<br />
+											Legacy.
+										</h1>
+										<p className="mt-6 max-w-[18rem] font-copy text-base leading-relaxed text-white/88">
+											A new chapter in precision diamond manufacturing and
+											ethical sourcing.
+										</p>
 
-						<div className="relative z-10 mx-auto flex min-h-[calc(100svh-82px-6rem)] max-w-[1400px] items-center">
-							<div className="w-full">
-								<SectionHeading
-									eyebrow="Expertise"
-									title="From Rough to Refined Precision."
-									description="Each stage of our process is built around accuracy, transparency, and consistency for global partners."
-								/>
-
-								<div className="mt-8 -mx-5 overflow-x-auto px-5 pb-2">
-									<div className="flex min-w-max snap-x snap-mandatory gap-4">
-										{expertiseCards.map((card) => (
-											<ImageCard
-												key={card.title}
-												image={card.image}
-												title={card.title}
-												description={card.description}
-												className="min-h-[280px] w-[78vw] shrink-0 snap-start sm:w-[62vw]"
-												hoverReveal
-											/>
-										))}
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-
-					<section className="section-frame relative min-h-[calc(100svh-82px)] snap-start overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14">
-						<img
-							src={sharedImages.handsImage}
-							alt=""
-							className="absolute inset-0 h-full w-full object-cover opacity-60"
-						/>
-						<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.62)_42%,rgba(0,0,0,0.9)_100%)]" />
-
-						<div className="relative z-10 mx-auto flex min-h-[calc(100svh-82px-6rem)] max-w-[1400px] items-center">
-							<div className="w-full">
-								<SectionHeading
-									eyebrow="Responsibility"
-									title="Responsibility Meets Perfection."
-									description="Our diamonds follow a fully traceable mine-to-market journey supported by ethical sourcing standards and advanced manufacturing."
-								/>
-
-								<div className="mt-10 grid grid-cols-2 gap-4">
-									{partnerLogos.map((logo) => (
-										<div
-											key={logo.alt}
-											className="flex min-h-[116px] items-center justify-center border border-white/10 bg-black/35 p-4"
-										>
-											<img
-												src={logo.src}
-												alt={logo.alt}
-												className="max-h-[80px] w-full object-contain"
-											/>
-										</div>
-									))}
-								</div>
-							</div>
-						</div>
-					</section>
-
-					<section className="section-frame min-h-[calc(100svh-82px)] snap-start bg-[linear-gradient(180deg,#0c0c0c,#111111)] px-5 py-12 sm:px-6 sm:py-14">
-						<div className="mx-auto flex min-h-[calc(100svh-82px-6rem)] max-w-[1400px] items-center">
-							<div className="w-full">
-								<SectionHeading
-									eyebrow="Global Footprint"
-									title="A Global Legacy Shaped Across Continents."
-									description="Our story has expanded across key trade regions while remaining anchored in precision, trust, and responsible sourcing."
-								/>
-
-								<ul className="mt-8 space-y-6 font-copy text-base text-white">
-									{GlobalLegacy.map((item, index, arr) => (
-										<li key={item} className="relative flex gap-4">
-											<div className="relative flex w-4 justify-center">
-												{index !== arr.length - 1 ? (
-													<span className="absolute top-4 h-[calc(100%+16px)] w-px bg-white/20" />
-												) : null}
-												<span className="mt-1 flex h-4 w-4 items-center justify-center rounded-full border border-white/50 bg-black">
-													<span className="h-1.5 w-1.5 rounded-full bg-white" />
+										<div className="mt-8 flex flex-wrap gap-3">
+											<button
+												type="button"
+												onClick={() =>
+													scrollToMobileSection("home-mobile-legacy")
+												}
+												className="group mt-10 inline-flex items-center gap-5 text-left"
+											>
+												<span className="font-copy text-base font-medium tracking-[0.03em] text-white transition group-hover:text-white/80">
+													Discover Our Legacy
 												</span>
-											</div>
-											<span className="leading-relaxed text-white/85">
-												{item}
-											</span>
-										</li>
-									))}
-								</ul>
+												<img
+													src={sharedImages.Arrow}
+													alt=""
+													className="object-cover opacity-95 transition-transform duration-500 ease-out group-hover:translate-x-2"
+												/>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
 
-								<div className="mt-10 overflow-hidden border border-white/10 bg-white/[0.02] p-4">
-									<img
-										src={sharedImages.worldMap}
-										alt=""
-										className="w-full object-contain opacity-95"
+						<section
+							id="home-mobile-legacy"
+							className="section-frame relative h-[calc(100svh-100px)] w-full   overflow-hidden px-5 py-12 sm:px-6 sm:py-14"
+						>
+							<div className="absolute inset-0">
+								<img
+									src={sharedImages.HomeLegacy}
+									alt=""
+									className="h-full w-full object-cover"
+								/>
+								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.64)_100%)]" />
+							</div>
+
+							<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
+								<div className="w-full">
+									<SectionHeading
+										eyebrow="Legacy"
+										title="A Legacy Refined in Dubai"
+										description="Samir Gems FZCO marks the next chapter of a diamond legacy shaped over six decades, uniting long-standing craftsmanship with Dubai's global trading excellence."
 									/>
 
-									<div className="mt-5 flex flex-wrap gap-2">
-										{mapMarkers.map((marker) => (
-											<span
-												key={marker.label}
-												className={marker.mobileClassName}
+									<div className="mt-10">
+										<StatGrid stats={homeStats} />
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section
+							id="home-mobile-expertise"
+							className="section-frame relative h-[calc(100svh-100px)] w-full   overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
+						>
+							<div className="absolute inset-0">
+								<img
+									src={sharedImages.OurExpertise}
+									alt=""
+									className="h-full w-full object-cover opacity-18"
+								/>
+							</div>
+
+							<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
+								<div className="w-full">
+									<SectionHeading
+										eyebrow="Expertise"
+										title="From Rough to Refined Precision."
+										description="Each stage of our process is built around accuracy, transparency, and consistency for global partners."
+									/>
+
+									<div className="mt-8 -mx-5 overflow-x-auto px-5 pb-2">
+										<div className="flex min-w-max snap-x snap-mandatory gap-4">
+											{expertiseCards.map((card) => (
+												<ImageCard
+													key={card.title}
+													image={card.image}
+													title={card.title}
+													description={card.description}
+													className="min-h-[280px] w-[78vw] shrink-0 sm:w-[62vw]"
+													hoverReveal
+												/>
+											))}
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section className="section-frame relative h-[calc(100svh-100px)] w-full overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14">
+							<img
+								src={sharedImages.handsImage}
+								alt=""
+								className="absolute inset-0 h-full w-full object-cover opacity-60"
+							/>
+							<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.62)_42%,rgba(0,0,0,0.9)_100%)]" />
+
+							<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
+								<div className="w-full">
+									<SectionHeading
+										eyebrow="Responsibility"
+										title="Responsibility Meets Perfection."
+										description="Our diamonds follow a fully traceable mine-to-market journey supported by ethical sourcing standards and advanced manufacturing."
+									/>
+
+									<div className="mt-10 grid grid-cols-2 gap-4">
+										{partnerLogos.map((logo) => (
+											<div
+												key={logo.alt}
+												className="flex min-h-[116px] items-center justify-center border border-white/10 bg-black/35 p-3"
 											>
-												{marker.label}
-											</span>
+												<img
+													src={logo.src}
+													alt={logo.alt}
+													className="max-h-[80px] w-full object-contain"
+												/>
+											</div>
 										))}
 									</div>
 								</div>
 							</div>
-						</div>
-					</section>
+						</section>
 
-					<div className="snap-start">
-						<Footer />
+						<section className="section-frame h-[calc(100svh-100px)] w-full overflow-hidden bg-[linear-gradient(180deg,#0c0c0c,#111111)] px-5 py-8 sm:px-6 sm:py-10">
+							<div className="mx-auto flex h-full max-w-[1400px] items-center">
+								<div
+									data-mobile-scrollable
+									className="max-h-[calc(100svh-140px)] w-full overflow-y-auto pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+								>
+									<SectionHeading
+										eyebrow="Global Footprint"
+										title="A Global Legacy Shaped Across Continents."
+										description="Our story has expanded across key trade regions while remaining anchored in precision, trust, and responsible sourcing."
+									/>
+
+									<ul className="mt-4 space-y-2 font-copy text-sm text-white sm:text-base">
+										{GlobalLegacy.map((item, index, arr) => (
+											<li key={item} className="relative flex gap-4">
+												<div className="relative flex w-4 justify-center">
+													{index !== arr.length - 1 ? (
+														<span className="absolute top-4 h-[calc(100%+16px)] w-px bg-white/20" />
+													) : null}
+													<span className="mt-1 flex h-4 w-4 items-center justify-center rounded-full border border-white/50 bg-black">
+														<span className="h-1.5 w-1.5 rounded-full bg-white" />
+													</span>
+												</div>
+												<span className="leading-relaxed text-white/85">
+													{item}
+												</span>
+											</li>
+										))}
+									</ul>
+
+									<div className="mt-5 overflow-hidden border border-white/10 bg-white/[0.02] p-3">
+										<img
+											src={sharedImages.samirgemsmap}
+											alt=""
+											className="w-full object-contain opacity-95"
+										/>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<div className="h-[calc(100svh-100px)] w-full   overflow-y-auto bg-black">
+							<Footer />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -883,8 +1061,6 @@ function HomePage() {
 			className="relative h-[calc(100svh-100px)] overflow-hidden"
 			onMouseEnter={() => setIsPaused(true)}
 			onMouseLeave={() => setIsPaused(false)}
-			onFocus={() => setIsPaused(true)}
-			onBlur={() => setIsPaused(false)}
 		>
 			<div
 				ref={footerRef}
