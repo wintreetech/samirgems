@@ -387,14 +387,18 @@ function HomePage() {
 
 							<div className="grid grid-cols-2 gap-5 justify-self-end">
 								{partnerLogos.map((logo) => (
-									<img
+									<div
 										key={logo.alt}
-										src={logo.src}
-										alt={logo.alt}
 										data-animate
 										data-animate-delay={logo.delay}
-										className="h-[150px] w-[250px] object-contain"
-									/>
+										className="flex h-[133.33px] w-[236px] items-center justify-center bg-[linear-gradient(107.44deg,rgba(64,64,64,0.4)_2.01%,rgba(39,39,39,0.4)_99.94%)] backdrop-blur-[4.9px]"
+									>
+										<img
+											src={logo.src}
+											alt={logo.alt}
+											className="max-h-[105px] w-full object-contain px-6"
+										/>
+									</div>
 								))}
 							</div>
 						</div>
@@ -859,15 +863,12 @@ function HomePage() {
 									alt=""
 									className="h-full w-full object-cover"
 								/>
-								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.55)_56%,rgba(0,0,0,0.92)_100%)]" />
+								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.05)_100%)]" />
 							</div>
 
 							<div className="relative z-10 flex h-full items-center px-5 py-10 sm:px-6">
 								<div className="mx-auto w-full max-w-[1400px]">
 									<div className="max-w-[21rem]">
-										<p className="font-sans text-[11px] uppercase tracking-[0.24em] text-white/72">
-											Samir Gems FZCO
-										</p>
 										<h1 className="mt-4 font-display text-[2.9rem] uppercase leading-[0.9] text-white sm:text-[3.3rem]">
 											Crafting
 											<br />
@@ -915,18 +916,17 @@ function HomePage() {
 									alt=""
 									className="h-full w-full object-cover"
 								/>
-								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.64)_100%)]" />
+								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.05)_100%)]" />
 							</div>
 
 							<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
 								<div className="w-full">
 									<SectionHeading
-										eyebrow="Legacy"
 										title="A Legacy Refined in Dubai"
-										description="Samir Gems FZCO marks the next chapter of a diamond legacy shaped over six decades, uniting long-standing craftsmanship with Dubai's global trading excellence."
+										description="Samir Gems FZCO marks the next chapter of a legacy shaped over six decades. Rooted in the heritage of Samir Gems, the FZCO entity has been operating independently in Dubai for over two decades. Refined in the city's global trade ecosystem, we unite time-honoured craftsmanship with Dubai's international trading excellence to shape diamonds of uncompromising precision and integrity."
 									/>
 
-									<div className="mt-10">
+									<div className="mt-5">
 										<StatGrid stats={homeStats} />
 									</div>
 								</div>
@@ -947,11 +947,7 @@ function HomePage() {
 
 							<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
 								<div className="w-full">
-									<SectionHeading
-										eyebrow="Expertise"
-										title="From Rough to Refined Precision."
-										description="Each stage of our process is built around accuracy, transparency, and consistency for global partners."
-									/>
+									<SectionHeading title="Our Expertise" />
 
 									<div className="mt-8 -mx-5 overflow-x-auto px-5 pb-2">
 										<div className="flex min-w-max snap-x snap-mandatory gap-4">
@@ -977,26 +973,25 @@ function HomePage() {
 								alt=""
 								className="absolute inset-0 h-full w-full object-cover opacity-60"
 							/>
-							<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.62)_42%,rgba(0,0,0,0.9)_100%)]" />
+							<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.05)_100%)]" />
 
 							<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
 								<div className="w-full">
 									<SectionHeading
-										eyebrow="Responsibility"
 										title="Responsibility Meets Perfection."
-										description="Our diamonds follow a fully traceable mine-to-market journey supported by ethical sourcing standards and advanced manufacturing."
+										description="Responsibility and precision define every stone we craft. As an RJC-certified company, our diamonds follow a fully traceable mine-to-market journey, supported by stringent ethical standards. Advanced polishing technology works in harmony with generations of artisanship, ensuring every diamond reflects both integrity and uncompromising accuracy."
 									/>
 
 									<div className="mt-10 grid grid-cols-2 gap-4">
 										{partnerLogos.map((logo) => (
 											<div
 												key={logo.alt}
-												className="flex min-h-[116px] items-center justify-center border border-white/10 bg-black/35 p-3"
+												className="flex h-[120px] w-full items-center justify-center bg-[linear-gradient(107.44deg,rgba(64,64,64,0.4)_2.01%,rgba(39,39,39,0.4)_99.94%)] backdrop-blur-[4.9px]"
 											>
 												<img
 													src={logo.src}
 													alt={logo.alt}
-													className="max-h-[80px] w-full object-contain"
+													className="max-h-[90px] w-full object-contain px-5"
 												/>
 											</div>
 										))}
@@ -1011,11 +1006,7 @@ function HomePage() {
 									data-mobile-scrollable
 									className="max-h-[calc(100svh-140px)] w-full overflow-y-auto pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
 								>
-									<SectionHeading
-										eyebrow="Global Footprint"
-										title="A Global Legacy Shaped Across Continents."
-										description="Our story has expanded across key trade regions while remaining anchored in precision, trust, and responsible sourcing."
-									/>
+									<SectionHeading title="A Global Legacy Shaped Across Continents." />
 
 									<ul className="mt-4 space-y-2 font-copy text-sm text-white sm:text-base">
 										{GlobalLegacy.map((item, index, arr) => (
