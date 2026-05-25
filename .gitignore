@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
-dist-old-23-04-26
+dist-old-23-04-26.zip
 dist-ssr
 *.local
 
