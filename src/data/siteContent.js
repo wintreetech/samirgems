@@ -45,6 +45,11 @@ import strip_2 from "../assets/images/logo-strip 2.svg";
 import samirgemsmap from "../assets/images/map-samirgems.svg";
 import bgimageforhomelast from "../assets/images/global-legacy-bg.png";
 
+import Hero_Diamonds_1_Thumb from "../assets/images/The Letseng Icon thumb.png";
+import Hero_Diamonds_2_Thumb from "../assets/images/Rose Of Kao thumb.png";
+import Hero_Diamonds_3_Thumb from "../assets/images/The Pink Palesa thumb.png";
+import Hero_Diamonds_4_Thumb from "../assets/images/Eumbo Star thumb.png";
+
 export const sharedImages = {
 	braceletImage,
 	heroDiamondDetail,
@@ -92,6 +97,10 @@ export const sharedImages = {
 	strip_2,
 	samirgemsmap,
 	bgimageforhomelast,
+	Hero_Diamonds_1_Thumb,
+	Hero_Diamonds_2_Thumb,
+	Hero_Diamonds_3_Thumb,
+	Hero_Diamonds_4_Thumb,
 };
 
 export const homeStats = [

@@ -12,7 +12,7 @@ const diamonds = [
 		colour: "White",
 		mainCarat: "924",
 		heroImage: sharedImages.Hero_Diamonds_1,
-		thumb: sharedImages.Hero_Diamonds_1,
+		thumb: sharedImages.Hero_Diamonds_1_Thumb,
 	},
 	{
 		id: 2,
@@ -23,7 +23,7 @@ const diamonds = [
 		colour: "Pink",
 		mainCarat: "870",
 		heroImage: sharedImages.Hero_Diamonds_2,
-		thumb: sharedImages.Hero_Diamonds_2,
+		thumb: sharedImages.Hero_Diamonds_2_Thumb,
 	},
 	{
 		id: 3,
@@ -34,7 +34,7 @@ const diamonds = [
 		colour: "Pink",
 		mainCarat: "650",
 		heroImage: sharedImages.Hero_Diamonds_3,
-		thumb: sharedImages.Hero_Diamonds_3,
+		thumb: sharedImages.Hero_Diamonds_3_Thumb,
 	},
 	{
 		id: 4,
@@ -45,7 +45,7 @@ const diamonds = [
 		colour: "White",
 		mainCarat: "412",
 		heroImage: sharedImages.Hero_Diamonds_4,
-		thumb: sharedImages.Hero_Diamonds_4,
+		thumb: sharedImages.Hero_Diamonds_4_Thumb,
 	},
 ];
 
@@ -76,22 +76,22 @@ function GemShowcase() {
 		setOrderedDiamonds((prev) => [prev[prev.length - 1], ...prev.slice(0, -1)]);
 	};
 
-	const moveToActive = (id) => {
-		setOrderedDiamonds((prev) => {
-			const currentActive = prev[1] ?? prev[0];
-			const target = prev.find((item) => item.id === id);
+	// const moveToActive = (id) => {
+	// 	setOrderedDiamonds((prev) => {
+	// 		const currentActive = prev[1] ?? prev[0];
+	// 		const target = prev.find((item) => item.id === id);
 
-			if (!target || !currentActive || target.id === currentActive.id) {
-				return prev;
-			}
+	// 		if (!target || !currentActive || target.id === currentActive.id) {
+	// 			return prev;
+	// 		}
 
-			const remaining = prev.filter(
-				(item) => item.id !== currentActive.id && item.id !== target.id,
-			);
+	// 		const remaining = prev.filter(
+	// 			(item) => item.id !== currentActive.id && item.id !== target.id,
+	// 		);
 
-			return [currentActive, target, ...remaining];
-		});
-	};
+	// 		return [currentActive, target, ...remaining];
+	// 	});
+	// };
 
 	return (
 		<section className="gem-showcase relative overflow-hidden bg-[#161616] text-white">
@@ -158,7 +158,7 @@ function GemShowcase() {
 						<button
 							key={diamond.id}
 							type="button"
-							onClick={() => moveToActive(diamond.id)}
+							//onClick={() => moveToActive(diamond.id)}
 							className={`gem-stage__item gem-stage__item--slot-${Math.min(slot, 5)}`}
 							aria-label={diamond.title}
 						>
@@ -273,7 +273,7 @@ function GemShowcase() {
 										<button
 											key={diamond.id}
 											type="button"
-											onClick={() => moveToActive(diamond.id)}
+											//onClick={() => moveToActive(diamond.id)}
 											className={`gem-strip__item gem-strip__item--slot-${Math.min(index, 4)} group ${
 												index === 0
 													? "border-white/70 shadow-[0_20px_40px_rgba(0,0,0,0.28)]"
@@ -283,7 +283,7 @@ function GemShowcase() {
 											<img
 												src={diamond.thumb}
 												alt={diamond.title}
-												className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+												className="absolute inset-0 h-full w-full object-cover object-[50%_50%] transition-transform duration-700 group-hover:scale-105"
 											/>
 											<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/5" />
 											<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0)_45%)]" />
@@ -291,11 +291,10 @@ function GemShowcase() {
 												<p className="font-copy text-[24px] font-light leading-[0.95] tracking-[0.03em] text-white">
 													{diamond.title}
 												</p>
-												{index === 0 ? (
-													<p className="mt-2 font-copy text-[16px] font-light tracking-[0.03em] text-white/75">
-														{diamond.carat}
-													</p>
-												) : null}
+
+												<p className="mt-2 font-copy text-[16px] font-light tracking-[0.03em] text-white/75">
+													{diamond.carat}
+												</p>
 											</div>
 										</button>
 									))}
