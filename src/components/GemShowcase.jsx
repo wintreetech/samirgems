@@ -155,7 +155,7 @@ function GemShowcase() {
 			<div className="hidden lg:block">
 				<div className="gem-stage absolute inset-0">
 					{orderedDiamonds.map((diamond, slot) => (
-						<button
+						<div
 							key={diamond.id}
 							type="button"
 							//onClick={() => moveToActive(diamond.id)}
@@ -170,7 +170,7 @@ function GemShowcase() {
 							<div className="absolute inset-0 bg-black/45" />
 							<div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/10 to-[#161616]" />
 							<div className="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-transparent" />
-						</button>
+						</div>
 					))}
 				</div>
 
