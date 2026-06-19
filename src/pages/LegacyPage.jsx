@@ -1,10 +1,15 @@
 import PageHero from "../components/PageHero";
 import RevealSection from "../components/RevealSection";
+import Seo from "../components/Seo";
 import { sharedImages } from "../data/siteContent";
 
 function LegacyPage() {
 	return (
 		<>
+			<Seo
+				title="Our Legacy | Samir Gems FZCO"
+				description="Discover the legacy of Samir Gems FZCO, built on decades of trust, craftsmanship, precision, and responsible diamond sourcing across global markets."
+			/>
 			<PageHero
 				id="legacy-hero"
 				title={

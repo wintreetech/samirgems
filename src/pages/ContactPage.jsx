@@ -1,11 +1,16 @@
 import ContactForm from "../components/ContactForm";
 import PageHero from "../components/PageHero";
 import RevealSection from "../components/RevealSection";
+import Seo from "../components/Seo";
 import { sharedImages } from "../data/siteContent";
 
 function ContactPage() {
 	return (
 		<>
+			<Seo
+				title="Contact Samir Gems FZCO | Dubai Diamond Office"
+				description="Contact Samir Gems FZCO in Dubai for diamond sourcing, manufacturing, polished supply, and partnership enquiries. Visit us at Almas Tower, JLT."
+			/>
 			<PageHero
 				id="contact-hero"
 				title="Contact Us"

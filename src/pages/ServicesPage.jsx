@@ -2,6 +2,7 @@ import { useState } from "react";
 import PageHero from "../components/PageHero";
 import RevealSection from "../components/RevealSection";
 import { sharedImages } from "../data/siteContent";
+import Seo from "../components/Seo";
 
 function ServicesPage() {
 	const [active, setActive] = useState(0);
@@ -51,6 +52,10 @@ function ServicesPage() {
 
 	return (
 		<>
+			<Seo
+				title="Diamond Services in Dubai | Samir Gems FZCO"
+				description="Explore rough diamond supply, precision diamond manufacturing, calibrated and custom supply, and transparent mine-to-market operations with Samir Gems FZCO."
+			/>
 			<PageHero
 				id="services-hero"
 				title="Our Services"

@@ -1,11 +1,16 @@
 import GemShowcase from "../components/GemShowcase";
 import PageHero from "../components/PageHero";
 import RevealSection from "../components/RevealSection";
+import Seo from "../components/Seo";
 import { sharedImages } from "../data/siteContent";
 
 function DiamondsPage() {
 	return (
 		<>
+			<Seo
+				title="Our Diamonds | Landmark Gems by Samir Gems FZCO"
+				description="Explore landmark diamonds from Samir Gems FZCO, including exceptional white and pink stones shaped by heritage, precision, and global diamond expertise."
+			/>
 			<PageHero
 				id="diamonds-hero"
 				title="Our Diamonds"

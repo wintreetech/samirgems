@@ -1,4 +1,4 @@
-import braceletImage from "../assets/pdf-images/page1-img16.png";
+import braceletImage from "../assets/pdf-images/page1-img16.webp";
 import heroDiamondDetail from "../assets/hero-diamond-detail.png";
 import heroDiamondMain from "../assets/hero-diamond-main.png";
 import polishingImage from "../assets/pdf-images/page1-img17.png";
@@ -7,7 +7,7 @@ import namdiaLogo from "../assets/images/NAMDIA.svg";
 import sodiamLogo from "../assets/images/SODIAM.svg";
 import OkavangoLogo from "../assets/images/Okavango.png";
 import DeBeersLogo from "../assets/images/DeBeers.png";
-import handsImage from "../assets/pdf-images/page1-img21.png";
+import handsImage from "../assets/pdf-images/page1-img21.webp";
 import diamondOnStone from "../assets/images/HOME_HERO.png";
 import skyline from "../assets/pdf-images/page1-img25.png";
 import worldMap from "../assets/pdf-images/MAP.svg";
@@ -53,6 +53,8 @@ import Hero_Diamonds_2_Thumb from "../assets/images/Rose of Kao thumb.png";
 import Hero_Diamonds_3_Thumb from "../assets/images/Pink Palesa thumb.png";
 import Hero_Diamonds_4_Thumb from "../assets/images/Lesotho Legend thumb.png";
 import Hero_Diamonds_5_Thumb from "../assets/images/Queen of Kalahari thumb.png";
+
+// WEBP
 
 export const sharedImages = {
 	braceletImage,

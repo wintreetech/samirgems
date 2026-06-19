@@ -11,6 +11,7 @@ import {
 	sharedImages,
 	GlobalLegacy,
 } from "../data/siteContent";
+import Seo from "../components/Seo";
 
 const AUTO_DURATION = 10000;
 const TRANSITION_DURATION = 1.15;
@@ -860,295 +861,308 @@ function HomePage() {
 
 	if (!isDesktop) {
 		return (
-			<div className="bg-black">
-				<div
-					ref={mobileSliderRef}
-					className="mobile-home-slider relative overflow-hidden bg-black"
-					style={{ height: mobileHeight }}
-				>
+			<>
+				<Seo
+					title="Samir Gems FZCO | Ethical Diamond Sourcing & Manufacturing in Dubai"
+					description="Samir Gems FZCO is a Dubai-based diamond company built on a six-decade legacy, offering ethical rough diamond sourcing, precision manufacturing, polished diamonds, and transparent mine-to-market supply."
+				/>
+				<div className="bg-black">
 					<div
-						className="transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] will-change-transform"
-						style={{
-							height: mobileHeight * MOBILE_SLIDE_COUNT,
-							transform: `translate3d(0, -${mobileIndex * mobileHeight}px, 0)`,
-							backfaceVisibility: "hidden",
-							WebkitBackfaceVisibility: "hidden",
-						}}
+						ref={mobileSliderRef}
+						className="mobile-home-slider relative overflow-hidden bg-black"
+						style={{ height: mobileHeight }}
 					>
-						<section
-							style={{ height: mobileHeight }}
-							className="section-frame relative isolate  w-full   overflow-hidden bg-black"
+						<div
+							className="transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] will-change-transform"
+							style={{
+								height: mobileHeight * MOBILE_SLIDE_COUNT,
+								transform: `translate3d(0, -${mobileIndex * mobileHeight}px, 0)`,
+								backfaceVisibility: "hidden",
+								WebkitBackfaceVisibility: "hidden",
+							}}
 						>
-							<div className="absolute inset-0">
-								<img
-									src={sharedImages.diamondOnStone}
-									alt=""
-									className="h-full w-full object-cover"
-								/>
-								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.05)_100%)]" />
-							</div>
+							<section
+								style={{ height: mobileHeight }}
+								className="section-frame relative isolate  w-full   overflow-hidden bg-black"
+							>
+								<div className="absolute inset-0">
+									<img
+										src={sharedImages.diamondOnStone}
+										alt=""
+										className="h-full w-full object-cover"
+									/>
+									<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.05)_100%)]" />
+								</div>
 
-							<div className="relative z-10 flex h-full items-center px-5 py-10 sm:px-6">
-								<div className="mx-auto w-full max-w-[1400px]">
-									<div className="max-w-[21rem]">
-										<h1 className="mt-4 font-display text-[2.9rem] uppercase leading-[0.9] text-white sm:text-[3.3rem]">
-											Crafting
-											<br />
-											Brilliance.
-											<br />
-											Defining
-											<br />
-											Legacy.
-										</h1>
-										<p className="mt-6 max-w-[18rem] font-copy text-base leading-relaxed text-white/88">
-											A new chapter in precision diamond manufacturing and
-											ethical sourcing.
-										</p>
+								<div className="relative z-10 flex h-full items-center px-5 py-10 sm:px-6">
+									<div className="mx-auto w-full max-w-[1400px]">
+										<div className="max-w-[21rem]">
+											<h1 className="mt-4 font-display text-[2.9rem] uppercase leading-[0.9] text-white sm:text-[3.3rem]">
+												Crafting
+												<br />
+												Brilliance.
+												<br />
+												Defining
+												<br />
+												Legacy.
+											</h1>
+											<p className="mt-6 max-w-[18rem] font-copy text-base leading-relaxed text-white/88">
+												A new chapter in precision diamond manufacturing and
+												ethical sourcing.
+											</p>
 
-										<div className="mt-8 flex flex-wrap gap-3">
-											<button
-												type="button"
-												onClick={() =>
-													scrollToMobileSection("home-mobile-legacy")
-												}
-												className="group mt-10 inline-flex items-center gap-5 text-left"
-											>
-												<span className="font-copy text-base font-medium tracking-[0.03em] text-white transition group-hover:text-white/80">
-													Discover Our Legacy
-												</span>
-												<img
-													src={sharedImages.Arrow}
-													alt=""
-													className="object-cover opacity-95 transition-transform duration-500 ease-out group-hover:translate-x-2"
-												/>
-											</button>
+											<div className="mt-8 flex flex-wrap gap-3">
+												<button
+													type="button"
+													onClick={() =>
+														scrollToMobileSection("home-mobile-legacy")
+													}
+													className="group mt-10 inline-flex items-center gap-5 text-left"
+												>
+													<span className="font-copy text-base font-medium tracking-[0.03em] text-white transition group-hover:text-white/80">
+														Discover Our Legacy
+													</span>
+													<img
+														src={sharedImages.Arrow}
+														alt=""
+														className="object-cover opacity-95 transition-transform duration-500 ease-out group-hover:translate-x-2"
+													/>
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</section>
+							</section>
 
-						<section
-							style={{ height: mobileHeight }}
-							id="home-mobile-legacy"
-							className="section-frame relative  w-full   overflow-hidden px-5 py-12 sm:px-6 sm:py-14"
-						>
-							<div className="absolute inset-0">
-								<img
-									src={sharedImages.HomeLegacy}
-									alt=""
-									className="h-full w-full object-cover"
-								/>
-								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.05)_100%)]" />
-							</div>
-
-							<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
-								<div className="w-full">
-									<SectionHeading
-										title="A Legacy Refined in Dubai"
-										description="Samir Gems FZCO marks the next chapter of a legacy shaped over six decades. Rooted in the heritage of Samir Gems, the FZCO entity has been operating independently in Dubai for over two decades. Refined in the city's global trade ecosystem, we unite time-honoured craftsmanship with Dubai's international trading excellence to shape diamonds of uncompromising precision and integrity."
+							<section
+								style={{ height: mobileHeight }}
+								id="home-mobile-legacy"
+								className="section-frame relative  w-full   overflow-hidden px-5 py-12 sm:px-6 sm:py-14"
+							>
+								<div className="absolute inset-0">
+									<img
+										src={sharedImages.HomeLegacy}
+										alt=""
+										className="h-full w-full object-cover"
 									/>
+									<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.05)_100%)]" />
+								</div>
 
-									<div className="mt-5">
-										<StatGrid stats={homeStats} />
+								<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
+									<div className="w-full">
+										<SectionHeading
+											title="A Legacy Refined in Dubai"
+											description="Samir Gems FZCO marks the next chapter of a legacy shaped over six decades. Rooted in the heritage of Samir Gems, the FZCO entity has been operating independently in Dubai for over two decades. Refined in the city's global trade ecosystem, we unite time-honoured craftsmanship with Dubai's international trading excellence to shape diamonds of uncompromising precision and integrity."
+										/>
+
+										<div className="mt-5">
+											<StatGrid stats={homeStats} />
+										</div>
 									</div>
 								</div>
-							</div>
-						</section>
+							</section>
 
-						<section
-							style={{ height: mobileHeight }}
-							id="home-mobile-expertise"
-							className="section-frame relative  w-full   overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
-						>
-							<div className="absolute inset-0">
+							<section
+								style={{ height: mobileHeight }}
+								id="home-mobile-expertise"
+								className="section-frame relative  w-full   overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
+							>
+								<div className="absolute inset-0">
+									<img
+										src={sharedImages.OurExpertise}
+										alt=""
+										className="h-full w-full object-cover opacity-18"
+									/>
+								</div>
+
+								<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
+									<div className="w-full">
+										<SectionHeading title="Our Expertise" />
+
+										<div className="mt-8 -mx-5 overflow-x-auto px-5 pb-2">
+											<div className="flex min-w-max snap-x snap-mandatory gap-4">
+												{expertiseCards.map((card) => (
+													<ImageCard
+														key={card.title}
+														image={card.image}
+														title={card.title}
+														description={card.description}
+														className="min-h-[280px] w-[78vw] shrink-0 sm:w-[62vw]"
+														hoverReveal
+													/>
+												))}
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+
+							<section
+								style={{ height: mobileHeight }}
+								className="section-frame relative  w-full overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
+							>
 								<img
-									src={sharedImages.OurExpertise}
+									src={sharedImages.handsImage}
 									alt=""
-									className="h-full w-full object-cover opacity-18"
+									className="absolute inset-0 h-full w-full object-cover opacity-60"
 								/>
-							</div>
+								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.05)_100%)]" />
 
-							<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
-								<div className="w-full">
-									<SectionHeading title="Our Expertise" />
+								<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
+									<div className="w-full">
+										<SectionHeading
+											title="Responsibility Meets Perfection."
+											description="Responsibility and precision define every stone we craft. As an RJC-certified company, our diamonds follow a fully traceable mine-to-market journey, supported by stringent ethical standards. Advanced polishing technology works in harmony with generations of artisanship, ensuring every diamond reflects both integrity and uncompromising accuracy."
+										/>
 
-									<div className="mt-8 -mx-5 overflow-x-auto px-5 pb-2">
-										<div className="flex min-w-max snap-x snap-mandatory gap-4">
-											{expertiseCards.map((card) => (
-												<ImageCard
-													key={card.title}
-													image={card.image}
-													title={card.title}
-													description={card.description}
-													className="min-h-[280px] w-[78vw] shrink-0 sm:w-[62vw]"
-													hoverReveal
-												/>
+										<div className="mt-10 grid grid-cols-2 gap-4">
+											{partnerLogos.map((logo) => (
+												<div
+													key={logo.alt}
+													className="flex h-[120px] w-full items-center justify-center bg-[linear-gradient(107.44deg,rgba(64,64,64,0.4)_2.01%,rgba(39,39,39,0.4)_99.94%)] backdrop-blur-[4.9px]"
+												>
+													<img
+														src={logo.src}
+														alt={logo.alt}
+														className="max-h-[90px] w-full object-contain px-5"
+													/>
+												</div>
 											))}
 										</div>
 									</div>
 								</div>
-							</div>
-						</section>
+							</section>
 
-						<section
-							style={{ height: mobileHeight }}
-							className="section-frame relative  w-full overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
-						>
-							<img
-								src={sharedImages.handsImage}
-								alt=""
-								className="absolute inset-0 h-full w-full object-cover opacity-60"
-							/>
-							<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.05)_100%)]" />
+							<section
+								style={{ height: mobileHeight }}
+								className="section-frame  w-full overflow-hidden bg-[linear-gradient(180deg,#0c0c0c,#111111)] px-5 py-8 sm:px-6 sm:py-10"
+							>
+								<div className="mx-auto flex h-full max-w-[1400px] items-center">
+									<div
+										data-mobile-scrollable
+										className="max-h-[calc(100svh-140px)] w-full overflow-y-auto pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+									>
+										<SectionHeading title="A Global Legacy Shaped Across Continents." />
 
-							<div className="relative z-10 mx-auto flex h-full max-w-[1400px] items-center">
-								<div className="w-full">
-									<SectionHeading
-										title="Responsibility Meets Perfection."
-										description="Responsibility and precision define every stone we craft. As an RJC-certified company, our diamonds follow a fully traceable mine-to-market journey, supported by stringent ethical standards. Advanced polishing technology works in harmony with generations of artisanship, ensuring every diamond reflects both integrity and uncompromising accuracy."
-									/>
-
-									<div className="mt-10 grid grid-cols-2 gap-4">
-										{partnerLogos.map((logo) => (
-											<div
-												key={logo.alt}
-												className="flex h-[120px] w-full items-center justify-center bg-[linear-gradient(107.44deg,rgba(64,64,64,0.4)_2.01%,rgba(39,39,39,0.4)_99.94%)] backdrop-blur-[4.9px]"
-											>
-												<img
-													src={logo.src}
-													alt={logo.alt}
-													className="max-h-[90px] w-full object-contain px-5"
-												/>
-											</div>
-										))}
-									</div>
-								</div>
-							</div>
-						</section>
-
-						<section
-							style={{ height: mobileHeight }}
-							className="section-frame  w-full overflow-hidden bg-[linear-gradient(180deg,#0c0c0c,#111111)] px-5 py-8 sm:px-6 sm:py-10"
-						>
-							<div className="mx-auto flex h-full max-w-[1400px] items-center">
-								<div
-									data-mobile-scrollable
-									className="max-h-[calc(100svh-140px)] w-full overflow-y-auto pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-								>
-									<SectionHeading title="A Global Legacy Shaped Across Continents." />
-
-									<ul className="mt-4 space-y-2 font-copy text-sm text-white sm:text-base">
-										{GlobalLegacy.map((item, index, arr) => (
-											<li key={item} className="relative flex gap-4">
-												<div className="relative flex w-4 justify-center">
-													{index !== arr.length - 1 ? (
-														<span className="absolute top-4 h-[calc(100%+16px)] w-px bg-white/20" />
-													) : null}
-													<span className="mt-1 flex h-4 w-4 items-center justify-center rounded-full border border-white/50 bg-black">
-														<span className="h-1.5 w-1.5 rounded-full bg-white" />
+										<ul className="mt-4 space-y-2 font-copy text-sm text-white sm:text-base">
+											{GlobalLegacy.map((item, index, arr) => (
+												<li key={item} className="relative flex gap-4">
+													<div className="relative flex w-4 justify-center">
+														{index !== arr.length - 1 ? (
+															<span className="absolute top-4 h-[calc(100%+16px)] w-px bg-white/20" />
+														) : null}
+														<span className="mt-1 flex h-4 w-4 items-center justify-center rounded-full border border-white/50 bg-black">
+															<span className="h-1.5 w-1.5 rounded-full bg-white" />
+														</span>
+													</div>
+													<span className="leading-relaxed text-white/85">
+														{item}
 													</span>
-												</div>
-												<span className="leading-relaxed text-white/85">
-													{item}
-												</span>
-											</li>
-										))}
-									</ul>
+												</li>
+											))}
+										</ul>
 
-									<div className="mt-5 overflow-hidden border border-white/10 bg-white/[0.02] p-3">
-										<img
-											src={sharedImages.samirgemsmap}
-											alt=""
-											className="w-full object-contain opacity-95"
-										/>
+										<div className="mt-5 overflow-hidden border border-white/10 bg-white/[0.02] p-3">
+											<img
+												src={sharedImages.samirgemsmap}
+												alt=""
+												className="w-full object-contain opacity-95"
+											/>
+										</div>
 									</div>
 								</div>
-							</div>
-						</section>
+							</section>
 
-						<div
-							style={{ height: mobileHeight }}
-							className=" w-full overflow-y-auto bg-black"
-						>
-							<Footer />
+							<div
+								style={{ height: mobileHeight }}
+								className=" w-full overflow-y-auto bg-black"
+							>
+								<Footer />
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</>
 		);
 	}
 
 	return (
-		<div
-			ref={homeRef}
-			className="relative h-[calc(100svh-100px)] overflow-hidden"
-			onMouseEnter={() => setIsPaused(true)}
-			onMouseLeave={() => setIsPaused(false)}
-		>
+		<>
+			<Seo
+				title="Samir Gems FZCO | Ethical Diamond Sourcing & Manufacturing in Dubai"
+				description="Samir Gems FZCO is a Dubai-based diamond company built on a six-decade legacy, offering ethical rough diamond sourcing, precision manufacturing, polished diamonds, and transparent mine-to-market supply."
+			/>
+
 			<div
-				ref={footerRef}
-				className="stable-paint absolute inset-x-0 bottom-0 z-0"
+				ref={homeRef}
+				className="relative h-[calc(100svh-100px)] overflow-hidden"
+				onMouseEnter={() => setIsPaused(true)}
+				onMouseLeave={() => setIsPaused(false)}
 			>
-				<Footer />
-			</div>
+				<div
+					ref={footerRef}
+					className="stable-paint absolute inset-x-0 bottom-0 z-0"
+				>
+					<Footer />
+				</div>
 
-			{!isFooterOpen ? (
-				<div className="section-nav" aria-label="Home section navigation">
-					{sections.map((section, index) => (
-						<button
-							key={section.id}
-							type="button"
-							onClick={() => goToSection(index)}
-							className={`section-nav__button ${activeIndex === index ? "is-current" : ""}`}
-							aria-label={section.id}
-						>
-							<span
-								className={`section-nav__dot ${activeIndex === index && !isPaused ? "is-playing" : ""}`}
-								style={{ "--progress-duration": `${AUTO_DURATION}ms` }}
+				{!isFooterOpen ? (
+					<div className="section-nav" aria-label="Home section navigation">
+						{sections.map((section, index) => (
+							<button
+								key={section.id}
+								type="button"
+								onClick={() => goToSection(index)}
+								className={`section-nav__button ${activeIndex === index ? "is-current" : ""}`}
+								aria-label={section.id}
 							>
-								<span className="section-nav__index">{index + 1}</span>
-								<svg
-									className="section-nav__ring"
-									viewBox="0 0 32 32"
-									aria-hidden="true"
+								<span
+									className={`section-nav__dot ${activeIndex === index && !isPaused ? "is-playing" : ""}`}
+									style={{ "--progress-duration": `${AUTO_DURATION}ms` }}
 								>
-									<circle
-										className="section-nav__ring-track"
-										cx="16"
-										cy="16"
-										r="13"
-									/>
-									<circle
-										className="section-nav__ring-progress"
-										cx="16"
-										cy="16"
-										r="13"
-									/>
-								</svg>
-								<span className="section-nav__core" />
-							</span>
-						</button>
-					))}
-				</div>
-			) : null}
+									<span className="section-nav__index">{index + 1}</span>
+									<svg
+										className="section-nav__ring"
+										viewBox="0 0 32 32"
+										aria-hidden="true"
+									>
+										<circle
+											className="section-nav__ring-track"
+											cx="16"
+											cy="16"
+											r="13"
+										/>
+										<circle
+											className="section-nav__ring-progress"
+											cx="16"
+											cy="16"
+											r="13"
+										/>
+									</svg>
+									<span className="section-nav__core" />
+								</span>
+							</button>
+						))}
+					</div>
+				) : null}
 
-			<div ref={viewportRef} className="relative z-10 h-full">
-				<div ref={trackRef} className="home-track">
-					{sections.map((section, index) => (
-						<div
-							key={section.id}
-							ref={(node) => {
-								sectionRefs.current[index] = node;
-							}}
-							className="home-panel"
-						>
-							{section.render()}
-						</div>
-					))}
+				<div ref={viewportRef} className="relative z-10 h-full">
+					<div ref={trackRef} className="home-track">
+						{sections.map((section, index) => (
+							<div
+								key={section.id}
+								ref={(node) => {
+									sectionRefs.current[index] = node;
+								}}
+								className="home-panel"
+							>
+								{section.render()}
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
