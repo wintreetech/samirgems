@@ -5,47 +5,58 @@ import { sharedImages } from "../data/siteContent";
 const diamonds = [
 	{
 		id: 1,
-		title: "The Letseng Icon",
-		carat: "391 Ct.",
-		cut: "Lorem",
-		clarity: "Lorem",
+		title: "The Lesotho Legend",
+		carat: "910 Ct.",
+		// cut: "Cushion",
+		// clarity: "VVS1",
 		colour: "White",
-		mainCarat: "924",
+		mainCarat: "910",
+		heroImage: sharedImages.Hero_Diamonds_4,
+		thumb: sharedImages.Hero_Diamonds_4_Thumb,
+	},
+	{
+		id: 2,
+		title: "The Letseng Icon",
+		carat: "439 Ct.",
+		// cut: "Lorem",
+		// clarity: "Lorem",
+		colour: "White",
+		mainCarat: "439",
 		heroImage: sharedImages.Hero_Diamonds_1,
 		thumb: sharedImages.Hero_Diamonds_1_Thumb,
 	},
 	{
-		id: 2,
+		id: 3,
+		title: "Queen of Kalahari",
+		carat: "342 Ct.",
+		// cut: "Cushion",
+		// clarity: "VVS1",
+		colour: "White",
+		mainCarat: "342",
+		heroImage: sharedImages.Hero_Diamonds_5,
+		thumb: sharedImages.Hero_Diamonds_5_Thumb,
+	},
+	{
+		id: 4,
 		title: "Rose Of Kao",
-		carat: "391 Ct.",
-		cut: "Emerald",
-		clarity: "VS1",
-		colour: "Pink",
-		mainCarat: "870",
+		carat: "29.59 Ct.",
+		// cut: "Emerald",
+		// clarity: "VS1",
+		colour: "Exceptional Pink",
+		mainCarat: "29.59",
 		heroImage: sharedImages.Hero_Diamonds_2,
 		thumb: sharedImages.Hero_Diamonds_2_Thumb,
 	},
 	{
-		id: 3,
+		id: 5,
 		title: "The Pink Palesa",
-		carat: "391 Ct.",
-		cut: "Oval",
-		clarity: "IF",
-		colour: "Pink",
-		mainCarat: "650",
+		carat: "21.86 Ct.",
+		cut: "NA",
+		clarity: "NA",
+		colour: "Exceptional Pink",
+		mainCarat: "21.86",
 		heroImage: sharedImages.Hero_Diamonds_3,
 		thumb: sharedImages.Hero_Diamonds_3_Thumb,
-	},
-	{
-		id: 4,
-		title: "Mountain Star",
-		carat: "412 Ct.",
-		cut: "Cushion",
-		clarity: "VVS1",
-		colour: "White",
-		mainCarat: "412",
-		heroImage: sharedImages.Hero_Diamonds_4,
-		thumb: sharedImages.Hero_Diamonds_4_Thumb,
 	},
 ];
 
@@ -101,9 +112,9 @@ function GemShowcase() {
 						<div key={diamond.id} className="w-full shrink-0 snap-start">
 							<div className="relative min-h-[420px]">
 								<img
-									src={diamond.heroImage}
+									src={diamond.thumb}
 									alt={diamond.title}
-									className="absolute inset-0 h-full w-full object-cover object-left"
+									className="absolute inset-0 h-full w-full object-cover object-center"
 								/>
 
 								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.45)_80%,#161616_100%)]" />
@@ -130,8 +141,12 @@ function GemShowcase() {
 									{[
 										{ label: "Carat", value: diamond.mainCarat },
 										{ label: "Colour", value: diamond.colour },
-										{ label: "Clarity", value: diamond.clarity },
-										{ label: "Cut", value: diamond.cut },
+										...(diamond.id === 5
+											? [
+													{ label: "Clarity", value: diamond.clarity },
+													{ label: "Cut", value: diamond.cut },
+												]
+											: []),
 									].map((item) => (
 										<div
 											key={item.label}
@@ -167,7 +182,7 @@ function GemShowcase() {
 								alt={diamond.title}
 								className="h-full w-full object-cover"
 							/>
-							<div className="absolute inset-0 bg-black/45" />
+							<div className="absolute inset-0 bg-black/10" />
 							<div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/10 to-[#161616]" />
 							<div className="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-transparent" />
 						</div>
@@ -205,23 +220,27 @@ function GemShowcase() {
 										</p>
 									</div>
 
-									<div data-animate="right" data-animate-delay="0.28">
-										<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
-											Clarity
-										</p>
-										<p className="font-copy text-[44px] font-light leading-none tracking-[0.03em]">
-											{activeDiamond.clarity}
-										</p>
-									</div>
+									{activeDiamond.id === 5 && (
+										<>
+											<div data-animate="right" data-animate-delay="0.28">
+												<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
+													Clarity
+												</p>
+												<p className="font-copy text-[44px] font-light leading-none tracking-[0.03em]">
+													{activeDiamond.clarity}
+												</p>
+											</div>
 
-									<div data-animate="right" data-animate-delay="0.36">
-										<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
-											Cut
-										</p>
-										<p className="font-copy text-[44px] font-light leading-none tracking-[0.03em]">
-											{activeDiamond.cut}
-										</p>
-									</div>
+											<div data-animate="right" data-animate-delay="0.36">
+												<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
+													Cut
+												</p>
+												<p className="font-copy text-[44px] font-light leading-none tracking-[0.03em]">
+													{activeDiamond.cut}
+												</p>
+											</div>
+										</>
+									)}
 								</div>
 							</div>
 

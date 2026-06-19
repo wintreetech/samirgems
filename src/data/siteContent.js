@@ -32,10 +32,13 @@ import value1 from "../assets/images/value-1.svg";
 import value2 from "../assets/images/value-2.svg";
 import value3 from "../assets/images/value-3.svg";
 import value4 from "../assets/images/value-4.svg";
+
 import Hero_Diamonds_1 from "../assets/images/The Letseng Icon.png";
 import Hero_Diamonds_2 from "../assets/images/Rose Of Kao.png";
 import Hero_Diamonds_3 from "../assets/images/The Pink Palesa.png";
-import Hero_Diamonds_4 from "../assets/images/Eumbo Star.png";
+import Hero_Diamonds_4 from "../assets/images/The Lesotho Legend.png";
+import Hero_Diamonds_5 from "../assets/images/queen of kalahari.png";
+
 import logoStrip from "../assets/images/logo-strip.svg";
 import OurExpertiseThumb from "../assets/pdf-images/our-expertise-bg-thum.png";
 import contactBg from "../assets/images/contact-bg.svg";
@@ -45,10 +48,11 @@ import strip_2 from "../assets/images/logo-strip 2.svg";
 import samirgemsmap from "../assets/images/map-samirgems.svg";
 import bgimageforhomelast from "../assets/images/global-legacy-bg.png";
 
-import Hero_Diamonds_1_Thumb from "../assets/images/The Letseng Icon thumb.png";
-import Hero_Diamonds_2_Thumb from "../assets/images/Rose Of Kao thumb.png";
-import Hero_Diamonds_3_Thumb from "../assets/images/The Pink Palesa thumb.png";
-import Hero_Diamonds_4_Thumb from "../assets/images/Eumbo Star thumb.png";
+import Hero_Diamonds_1_Thumb from "../assets/images/Letseng Icon thumb.png";
+import Hero_Diamonds_2_Thumb from "../assets/images/Rose of Kao thumb.png";
+import Hero_Diamonds_3_Thumb from "../assets/images/Pink Palesa thumb.png";
+import Hero_Diamonds_4_Thumb from "../assets/images/Lesotho Legend thumb.png";
+import Hero_Diamonds_5_Thumb from "../assets/images/Queen of Kalahari thumb.png";
 
 export const sharedImages = {
 	braceletImage,
@@ -87,6 +91,7 @@ export const sharedImages = {
 	Hero_Diamonds_2,
 	Hero_Diamonds_3,
 	Hero_Diamonds_4,
+	Hero_Diamonds_5,
 	OkavangoLogo,
 	DeBeersLogo,
 	OurExpertiseThumb,
@@ -101,6 +106,7 @@ export const sharedImages = {
 	Hero_Diamonds_2_Thumb,
 	Hero_Diamonds_3_Thumb,
 	Hero_Diamonds_4_Thumb,
+	Hero_Diamonds_5_Thumb,
 };
 
 export const homeStats = [
