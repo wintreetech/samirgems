@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { sharedImages } from "../data/siteContent";
 
@@ -79,6 +79,15 @@ function GemShowcase() {
 		...orderedDiamonds.slice(2),
 	].filter(Boolean);
 
+	const mobileScrollRef = useRef(null);
+
+	const scrollMobile = (direction) => {
+		mobileScrollRef.current?.scrollBy({
+			left: direction === "next" ? window.innerWidth : -window.innerWidth,
+			behavior: "smooth",
+		});
+	};
+
 	const next = () => {
 		setOrderedDiamonds((prev) => [...prev.slice(1), prev[0]]);
 	};
@@ -106,7 +115,7 @@ function GemShowcase() {
 
 	return (
 		<section className="gem-showcase relative overflow-hidden bg-[#161616] text-white">
-			<div className="lg:hidden">
+			{/* <div className="lg:hidden">
 				<div className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 					{diamonds.map((diamond) => (
 						<div key={diamond.id} className="w-full shrink-0 snap-start">
@@ -121,17 +130,9 @@ function GemShowcase() {
 
 								<div className="relative z-10 flex min-h-[420px] items-end px-5 py-8">
 									<div>
-										<p className="font-copy text-sm uppercase tracking-[0.22em] text-white/70">
-											Landmark Gem
-										</p>
-
 										<h2 className="mt-3 font-copy text-[2.3rem] leading-[0.95]">
 											{diamond.title}
 										</h2>
-
-										<p className="mt-3 font-copy text-lg text-white/80">
-											{diamond.carat}
-										</p>
 									</div>
 								</div>
 							</div>
@@ -165,6 +166,99 @@ function GemShowcase() {
 							</div>
 						</div>
 					))}
+				</div>
+			</div> */}
+
+			<div className="relative lg:hidden">
+				<div
+					ref={mobileScrollRef}
+					className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+				>
+					{diamonds.map((diamond) => (
+						<div key={diamond.id} className="w-full shrink-0 snap-start">
+							<div className="relative min-h-[420px]">
+								<img
+									src={diamond.thumb}
+									alt={diamond.title}
+									className="absolute inset-0 h-full w-full object-cover object-center"
+								/>
+
+								<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.45)_80%,#161616_100%)]" />
+
+								<div className="relative z-10 flex min-h-[420px] items-end px-5 py-8">
+									<div>
+										<h2 className="mt-3 font-copy text-[2.3rem] leading-[0.95]">
+											{diamond.title}
+										</h2>
+									</div>
+								</div>
+							</div>
+
+							<div className="mx-auto max-w-[1400px] px-5 py-8">
+								<div className="grid grid-cols-2 gap-4">
+									{[
+										{ label: "Carat", value: diamond.mainCarat },
+										{ label: "Colour", value: diamond.colour },
+										...(diamond.id === 5
+											? [
+													{ label: "Clarity", value: diamond.clarity },
+													{ label: "Cut", value: diamond.cut },
+												]
+											: []),
+									].map((item) => (
+										<div
+											key={item.label}
+											className="border border-white/10 bg-white/[0.03] p-4"
+										>
+											<p className="font-copy text-xs uppercase tracking-[0.18em] text-white/55">
+												{item.label}
+											</p>
+
+											<p className="mt-2 font-copy text-[1.8rem] leading-none">
+												{item.value}
+											</p>
+										</div>
+									))}
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div className="pointer-events-none absolute inset-x-0 top-[210px] z-30 flex -translate-y-1/2 items-center justify-between px-4">
+					<button
+						onClick={() => scrollMobile("prev")}
+						type="button"
+						aria-label="Previous diamond"
+						className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-white/45 bg-black/45 backdrop-blur transition hover:bg-white/10"
+					>
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+							<path
+								d="M15 5L8 12L15 19"
+								stroke="white"
+								strokeWidth="1.8"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+						</svg>
+					</button>
+
+					<button
+						onClick={() => scrollMobile("next")}
+						type="button"
+						aria-label="Next diamond"
+						className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-white/45 bg-black/45 backdrop-blur transition hover:bg-white/10"
+					>
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+							<path
+								d="M9 5L16 12L9 19"
+								stroke="white"
+								strokeWidth="1.8"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+						</svg>
+					</button>
 				</div>
 			</div>
 			<div className="hidden lg:block">

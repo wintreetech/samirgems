@@ -7,7 +7,7 @@ function PageHero({
 	description,
 	image,
 	imageClassName = "",
-	minHeight = "min-h-[68svh] md:min-h-[76vh] lg:min-h-[85vh]",
+	minHeight = "h-[calc(100dvh-100px)] md:h-auto md:min-h-[76vh] lg:min-h-[85vh]",
 	accent = "Discover More",
 	accentHref = "#content",
 	overlayClassName = "",

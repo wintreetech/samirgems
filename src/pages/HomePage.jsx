@@ -39,6 +39,7 @@ function HomePage() {
 	);
 
 	const activeBackground = hoveredCard?.image || sharedImages.OurExpertise;
+	const [mobileHeight, setMobileHeight] = useState(0);
 
 	const homeRef = useRef(null);
 	const viewportRef = useRef(null);
@@ -188,6 +189,21 @@ function HomePage() {
 			isFooterOpen,
 		],
 	);
+
+	useEffect(() => {
+		const update = () => {
+			setMobileHeight(window.innerHeight - 100);
+		};
+
+		update();
+		window.addEventListener("resize", update);
+		window.addEventListener("orientationchange", update);
+
+		return () => {
+			window.removeEventListener("resize", update);
+			window.removeEventListener("orientationchange", update);
+		};
+	}, []);
 
 	const sections = [
 		{
@@ -847,16 +863,22 @@ function HomePage() {
 			<div className="bg-black">
 				<div
 					ref={mobileSliderRef}
-					className="mobile-home-slider relative h-[calc(100svh-100px)] overflow-hidden bg-black"
+					className="mobile-home-slider relative overflow-hidden bg-black"
+					style={{ height: mobileHeight }}
 				>
 					<div
-						className="transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+						className="transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] will-change-transform"
 						style={{
-							height: "600%",
-							transform: `translate3d(0, -${mobileIndex * 16.6667}%, 0)`,
+							height: mobileHeight * MOBILE_SLIDE_COUNT,
+							transform: `translate3d(0, -${mobileIndex * mobileHeight}px, 0)`,
+							backfaceVisibility: "hidden",
+							WebkitBackfaceVisibility: "hidden",
 						}}
 					>
-						<section className="section-frame relative isolate h-[calc(100svh-100px)] w-full   overflow-hidden bg-black">
+						<section
+							style={{ height: mobileHeight }}
+							className="section-frame relative isolate  w-full   overflow-hidden bg-black"
+						>
 							<div className="absolute inset-0">
 								<img
 									src={sharedImages.diamondOnStone}
@@ -907,8 +929,9 @@ function HomePage() {
 						</section>
 
 						<section
+							style={{ height: mobileHeight }}
 							id="home-mobile-legacy"
-							className="section-frame relative h-[calc(100svh-100px)] w-full   overflow-hidden px-5 py-12 sm:px-6 sm:py-14"
+							className="section-frame relative  w-full   overflow-hidden px-5 py-12 sm:px-6 sm:py-14"
 						>
 							<div className="absolute inset-0">
 								<img
@@ -934,8 +957,9 @@ function HomePage() {
 						</section>
 
 						<section
+							style={{ height: mobileHeight }}
 							id="home-mobile-expertise"
-							className="section-frame relative h-[calc(100svh-100px)] w-full   overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
+							className="section-frame relative  w-full   overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
 						>
 							<div className="absolute inset-0">
 								<img
@@ -967,7 +991,10 @@ function HomePage() {
 							</div>
 						</section>
 
-						<section className="section-frame relative h-[calc(100svh-100px)] w-full overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14">
+						<section
+							style={{ height: mobileHeight }}
+							className="section-frame relative  w-full overflow-hidden bg-black px-5 py-12 sm:px-6 sm:py-14"
+						>
 							<img
 								src={sharedImages.handsImage}
 								alt=""
@@ -1000,7 +1027,10 @@ function HomePage() {
 							</div>
 						</section>
 
-						<section className="section-frame h-[calc(100svh-100px)] w-full overflow-hidden bg-[linear-gradient(180deg,#0c0c0c,#111111)] px-5 py-8 sm:px-6 sm:py-10">
+						<section
+							style={{ height: mobileHeight }}
+							className="section-frame  w-full overflow-hidden bg-[linear-gradient(180deg,#0c0c0c,#111111)] px-5 py-8 sm:px-6 sm:py-10"
+						>
 							<div className="mx-auto flex h-full max-w-[1400px] items-center">
 								<div
 									data-mobile-scrollable
@@ -1037,7 +1067,10 @@ function HomePage() {
 							</div>
 						</section>
 
-						<div className="h-[calc(100svh-100px)] w-full   overflow-y-auto bg-black">
+						<div
+							style={{ height: mobileHeight }}
+							className=" w-full overflow-y-auto bg-black"
+						>
 							<Footer />
 						</div>
 					</div>

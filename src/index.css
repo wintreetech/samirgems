@@ -524,3 +524,16 @@
 .mobile-home-slider * {
 	-webkit-tap-highlight-color: transparent;
 }
+
+.mobile-home-slider {
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	overscroll-behavior: none;
+	touch-action: pan-y;
+}
+
+.mobile-home-slider img {
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	backface-visibility: hidden;
+}
