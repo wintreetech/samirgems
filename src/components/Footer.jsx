@@ -40,7 +40,7 @@ export default function Footer() {
 					<div className="order-1 flex flex-col items-center justify-center lg:order-2">
 						<BrandLogo className="h-[96px] w-[156px]" />
 
-						<div className="mt-8 flex items-center gap-6 text-[#C5C6C8] md:gap-8">
+						{/* <div className="mt-8 flex items-center gap-6 text-[#C5C6C8] md:gap-8">
 							<a
 								href="#"
 								className="transition hover:text-white"
@@ -122,7 +122,7 @@ export default function Footer() {
 									/>
 								</svg>
 							</a>
-						</div>
+						</div> */}
 					</div>
 
 					<div className="order-3 flex flex-col items-center text-center lg:items-center">

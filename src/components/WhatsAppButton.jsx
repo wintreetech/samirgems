@@ -1,7 +1,7 @@
 import { sharedImages } from "../data/siteContent";
 
 export default function WhatsAppButton() {
-	const phoneNumber = "97144390374";
+	const phoneNumber = "+971525068625";
 	const message = "Hello, I'd like to enquire about your services";
 	const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
 		message,
