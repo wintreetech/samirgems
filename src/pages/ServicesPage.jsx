@@ -225,7 +225,7 @@ function ServicesPage() {
 					<div className="flex flex-col gap-5">
 						<div
 							data-animate="up"
-							className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden border border-white/8 bg-black/30 p-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)] md:min-h-[250px] md:p-8"
+							className="group relative flex min-h-[150px] flex-row items-center gap-4 overflow-hidden border border-white/8 bg-black/30 p-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)] md:min-h-[250px] md:flex-col md:justify-between md:items-start md:p-8"
 						>
 							{/* Light sweep effect */}
 							<div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
@@ -235,10 +235,10 @@ function ServicesPage() {
 							<img
 								src={sharedImages.value1}
 								alt=""
-								className="h-9 w-9 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
+								className="h-9 w-9 shrink-0 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
 							/>
 
-							<p className="max-w-[240px] font-copy text-base font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white md:text-[17px]">
+							<p className="flex-1 font-copy text-base font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white md:max-w-[240px] md:flex-none md:text-[17px]">
 								Vertically integrated mine-to-market operations
 							</p>
 						</div>
@@ -246,7 +246,7 @@ function ServicesPage() {
 						<div
 							data-animate="up"
 							data-animate-delay="0.14"
-							className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden border border-white/8 bg-black/30 p-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)] md:min-h-[250px] md:p-8"
+							className="group relative flex min-h-[150px] flex-row items-center gap-4 overflow-hidden border border-white/8 bg-black/30 p-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)] md:min-h-[250px] md:flex-col md:justify-between md:items-start md:p-8"
 						>
 							<div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
 								<div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_40%,rgba(255,255,255,0.08)_50%,transparent_60%)] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
@@ -255,10 +255,10 @@ function ServicesPage() {
 							<img
 								src={sharedImages.value2}
 								alt=""
-								className="h-9 w-9 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
+								className="h-9 w-9 shrink-0 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
 							/>
 
-							<p className="max-w-[240px] font-copy text-base font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white md:text-[17px]">
+							<p className="flex-1 font-copy text-base font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white md:max-w-[240px] md:flex-none md:text-[17px]">
 								Consistent quality backed by decades of expertise
 							</p>
 						</div>
@@ -267,7 +267,7 @@ function ServicesPage() {
 					<div className="flex flex-col gap-5">
 						<div
 							data-animate="right"
-							className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden border border-white/8 bg-black/30 p-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)] md:min-h-[250px] md:p-8"
+							className="group relative flex min-h-[150px] flex-row items-center gap-4 overflow-hidden border border-white/8 bg-black/30 p-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)] md:min-h-[250px] md:flex-col md:justify-between md:items-start md:p-8"
 						>
 							<div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
 								<div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_40%,rgba(255,255,255,0.08)_50%,transparent_60%)] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
@@ -276,10 +276,10 @@ function ServicesPage() {
 							<img
 								src={sharedImages.value3}
 								alt=""
-								className="h-9 w-9 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
+								className="h-9 w-9 shrink-0 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
 							/>
 
-							<p className="max-w-[240px] font-copy text-base font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white md:text-[17px]">
+							<p className="flex-1 font-copy text-base font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white md:max-w-[240px] md:flex-none md:text-[17px]">
 								Ethical sourcing and transparent processes
 							</p>
 						</div>
@@ -287,7 +287,7 @@ function ServicesPage() {
 						<div
 							data-animate="right"
 							data-animate-delay="0.14"
-							className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden border border-white/8 bg-black/30 p-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)] md:min-h-[250px] md:p-8"
+							className="group relative flex min-h-[150px] flex-row items-center gap-4 overflow-hidden border border-white/8 bg-black/30 p-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-black/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)] md:min-h-[250px] md:flex-col md:justify-between md:items-start md:p-8"
 						>
 							<div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
 								<div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_40%,rgba(255,255,255,0.08)_50%,transparent_60%)] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
@@ -296,10 +296,10 @@ function ServicesPage() {
 							<img
 								src={sharedImages.value4}
 								alt=""
-								className="h-9 w-9 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
+								className="h-9 w-9 shrink-0 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-110"
 							/>
 
-							<p className="max-w-[240px] font-copy text-base font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white md:text-[17px]">
+							<p className="flex-1 font-copy text-base font-light tracking-[0.03em] text-white transition-all duration-500 ease-out group-hover:translate-y-[-3px] group-hover:text-white md:max-w-[240px] md:flex-none md:text-[17px]">
 								Trusted by leading luxury and jewellery houses worldwide
 							</p>
 						</div>
