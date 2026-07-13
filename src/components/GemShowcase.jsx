@@ -9,7 +9,7 @@ const diamonds = [
 		carat: "910 Ct.",
 		// cut: "Cushion",
 		// clarity: "VVS1",
-		colour: "White",
+		colour: "D color Type IIA",
 		mainCarat: "910",
 		heroImage: sharedImages.Hero_Diamonds_4,
 		thumb: sharedImages.Hero_Diamonds_4_Thumb,
@@ -20,7 +20,7 @@ const diamonds = [
 		carat: "439 Ct.",
 		// cut: "Lorem",
 		// clarity: "Lorem",
-		colour: "White",
+		colour: "D color Type IIA",
 		mainCarat: "439",
 		heroImage: sharedImages.Hero_Diamonds_1,
 		thumb: sharedImages.Hero_Diamonds_1_Thumb,
@@ -31,7 +31,7 @@ const diamonds = [
 		carat: "342 Ct.",
 		// cut: "Cushion",
 		// clarity: "VVS1",
-		colour: "White",
+		colour: "D color Type IIA",
 		mainCarat: "342",
 		heroImage: sharedImages.Hero_Diamonds_5,
 		thumb: sharedImages.Hero_Diamonds_5_Thumb,
@@ -197,14 +197,8 @@ function GemShowcase() {
 							<div className="mx-auto max-w-[1400px] px-5 py-8">
 								<div className="grid grid-cols-2 gap-4">
 									{[
-										{ label: "Carat", value: diamond.mainCarat },
+										{ label: "Weight", value: diamond.mainCarat },
 										{ label: "Colour", value: diamond.colour },
-										...(diamond.id === 5
-											? [
-													{ label: "Clarity", value: diamond.clarity },
-													{ label: "Cut", value: diamond.cut },
-												]
-											: []),
 									].map((item) => (
 										<div
 											key={item.label}
@@ -215,7 +209,7 @@ function GemShowcase() {
 											</p>
 
 											<p className="mt-2 font-copy text-[1.8rem] leading-none">
-												{item.value}
+												{item.value}ct
 											</p>
 										</div>
 									))}
@@ -299,10 +293,10 @@ function GemShowcase() {
 								<div className="mt-14 grid grid-cols-2 gap-x-16 gap-y-12">
 									<div data-animate="right" data-animate-delay="0.12">
 										<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
-											Carat
+											Weight
 										</p>
 										<p className="font-copy text-[44px] font-light leading-none tracking-[0.03em]">
-											{activeDiamond.mainCarat}
+											{activeDiamond.mainCarat}ct
 										</p>
 									</div>
 									<div data-animate="right" data-animate-delay="0.2">
@@ -313,28 +307,6 @@ function GemShowcase() {
 											{activeDiamond.colour}
 										</p>
 									</div>
-
-									{activeDiamond.id === 5 && (
-										<>
-											<div data-animate="right" data-animate-delay="0.28">
-												<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
-													Clarity
-												</p>
-												<p className="font-copy text-[44px] font-light leading-none tracking-[0.03em]">
-													{activeDiamond.clarity}
-												</p>
-											</div>
-
-											<div data-animate="right" data-animate-delay="0.36">
-												<p className="mb-2 font-copy text-[15px] font-light tracking-[0.03em] text-white/60">
-													Cut
-												</p>
-												<p className="font-copy text-[44px] font-light leading-none tracking-[0.03em]">
-													{activeDiamond.cut}
-												</p>
-											</div>
-										</>
-									)}
 								</div>
 							</div>
 

@@ -117,7 +117,7 @@ export const homeStats = [
 		value: "100",
 		label: "% Ethical Sourcing from Responsible Mines",
 	},
-	{ value: "12", label: "Regions of ethical sourcing" },
+	{ value: "12", label: "Regions of Ethical Sourcing" },
 ];
 
 export const expertiseCards = [
@@ -231,9 +231,9 @@ export const GlobalLegacy = [
 	"1966 – Founded in India",
 	"1982 – Established in Antwerp",
 	"1990 – Established in New York",
-	"2008 – Operations Established within the FZCO Trade District",
+	"2008 – Established in Dubai",
 	"2010 – Established in Hong Kong",
-	"2015 – Factory Established in Surat",
+	"2015 – Manufacturing Factory Established in Surat",
 	"2025 – A New Chapter Begins: Samir Gems FZCO",
-	"2026 – Expanding into Namibia",
+	"2026 – Strategic Expansion into Namibia",
 ];

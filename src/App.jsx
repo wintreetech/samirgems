@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import LegacyPage from "./pages/LegacyPage";
 import ServicesPage from "./pages/ServicesPage";
 import WhatsAppButton from "./components/WhatsAppButton";
+import RequestConsultationPopup from "./components/RequestConsultationPopup";
 
 function ScrollToTop() {
 	const { pathname } = useLocation();
@@ -33,6 +34,7 @@ function App() {
 					<Route path="*" element={<Navigate to="/" replace />} />
 				</Route>
 			</Routes>
+			<RequestConsultationPopup />
 			<WhatsAppButton />
 		</>
 	);

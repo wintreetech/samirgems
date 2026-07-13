@@ -537,3 +537,10 @@
 	transform: translateZ(0);
 	backface-visibility: hidden;
 }
+
+/* Allow body to scroll on mobile home so Footer is reachable */
+@media (max-width: 1023px) {
+	body {
+		overflow-y: auto;
+	}
+}
