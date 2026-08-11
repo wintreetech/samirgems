@@ -110,7 +110,12 @@ function RequestConsultationPopup() {
 				if (e.target === e.currentTarget) setIsOpen(false);
 			}}
 		>
-			<div className="consultation-popup">
+			<div
+				className="consultation-popup"
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="consultation-popup-title"
+			>
 				<button
 					type="button"
 					className="consultation-popup-close"
@@ -121,8 +126,7 @@ function RequestConsultationPopup() {
 				</button>
 
 				<div className="consultation-popup-header">
-					<h2>Request For Consultation</h2>
-					<p>Fill in your details and we’ll contact you shortly.</p>
+					<h2 id="consultation-popup-title">Request For Consultation</h2>
 				</div>
 
 				<form ref={formRef} onSubmit={handleSubmit}>
@@ -204,7 +208,7 @@ function RequestConsultationPopup() {
 							value={formData.message}
 							onChange={handleChange}
 							placeholder="Your message"
-							rows="3"
+							rows="1"
 						/>
 					</div>
 

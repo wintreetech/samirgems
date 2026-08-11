@@ -231,7 +231,7 @@ export const GlobalLegacy = [
 	"1966 – Founded in India",
 	"1982 – Established in Antwerp",
 	"1990 – Established in New York",
-	"2008 – Established in Dubai",
+	"2005 – Established in Dubai",
 	"2010 – Established in Hong Kong",
 	"2015 – Manufacturing Factory Established in Surat",
 	"2025 – A New Chapter Begins: Samir Gems FZCO",

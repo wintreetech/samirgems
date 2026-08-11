@@ -3,25 +3,44 @@
 	inset: 0;
 	z-index: 999999;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 18px;
-	background: rgba(0, 0, 0, 0.68);
-	backdrop-filter: blur(4px);
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding: 12px;
+
+	/* No dark background / no blur */
+	background: transparent;
+	backdrop-filter: none;
 }
 
 .consultation-popup {
 	position: relative;
-	width: 100%;
-	max-width: 500px;
-	max-height: calc(100vh - 36px);
+	width: min(360px, calc(100vw - 24px));
+	max-height: calc(100vh - 24px);
 	overflow-y: auto;
+
 	background: #ffffff;
-	border-radius: 16px;
-	padding: 26px;
+	border-radius: 12px;
+	padding: 16px;
+
 	color: #171717 !important;
-	box-shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
+	box-shadow: 0 10px 35px rgba(0, 0, 0, 0.14);
+
 	font-family: "Condor", serif;
+
+	/* Bottom to top animation */
+	animation: consultationSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes consultationSlideUp {
+	from {
+		transform: translateY(120%);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
 
 .consultation-popup * {
@@ -36,19 +55,34 @@
 	opacity: 1 !important;
 }
 
+/* Close Button */
 .consultation-popup-close {
 	position: absolute;
-	top: 12px;
-	right: 14px;
-	width: 30px;
-	height: 30px;
+	top: 8px;
+	right: 8px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 25px;
+	height: 25px;
+
 	border: 0;
 	border-radius: 50%;
-	background: #f4f4f4;
+
+	background: #f1f1f1;
 	color: #111111 !important;
-	font-size: 22px;
-	line-height: 28px;
+
+	font-size: 18px;
+	font-weight: 300;
+	line-height: 1;
+
 	cursor: pointer;
+
+	transition:
+		background 0.2s ease,
+		color 0.2s ease;
 }
 
 .consultation-popup-close:hover {
@@ -56,121 +90,155 @@
 	color: #ffffff !important;
 }
 
+/* Header */
 .consultation-popup-header {
-	margin-bottom: 20px;
-	padding-right: 28px;
+	margin-bottom: 12px;
+	padding-right: 24px;
 }
 
 .consultation-popup-header h2 {
-	margin: 0 0 6px;
-	font-size: 24px;
-	font-weight: 700;
+	margin: 0 0 3px;
+
+	font-size: 18px;
+	font-weight: 500;
 	line-height: 1.2;
 }
 
 .consultation-popup-header p {
 	margin: 0;
+
 	color: #666666 !important;
-	font-size: 14px;
-	line-height: 1.5;
+
+	font-size: 11px;
+	font-weight: 300;
+	line-height: 1.4;
 }
 
+/* Form Grid */
 .consultation-form-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 12px;
+	gap: 8px;
 }
 
 .consultation-form-group {
-	margin-bottom: 13px;
+	margin-bottom: 8px;
 }
 
+/* Labels */
 .consultation-form-group label {
 	display: block;
-	margin-bottom: 6px;
-	font-size: 13px;
-	font-weight: 600;
+	margin-bottom: 3px;
+
+	font-size: 11px;
+	font-weight: 400;
+
 	color: #222222 !important;
 }
 
 .consultation-form-group label span {
 	color: #d93025 !important;
+	font-weight: 400;
 }
 
+/* Inputs */
 .consultation-form-group input,
 .consultation-form-group textarea {
 	width: 100%;
+
 	border: 1px solid #dcdcdc;
-	border-radius: 9px;
+	border-radius: 7px;
+
 	background: #ffffff;
-	padding: 11px 12px;
+
+	padding: 7px 9px;
+
 	color: #111111 !important;
-	font-size: 14px;
+
 	font-family: inherit;
+	font-size: 12px;
+	font-weight: 300;
+	line-height: 1.3;
+
 	outline: none;
+
 	transition:
 		border-color 0.2s ease,
 		box-shadow 0.2s ease;
 }
 
 .consultation-form-group textarea {
-	min-height: 82px;
+	min-height: 52px;
+	max-height: 90px;
 	resize: vertical;
 }
 
+/* Placeholder */
 .consultation-form-group input::placeholder,
 .consultation-form-group textarea::placeholder {
 	color: #9a9a9a !important;
 	opacity: 1 !important;
+	font-weight: 300;
 }
 
+/* Focus */
 .consultation-form-group input:focus,
 .consultation-form-group textarea:focus {
 	border-color: #a88645;
-	box-shadow: 0 0 0 3px rgba(168, 134, 69, 0.16);
+	box-shadow: 0 0 0 2px rgba(168, 134, 69, 0.14);
 }
 
+/* Radio Section */
 .consultation-radio-section {
-	margin: 2px 0 16px;
+	margin: 0 0 10px;
 }
 
 .consultation-radio-title {
 	display: block;
-	margin-bottom: 8px;
-	font-size: 13px;
-	font-weight: 600;
+	margin-bottom: 5px;
+
+	font-size: 11px;
+	font-weight: 400;
+
 	color: #222222 !important;
 }
 
 .consultation-radio-group {
 	display: flex;
-	gap: 18px;
+	gap: 14px;
 }
 
 .consultation-radio-group label {
 	display: flex;
 	align-items: center;
-	gap: 7px;
-	font-size: 14px;
-	font-weight: 500;
+	gap: 5px;
+
+	font-size: 11px;
+	font-weight: 300;
+
 	cursor: pointer;
+
 	color: #222222 !important;
 }
 
 .consultation-radio-group input {
-	width: 15px;
-	height: 15px;
+	width: 13px;
+	height: 13px;
 	margin: 0;
+
 	accent-color: #a88645;
 }
 
+/* Error / Success */
 .consultation-error,
 .consultation-success {
-	margin: 0 0 12px;
-	padding: 9px 11px;
-	border-radius: 8px;
-	font-size: 13px;
-	font-weight: 500;
+	margin: 0 0 8px;
+	padding: 6px 8px;
+
+	border-radius: 6px;
+
+	font-size: 11px;
+	font-weight: 400;
 }
 
 .consultation-error {
@@ -183,17 +251,26 @@
 	color: #1e7e34 !important;
 }
 
+/* Submit Button */
 .consultation-submit-btn {
 	width: 100%;
+
 	border: 0;
-	border-radius: 9px;
+	border-radius: 7px;
+
 	background: #111111;
 	color: #ffffff !important;
-	padding: 12px 16px;
-	font-size: 15px;
-	font-weight: 700;
+
+	padding: 8px 12px;
+
+	font-size: 12px;
+	font-weight: 500;
+
 	cursor: pointer;
-	transition: background 0.2s ease;
+
+	transition:
+		background 0.2s ease,
+		transform 0.2s ease;
 }
 
 .consultation-submit-btn:hover {
@@ -205,25 +282,28 @@
 	cursor: not-allowed;
 }
 
-@media (max-width: 560px) {
-	.consultation-popup {
-		max-width: 100%;
-		padding: 24px 18px;
+/* Font */
+.consultation-popup input,
+.consultation-popup textarea,
+.consultation-popup button,
+.consultation-popup label {
+	font-family: "Condor", serif;
+}
+
+/* Mobile */
+@media (max-width: 400px) {
+	.consultation-popup-overlay {
+		padding: 8px;
 	}
 
-	.consultation-popup-header h2 {
-		font-size: 22px;
+	.consultation-popup {
+		width: min(330px, calc(100vw - 16px));
+		max-height: calc(100vh - 16px);
+		padding: 14px;
 	}
 
 	.consultation-form-grid {
 		grid-template-columns: 1fr;
 		gap: 0;
 	}
-}
-
-.consultation-popup input,
-.consultation-popup textarea,
-.consultation-popup button,
-.consultation-popup label {
-	font-family: "Condor", serif;
 }

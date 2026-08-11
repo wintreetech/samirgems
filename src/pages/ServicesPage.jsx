@@ -61,7 +61,7 @@ function ServicesPage() {
 				title="Our Services"
 				description={
 					<>
-						Shaping the future of diamonds with decades of trust and
+						Shaping the future of diamonds with decades of trust &
 						craftsmanship.
 					</>
 				}
@@ -139,7 +139,11 @@ function ServicesPage() {
 								<img
 									src={card.image}
 									alt={card.title}
-									className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+									className={`h-full w-full object-cover transition-transform duration-700 ease-out ${
+										index === cards.length - 1 && active === index
+											? "-translate-y-20 scale-[1.28]"
+											: "translate-y-0 scale-100 group-hover:scale-105"
+									}`}
 								/>
 
 								{index === 0 ? (
@@ -148,7 +152,7 @@ function ServicesPage() {
 											active === 0 ? "opacity-100" : "opacity-0"
 										}`}
 									>
-										<div className="rounded-sm bg-black/30 backdrop-blur-sm">
+										<div className="rounded-sm bg-black/20">
 											<div className="flex flex-col items-end gap-3">
 												<img
 													src={sharedImages.strip_1}
@@ -165,7 +169,7 @@ function ServicesPage() {
 									</div>
 								) : null}
 
-								<div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+								{/* <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" /> */}
 
 								<div
 									className={`absolute bottom-0 left-0 w-full p-5 text-left transition-all duration-500 md:p-8 ${

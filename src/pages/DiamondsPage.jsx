@@ -16,7 +16,7 @@ function DiamondsPage() {
 				title="Our Diamonds"
 				description={
 					<>
-						Shaping the future of diamonds with decades of trust and
+						Shaping the future of diamonds with decades of trust &
 						craftsmanship.
 					</>
 				}

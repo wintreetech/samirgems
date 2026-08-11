@@ -26,7 +26,7 @@ export default function Footer() {
 						<div className="mt-8 space-y-6 font-copy text-base font-light tracking-[0.03em] text-white/95 md:text-[17px]">
 							<div>
 								<p>
-									<a href="tel:+97144390374">+971 4 439 0374</a>
+									<a href="tel:+97144390374">+971 4 439 0373</a>
 								</p>
 								<p>
 									<a href="mailto:dubai@samirgemsfzco.com">
@@ -37,7 +37,7 @@ export default function Footer() {
 
 							<div className="max-w-[240px] leading-[1.85]">
 								<p>14 A, Almas Tower, Level 14,</p>
-								<p>Jumeirah Lake Towers,</p>
+								<p>Jumeirah Lakes Towers,</p>
 								<p>Dubai, UAE</p>
 							</div>
 						</div>
@@ -164,7 +164,7 @@ export default function Footer() {
 
 			<div className="relative border-t border-white/10 bg-[#0D0D0D] px-5 py-4">
 				<p className="text-center font-copy text-sm font-light tracking-[0.03em] text-white md:text-base">
-					&copy; 2026 Samirgems FZCO. All rights reserved.
+					&copy; 2026 Samir Gems FZCO. All rights reserved.
 				</p>
 			</div>
 		</footer>

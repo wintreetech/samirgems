@@ -20,7 +20,7 @@ function LegacyPage() {
 				}
 				description={
 					<>
-						Shaping the future of diamonds with decades of trust and
+						Shaping the future of diamonds with decades of trust &
 						craftsmanship.
 					</>
 				}
@@ -47,17 +47,17 @@ function LegacyPage() {
 							className="font-copy text-base leading-relaxed text-stone-300 md:text-lg"
 						>
 							Samir Gems FZCO is a global diamond enterprise operating within
-							the FZCO framework since 2008. Rooted in the six decade legacy of
-							Samir Gems, the brand has evolved into an independent entity,
-							shaped by long standing industry relationships, deep market
-							understanding, and a heritage built on trust and precision.
+							the FZCO framework since 2005. Rooted in the six decade legacy of
+							Samir Gems Group, the brand has evolved into an independent
+							entity, shaped by long standing industry relationships, deep
+							market understanding, and a heritage built on trust and precision.
 						</p>
 						<p
 							data-animate="right"
 							data-animate-delay="0.16"
 							className="mt-6 font-copy text-base leading-relaxed text-stone-300 md:text-lg"
 						>
-							Today, Samir Gems FZCO sources Kimberley Process certified rough
+							The company only sources Kimberley Process certified rough
 							diamonds and delivers calibrated, high quality polished stones
 							with complete transparency. With a presence across key global
 							markets, the brand is trusted by leading jewellery houses for its
@@ -129,11 +129,7 @@ function LegacyPage() {
 						className="order-2 overflow-hidden lg:order-1"
 						data-animate="left"
 					>
-						<img
-							src={sharedImages.OurOrigin2}
-							alt=""
-							className="h-[360px] w-full object-cover object-center md:h-[460px] lg:h-[600px]"
-						/>
+						<img src={sharedImages.OurOrigin2} alt="" className=" w-full" />
 					</div>
 					<div className="order-1 flex flex-col justify-start lg:order-2 lg:pl-8 lg:pr-14">
 						<h3
@@ -161,6 +157,26 @@ function LegacyPage() {
 								<span className="mt-2 h-1.5 w-1.5 rounded-full bg-stone-300" />
 								<span>
 									Techniques evolved without losing traditional integrity
+								</span>
+							</li>
+							<li
+								data-animate="right"
+								data-animate-delay="0.3"
+								className="flex items-start gap-3"
+							>
+								<span className="mt-2 h-1.5 w-1.5 rounded-full bg-stone-300" />
+								<span>
+									Meticulous attention to detail at every stage of the process
+								</span>
+							</li>
+							<li
+								data-animate="right"
+								data-animate-delay="0.3"
+								className="flex items-start gap-3"
+							>
+								<span className="mt-2 h-1.5 w-1.5 rounded-full bg-stone-300" />
+								<span>
+									Every piece crafted to meet the highest quality standards
 								</span>
 							</li>
 						</ul>

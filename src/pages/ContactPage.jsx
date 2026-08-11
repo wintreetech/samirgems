@@ -45,7 +45,7 @@ function ContactPage() {
 								<p className="mt-4 font-copy text-base leading-[1.8] text-stone-300 md:text-lg">
 									14 A, Almas Tower, Level 14,
 									<br />
-									Jumeirah Lake Towers,
+									Jumeirah Lakes Towers,
 									<br />
 									Dubai, UAE
 								</p>
@@ -58,7 +58,7 @@ function ContactPage() {
 								<div className="mt-3 h-[1px] w-6 bg-white/60" />
 								<div className="mt-4 space-y-2 font-copy text-base text-stone-300 md:text-lg">
 									<a href="tel:+97144390374" className="block hover:text-white">
-										+971 4 439 0374
+										+971 4 439 0373
 									</a>
 									<a
 										href="mailto:dubai@samirgemsfzco.com"
