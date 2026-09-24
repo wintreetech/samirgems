@@ -1,3 +1,5 @@
+import DiamondComparison from "../components/DiamondEditorial";
+import DiamondEditorial from "../components/DiamondEditorial";
 import GemShowcase from "../components/GemShowcase";
 import PageHero from "../components/PageHero";
 import RevealSection from "../components/RevealSection";
@@ -41,6 +43,19 @@ function DiamondsPage() {
 				</RevealSection>
 				<RevealSection threshold={0.1} className="w-full">
 					<GemShowcase />
+				</RevealSection>
+
+				<RevealSection
+					id="content"
+					threshold={0.15}
+					className="bg-[#111111] px-5 py-14 sm:px-6 md:px-10 lg:px-14 lg:py-25 xl:px-20 2xl:px-24"
+				>
+					<div className="mx-auto max-w-[1400px]">
+						<DiamondEditorial
+							image={sharedImages.exceptionalpagebottom}
+							href="https://rapaport.com/news/namdia-advertorial-fulfilling-the-promise/"
+						/>
+					</div>
 				</RevealSection>
 			</section>
 		</>

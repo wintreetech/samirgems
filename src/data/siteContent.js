@@ -6,6 +6,7 @@ import roughDiamonds from "../assets/pdf-images/page1-img18.png";
 import namdiaLogo from "../assets/images/NAMDIA.svg";
 import sodiamLogo from "../assets/images/SODIAM.svg";
 import OkavangoLogo from "../assets/images/Okavango.png";
+import exceptionalpagebottom from "../assets/images/exceptionalDown.png";
 import DeBeersLogo from "../assets/images/DeBeers.png";
 import handsImage from "../assets/pdf-images/page1-img21.webp";
 import diamondOnStone from "../assets/images/HOME_HERO.png";
@@ -109,6 +110,7 @@ export const sharedImages = {
 	Hero_Diamonds_3_Thumb,
 	Hero_Diamonds_4_Thumb,
 	Hero_Diamonds_5_Thumb,
+	exceptionalpagebottom,
 };
 
 export const homeStats = [
